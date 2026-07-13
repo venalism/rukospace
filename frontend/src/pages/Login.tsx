@@ -35,7 +35,7 @@ export default function Login() {
 
   return (
     <div className="min-h-[80vh] flex items-center justify-center px-margin-mobile py-3xl">
-      <div className="w-full max-w-md">
+      <div className="w-full max-w-[448px]">
         {/* Card */}
         <div className="bg-surface-container-lowest rounded-xl p-xl border border-border-subtle shadow-sm">
           {/* Header */}

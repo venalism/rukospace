@@ -67,7 +67,7 @@ export default function DashboardTenant() {
             <div className="bg-surface-container-lowest border border-border-subtle rounded-xl p-2xl flex flex-col items-center justify-center text-center gap-md">
               <span className="material-symbols-outlined text-[48px] text-outline">store</span>
               <h3 className="font-title-md text-title-md text-on-surface-variant">No Active Rentals</h3>
-              <p className="font-body-sm text-body-sm text-on-surface-variant max-w-sm">
+              <p className="font-body-sm text-body-sm text-on-surface-variant max-w-[384px]">
                 You don't have any active rental properties yet. Browse available properties to get started.
               </p>
               <Link

@@ -120,7 +120,7 @@ export default function DashboardOwner() {
             <div className="bg-surface-container-lowest border border-border-subtle rounded-xl p-2xl flex flex-col items-center justify-center text-center gap-md">
               <span className="material-symbols-outlined text-[48px] text-outline">domain_add</span>
               <h3 className="font-title-md text-title-md text-on-surface-variant">No Properties Yet</h3>
-              <p className="font-body-sm text-body-sm text-on-surface-variant max-w-sm">Start by adding your first property listing. Click the button above to generate a QR code for your property.</p>
+              <p className="font-body-sm text-body-sm text-on-surface-variant max-w-[384px]">Start by adding your first property listing. Click the button above to generate a QR code for your property.</p>
               <button className="bg-trust-navy text-on-primary font-label-caps text-label-caps px-lg py-sm rounded-lg hover:opacity-90 transition-opacity mt-md">
                 ADD FIRST PROPERTY
               </button>

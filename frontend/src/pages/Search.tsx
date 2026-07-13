@@ -63,7 +63,7 @@ export default function Search() {
       {/* Split View: Map + Results */}
       <div className="flex-1 flex flex-col md:flex-row">
         {/* Map */}
-        <div className="w-full md:w-1/2 lg:w-2/3 h-[300px] md:h-[calc(100vh-140px)] relative">
+        <div className="w-full md:w-1/2 lg:w-2/3 h-[300px] md:h-[calc(100vh-140px)] relative z-0">
           <MapContainer center={[-6.2088, 106.8456]} zoom={12} style={{ height: '100%', width: '100%' }}>
             <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
             <MapEvents />

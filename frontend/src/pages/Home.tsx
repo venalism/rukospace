@@ -8,11 +8,11 @@ export default function Home() {
         <div className="absolute inset-0 z-0 opacity-10">
           <div className="w-full h-full bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-trust-navy via-surface to-surface"></div>
         </div>
-        <div className="relative z-10 flex flex-col items-center text-center max-w-3xl mx-auto space-y-xl">
+        <div className="relative z-10 flex flex-col items-center text-center max-w-[768px] mx-auto space-y-xl">
           <h1 className="font-display-lg text-display-lg text-trust-navy md:text-display-lg text-headline-lg-mobile">Temukan Ruko Strategis untuk Bisnis Anda</h1>
-          <p className="font-body-md text-body-md text-on-surface-variant max-w-xl mx-auto">Platform tepercaya untuk mencari dan menyewakan ruang komersial dengan data teknis yang terverifikasi.</p>
+          <p className="font-body-md text-body-md text-on-surface-variant max-w-[576px] mx-auto">Platform tepercaya untuk mencari dan menyewakan ruang komersial dengan data teknis yang terverifikasi.</p>
           {/* Search Bar */}
-          <div className="w-full max-w-2xl bg-surface-container-lowest rounded-xl p-sm shadow-[0px_10px_15px_-3px_rgba(15,76,129,0.1)] border border-border-subtle flex flex-col md:flex-row gap-sm">
+          <div className="w-full max-w-[672px] bg-surface-container-lowest rounded-xl p-sm shadow-[0px_10px_15px_-3px_rgba(15,76,129,0.1)] border border-border-subtle flex flex-col md:flex-row gap-sm">
             <div className="flex-1 flex items-center bg-surface-gray rounded-lg px-md py-sm border border-transparent focus-within:border-trust-navy transition-colors">
               <span className="material-symbols-outlined text-outline mr-sm">location_on</span>
               <input className="w-full bg-transparent border-none focus:ring-0 font-body-md text-on-surface placeholder:text-outline p-0" placeholder="Lokasi (mis. Sudirman)" type="text" />
@@ -185,7 +185,7 @@ export default function Home() {
           <div className="absolute top-0 right-0 w-64 h-64 bg-primary-container rounded-full opacity-50 translate-x-1/2 -translate-y-1/2 blur-2xl"></div>
           <div className="absolute bottom-0 left-0 w-48 h-48 bg-primary-fixed-dim rounded-full opacity-20 -translate-x-1/2 translate-y-1/2 blur-xl"></div>
           
-          <div className="relative z-10 max-w-2xl text-center md:text-left space-y-md">
+          <div className="relative z-10 max-w-[672px] text-center md:text-left space-y-md">
             <h2 className="font-headline-lg text-headline-lg text-on-primary md:text-headline-lg text-headline-lg-mobile">Punya Ruko Kosong?</h2>
             <p className="font-body-md text-body-md text-inverse-on-surface opacity-90">Pasarkan properti komersial Anda ke ribuan calon penyewa terverifikasi. Proses listing cepat, aman, dan profesional.</p>
           </div>

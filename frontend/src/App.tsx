@@ -13,18 +13,20 @@ function App() {
     <BrowserRouter>
       <div className="min-h-screen flex flex-col bg-surface-gray text-on-surface font-body-md antialiased">
         {/* Navigation */}
-        <header className="fixed top-0 w-full z-50 flex justify-between items-center px-lg py-md max-w-container-max mx-auto bg-surface border-b border-border-subtle shadow-sm left-0 right-0">
-          <div className="flex items-center gap-xl">
-            <Link className="font-title-md text-title-md font-bold text-trust-navy" to="/">RukoSpace</Link>
-            <nav className="hidden md:flex gap-lg">
-              <Link className="text-trust-navy border-b-2 border-trust-navy pb-1 font-body-md" to="/">For Tenants</Link>
-              <Link className="text-on-surface-variant hover:text-trust-navy transition-colors font-body-md" to="/">For Landlords</Link>
-              <Link className="text-on-surface-variant hover:text-trust-navy transition-colors font-body-md" to="/search">List Property</Link>
-            </nav>
-          </div>
-          <div className="flex items-center gap-md">
-            <Link to="/login" className="text-trust-navy font-body-md font-semibold hover:text-trust-navy transition-colors">Login</Link>
-            <Link to="/register" className="bg-trust-navy text-on-primary px-md py-sm rounded-lg font-body-md font-bold hover:opacity-90 transition-opacity">Register</Link>
+        <header className="fixed top-0 w-full z-50 bg-surface border-b border-border-subtle shadow-sm left-0 right-0">
+          <div className="max-w-container-max mx-auto w-full flex justify-between items-center px-lg py-md">
+            <div className="flex items-center gap-xl">
+              <Link className="font-title-md text-title-md font-bold text-trust-navy" to="/">RukoSpace</Link>
+              <nav className="hidden md:flex gap-lg">
+                <Link className="text-trust-navy border-b-2 border-trust-navy pb-1 font-body-md" to="/">For Tenants</Link>
+                <Link className="text-on-surface-variant hover:text-trust-navy transition-colors font-body-md" to="/">For Landlords</Link>
+                <Link className="text-on-surface-variant hover:text-trust-navy transition-colors font-body-md" to="/search">List Property</Link>
+              </nav>
+            </div>
+            <div className="flex items-center gap-md">
+              <Link to="/login" className="text-trust-navy font-body-md font-semibold hover:text-trust-navy transition-colors">Login</Link>
+              <Link to="/register" className="bg-trust-navy text-on-primary px-md py-sm rounded-lg font-body-md font-bold hover:opacity-90 transition-opacity">Register</Link>
+            </div>
           </div>
         </header>
 
