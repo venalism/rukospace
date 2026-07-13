@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+
+<html lang="id"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Property Detail - RukoSpace</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-error-container": "#93000a",
+                        "primary-fixed": "#d2e4ff",
+                        "surface-variant": "#d3e4fe",
+                        "primary": "#00355f",
+                        "inverse-surface": "#213145",
+                        "surface-gray": "#F8FAFC",
+                        "on-secondary-container": "#684000",
+                        "border-subtle": "#E2E8F0",
+                        "on-secondary-fixed": "#2a1700",
+                        "on-secondary-fixed-variant": "#653e00",
+                        "surface-container-low": "#eff4ff",
+                        "secondary-fixed-dim": "#ffb95f",
+                        "tertiary-container": "#005539",
+                        "success-teal": "#10B981",
+                        "on-tertiary-fixed-variant": "#005236",
+                        "background": "#f8f9ff",
+                        "trust-navy": "#0F4C81",
+                        "on-tertiary-fixed": "#002113",
+                        "secondary-fixed": "#ffddb8",
+                        "on-primary-container": "#8ebdf9",
+                        "tertiary-fixed-dim": "#4edea3",
+                        "on-primary": "#ffffff",
+                        "surface-container-highest": "#d3e4fe",
+                        "surface-dim": "#cbdbf5",
+                        "on-primary-fixed-variant": "#07497d",
+                        "error-red": "#EF4444",
+                        "surface-tint": "#2d6197",
+                        "secondary": "#855300",
+                        "on-secondary": "#ffffff",
+                        "outline-variant": "#c2c7d1",
+                        "on-tertiary": "#ffffff",
+                        "primary-fixed-dim": "#a0c9ff",
+                        "tertiary-fixed": "#6ffbbe",
+                        "inverse-on-surface": "#eaf1ff",
+                        "primary-container": "#0f4c81",
+                        "surface-bright": "#f8f9ff",
+                        "surface": "#f8f9ff",
+                        "secondary-container": "#fea619",
+                        "surface-container-lowest": "#ffffff",
+                        "electric-blue": "#3B82F6",
+                        "error": "#ba1a1a",
+                        "surface-container": "#e5eeff",
+                        "outline": "#727780",
+                        "inverse-primary": "#a0c9ff",
+                        "error-container": "#ffdad6",
+                        "on-surface": "#0b1c30",
+                        "on-tertiary-container": "#3dd197",
+                        "action-amber": "#F59E0B",
+                        "on-error": "#ffffff",
+                        "tertiary": "#003c27",
+                        "on-primary-fixed": "#001c37",
+                        "surface-container-high": "#dce9ff",
+                        "on-surface-variant": "#42474f",
+                        "on-background": "#0b1c30"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "gutter": "24px",
+                        "base": "4px",
+                        "md": "16px",
+                        "lg": "24px",
+                        "margin-mobile": "16px",
+                        "container-max": "1280px",
+                        "xl": "32px",
+                        "xs": "4px",
+                        "3xl": "64px",
+                        "2xl": "48px",
+                        "sm": "8px"
+                    },
+                    "fontFamily": {
+                        "title-md": ["Inter"],
+                        "label-caps": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "technical-data": ["Inter"],
+                        "body-md": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "headline-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "title-md": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.08em", "fontWeight": "700" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "technical-data": ["14px", { "lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; background-color: #F8FAFC; color: #0b1c30; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .material-symbols-outlined.fill { font-variation-settings: 'FILL' 1; }
+    </style>
+</head>
+<body class="bg-surface-gray min-h-screen">
+<!-- Top Navigation (Suppressed on transactional/focused screens, but this is a detail page, so we keep it as a secondary path, but strictly following JSON rules for TopNavBar) -->
+<nav class="fixed top-0 w-full z-50 flex justify-between items-center px-lg py-md max-w-container-max mx-auto bg-surface dark:bg-on-surface border-b border-border-subtle dark:border-outline-variant flat no shadows transition-all duration-300">
+<div class="flex items-center gap-md">
+<span class="font-title-md text-title-md font-bold text-trust-navy dark:text-primary-fixed">RukoSpace</span>
+</div>
+<div class="hidden md:flex gap-lg items-center">
+<a class="text-on-surface-variant dark:text-outline-variant hover:text-trust-navy dark:hover:text-primary-fixed transition-colors font-body-md text-body-md" href="#">For Tenants</a>
+<a class="text-on-surface-variant dark:text-outline-variant hover:text-trust-navy dark:hover:text-primary-fixed transition-colors font-body-md text-body-md" href="#">For Landlords</a>
+<a class="text-on-surface-variant dark:text-outline-variant hover:text-trust-navy dark:hover:text-primary-fixed transition-colors font-body-md text-body-md" href="#">List Property</a>
+</div>
+<div class="flex gap-md items-center">
+<button class="text-trust-navy dark:text-primary-fixed hover:text-trust-navy dark:hover:text-primary-fixed transition-colors font-body-md text-body-md hidden md:block">Login</button>
+<button class="bg-trust-navy text-on-primary px-lg py-sm rounded font-body-md text-body-md hover:opacity-90 transition-opacity">Register</button>
+</div>
+</nav>
+<!-- Main Content -->
+<main class="max-w-container-max mx-auto px-margin-mobile md:px-lg pt-3xl pb-3xl mt-xl">
+<!-- Breadcrumbs -->
+<div class="flex items-center gap-sm text-on-surface-variant font-body-sm text-body-sm mb-lg">
+<a class="hover:text-trust-navy transition-colors" href="#">Home</a>
+<span class="material-symbols-outlined text-sm">chevron_right</span>
+<a class="hover:text-trust-navy transition-colors" href="#">Jakarta Selatan</a>
+<span class="material-symbols-outlined text-sm">chevron_right</span>
+<span class="text-on-surface">Premium Shophouse Senopati</span>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<!-- Left Column: Media & Details -->
+<div class="lg:col-span-8 flex flex-col gap-xl">
+<!-- Hero Gallery -->
+<div class="relative bg-surface rounded-xl overflow-hidden border border-border-subtle shadow-sm group">
+<img class="w-full h-[400px] md:h-[500px] object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A highly detailed, professional architectural photograph of a modern, premium commercial shophouse exterior in an upscale district. The building features large glass windows, sleek dark metal framing, and a clean concrete facade. It is daytime with bright, clear natural lighting, highlighting the modern fintech-meets-real-estate aesthetic. The mood is authoritative yet inviting, suitable for a trusted corporate marketplace. High contrast, sharp focus." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDWSg-ymKClT2BSbBi3QqQdfWqOEI7zwjrpVSH5UA-sBL4PDytrpdBc2UNWMjDgqlF10yvODgrhaDSH_SjmiMlKbcXYFsur4TrmmOIXkuvI4N7kfmmdWHnPdqdJVPdCQExiqgeyN2lG5zKDMP93IRjsW8S6gnWhOVkSJNaEDCRzgyz9V_91gl3gfLu2DoYlrTpsyGUzcHPE7XnwGS4Mm0DsGUF4YeLmpioph_i1VH79gAypdRm_G4uuceBnRRKxc_SKLmDEkCiKsyBi"/>
+<div class="absolute top-lg right-lg flex gap-sm">
+<span class="bg-success-teal text-on-primary px-sm py-xs rounded flex items-center gap-xs font-label-caps text-label-caps uppercase shadow-sm">
+<span class="material-symbols-outlined text-[16px] fill">verified</span> Verified
+                        </span>
+</div>
+<div class="absolute bottom-lg right-lg flex gap-md">
+<button class="bg-surface/90 backdrop-blur border border-border-subtle text-trust-navy px-md py-sm rounded flex items-center gap-sm hover:bg-surface transition-colors font-body-md text-body-md shadow-sm">
+<span class="material-symbols-outlined">imagesmode</span> Gallery (12)
+                        </button>
+<button class="bg-action-amber text-trust-navy px-md py-sm rounded flex items-center gap-sm hover:opacity-90 transition-opacity font-body-md text-body-md font-bold shadow-sm">
+<span class="material-symbols-outlined">360</span> 360° View
+                        </button>
+</div>
+</div>
+<!-- Header Info -->
+<div class="flex flex-col gap-sm">
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-on-surface">Premium Corner Shophouse Senopati</h1>
+<p class="font-body-md text-body-md text-on-surface-variant flex items-center gap-xs">
+<span class="material-symbols-outlined text-[18px]">location_on</span> Jl. Senopati Raya No. 45, Kebayoran Baru, Jakarta Selatan
+                    </p>
+</div>
+<!-- Technical Specs (Bento Style) -->
+<div class="bg-surface rounded-xl border border-border-subtle p-lg shadow-sm">
+<h2 class="font-title-md text-title-md text-on-surface mb-md border-b border-border-subtle pb-sm">Technical Specifications</h2>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-md">
+<div class="flex flex-col gap-xs p-md bg-surface-gray rounded border border-border-subtle">
+<span class="material-symbols-outlined text-trust-navy text-[24px]">electric_bolt</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase">Electricity</span>
+<span class="font-technical-data text-technical-data text-on-surface">16,500 VA</span>
+</div>
+<div class="flex flex-col gap-xs p-md bg-surface-gray rounded border border-border-subtle">
+<span class="material-symbols-outlined text-trust-navy text-[24px]">water_drop</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase">Water Supply</span>
+<span class="font-technical-data text-technical-data text-on-surface">PDAM + Jetpump</span>
+</div>
+<div class="flex flex-col gap-xs p-md bg-surface-gray rounded border border-border-subtle">
+<span class="material-symbols-outlined text-trust-navy text-[24px]">domain</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase">Zoning</span>
+<span class="font-technical-data text-technical-data text-on-surface">Komersial (K-1)</span>
+</div>
+<div class="flex flex-col gap-xs p-md bg-surface-gray rounded border border-border-subtle">
+<span class="material-symbols-outlined text-trust-navy text-[24px]">local_parking</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase">Parking</span>
+<span class="font-technical-data text-technical-data text-on-surface">3 Cars Dedicated</span>
+</div>
+</div>
+</div>
+<!-- Description -->
+<div class="bg-surface rounded-xl border border-border-subtle p-lg shadow-sm">
+<h2 class="font-title-md text-title-md text-on-surface mb-md">Description</h2>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed mb-md">
+                        Strategic corner shophouse located in the highly sought-after Senopati commercial district. Ideal for F&amp;B, premium retail, or boutique office spaces. Features a modern facade with high visibility from the main road, heavy foot traffic, and excellent structural integrity.
+                    </p>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                        The property spans 3.5 floors, completely renovated in 2022, offering an open-plan layout ready for custom fit-outs. Building management services are available on call.
+                    </p>
+</div>
+<!-- Location Map -->
+<div class="bg-surface rounded-xl border border-border-subtle p-lg shadow-sm">
+<h2 class="font-title-md text-title-md text-on-surface mb-md">Location Context</h2>
+<div class="w-full h-[300px] rounded border border-border-subtle overflow-hidden relative">
+<img class="w-full h-full object-cover" data-alt="A clean, highly professional, modern digital map interface centered on Jakarta Selatan. The map uses a light-mode color palette with subtle grays and muted blues. A prominent, elegant navy blue pin marks a specific location. The design feels like a premium real-estate tracking tool, emphasizing clarity, precision, and operational efficiency." data-location="Jakarta Selatan" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBs3S3kIE8_Zpos_p3sdliWtHlu0pR0-57_rNCc3XgpifRaJ8coUJzJBInV_ArfTZQGsvmCAfKmT99KtFvxkeQM1qExEJ7j8Sjzud7ZNRa1RLl1W8YGaHdXRUWJ0tQaJ9sUKfiZl20bRbbNIp36CCMJ6F5Pu4sTG1PRWb9Qos6pwu2kwd49vU5kaANvrFSXx1zZbJn9OfwR6UYREdJO327zsesc8YBab2SRQXVozlj08piNF7to9Xt-rm0XdBVSw7trl4nUJlzS294f"/>
+<div class="absolute bottom-md right-md bg-surface p-sm rounded shadow-sm border border-border-subtle flex gap-xs items-center">
+<span class="material-symbols-outlined text-trust-navy text-[20px]">near_me</span>
+<span class="font-label-caps text-label-caps text-trust-navy uppercase">Get Directions</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Actions & Booking Widget -->
+<div class="lg:col-span-4 flex flex-col gap-xl">
+<!-- Sticky Container for Actions -->
+<div class="sticky top-[100px] flex flex-col gap-lg">
+<!-- Pricing & Primary CTA Card -->
+<div class="bg-surface rounded-xl border border-border-subtle p-lg shadow-sm flex flex-col gap-md">
+<div>
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase block mb-xs">Lease Rate</span>
+<div class="font-display-lg text-display-lg text-trust-navy">Rp 450<span class="font-headline-lg text-headline-lg">jt</span><span class="font-body-md text-body-md text-on-surface-variant">/tahun</span></div>
+</div>
+<div class="flex items-center gap-sm bg-surface-gray p-sm rounded border border-border-subtle">
+<span class="material-symbols-outlined text-success-teal">shield</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Secure Escrow Payment Available</span>
+</div>
+<button class="w-full bg-trust-navy text-on-primary py-md rounded font-body-md text-body-md font-bold hover:opacity-90 transition-opacity flex justify-center items-center gap-sm">
+                            Sewa Sekarang
+                        </button>
+</div>
+<!-- Booking Widget -->
+<div class="bg-surface rounded-xl border border-border-subtle p-lg shadow-sm flex flex-col gap-md">
+<h3 class="font-title-md text-title-md text-on-surface flex items-center gap-sm">
+<span class="material-symbols-outlined text-trust-navy">event_available</span> Jadwalkan Survei
+                        </h3>
+<div class="flex flex-col gap-sm">
+<label class="font-label-caps text-label-caps text-on-surface-variant uppercase">Pilih Tanggal</label>
+<input class="w-full border-border-subtle rounded px-md py-sm font-body-md text-body-md text-on-surface focus:ring-trust-navy focus:border-trust-navy bg-surface-gray" type="date"/>
+</div>
+<div class="flex flex-col gap-sm">
+<label class="font-label-caps text-label-caps text-on-surface-variant uppercase">Pilih Waktu</label>
+<div class="grid grid-cols-3 gap-sm">
+<button class="border border-border-subtle rounded py-xs text-center font-body-sm text-body-sm text-on-surface hover:border-trust-navy hover:text-trust-navy transition-colors bg-surface-gray">10:00</button>
+<button class="border border-trust-navy bg-surface-container-low rounded py-xs text-center font-body-sm text-body-sm text-trust-navy font-bold">13:00</button>
+<button class="border border-border-subtle rounded py-xs text-center font-body-sm text-body-sm text-on-surface hover:border-trust-navy hover:text-trust-navy transition-colors bg-surface-gray">15:00</button>
+</div>
+</div>
+<button class="w-full bg-surface text-trust-navy border border-trust-navy py-sm rounded font-body-md text-body-md font-bold hover:bg-surface-container-low transition-colors mt-sm">
+                            Book Slot
+                        </button>
+</div>
+<!-- QR Code Section -->
+<div class="bg-inverse-surface rounded-xl p-lg shadow-sm flex items-center gap-md relative overflow-hidden group cursor-pointer hover:bg-on-surface transition-colors">
+<!-- Abstract bg decoration -->
+<div class="absolute -right-10 -top-10 w-32 h-32 bg-trust-navy opacity-20 rounded-full blur-2xl group-hover:scale-150 transition-transform duration-700"></div>
+<div class="bg-surface p-sm rounded shrink-0 z-10 border border-outline">
+<img class="w-16 h-16 object-contain" data-alt="A clean, minimalist QR code graphic centered on a crisp white square background. The design is stark and professional, fitting for a modern fintech real-estate platform, indicating scannable technical data. High contrast black and white." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDYlAWlnDcc2dIrKb5E58u60pXpEO5Cy-2IkAc0M-sKbR0zBExxTYutwwiKfNLyoHE9rLwXuwO7s_6xvrJIOH0NnEJbU-QTs8F5fwqQYTuYlerZBxgNSjqBVSmu7UfDoijaE5QD5AOrezkXSDdLiBW87kVajN2v4X15rf2oP2zmP-ox7TgLg4zVvCVdk9fgZhhYnFLj4qDkfCYaX6VtYpz8oiNyJ9ZaitlD3Cnjv_fPME6bGPTBIbCdqw8Wu31sjgryh-VhtGiZdPXM"/>
+</div>
+<div class="z-10">
+<h4 class="font-title-md text-title-md text-inverse-on-surface mb-xs">On-Site Scanner</h4>
+<p class="font-body-sm text-body-sm text-outline-variant">Scan di lokasi untuk info instan &amp; akses properti.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full py-xl px-lg mt-3xl flex flex-col items-center gap-lg bg-inverse-surface dark:bg-on-background flat no shadows">
+<span class="font-title-md text-title-md font-bold text-primary-fixed">RukoSpace</span>
+<div class="flex flex-wrap justify-center gap-md md:gap-lg">
+<a class="text-surface-variant hover:text-primary-fixed transition-colors font-body-sm text-body-sm" href="#">About Us</a>
+<a class="text-surface-variant hover:text-primary-fixed transition-colors font-body-sm text-body-sm" href="#">Contact</a>
+<a class="text-surface-variant hover:text-primary-fixed transition-colors font-body-sm text-body-sm" href="#">Privacy Policy</a>
+<a class="text-surface-variant hover:text-primary-fixed transition-colors font-body-sm text-body-sm" href="#">Terms of Service</a>
+<a class="text-surface-variant hover:text-primary-fixed transition-colors font-body-sm text-body-sm" href="#">Scan QR Code</a>
+</div>
+<div class="text-surface-variant font-body-sm text-body-sm mt-md">
+            © 2024 RukoSpace. All rights reserved.
+        </div>
+</footer>
+</body></html>

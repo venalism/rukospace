@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>RukoSpace - Secure Checkout</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "action-amber": "#F59E0B",
+                      "tertiary-container": "#005539",
+                      "on-secondary-fixed-variant": "#653e00",
+                      "tertiary": "#003c27",
+                      "on-primary-container": "#8ebdf9",
+                      "outline": "#727780",
+                      "surface-container-low": "#eff4ff",
+                      "surface-container-high": "#dce9ff",
+                      "on-error-container": "#93000a",
+                      "surface-dim": "#cbdbf5",
+                      "surface-gray": "#F8FAFC",
+                      "primary-fixed": "#d2e4ff",
+                      "on-tertiary": "#ffffff",
+                      "on-surface": "#0b1c30",
+                      "trust-navy": "#0F4C81",
+                      "surface": "#f8f9ff",
+                      "on-tertiary-fixed": "#002113",
+                      "error": "#ba1a1a",
+                      "outline-variant": "#c2c7d1",
+                      "surface-container-lowest": "#ffffff",
+                      "inverse-primary": "#a0c9ff",
+                      "surface-container": "#e5eeff",
+                      "on-primary": "#ffffff",
+                      "secondary-fixed": "#ffddb8",
+                      "on-tertiary-container": "#3dd197",
+                      "on-secondary-container": "#684000",
+                      "background": "#f8f9ff",
+                      "secondary": "#855300",
+                      "on-background": "#0b1c30",
+                      "tertiary-fixed": "#6ffbbe",
+                      "surface-tint": "#2d6197",
+                      "secondary-fixed-dim": "#ffb95f",
+                      "on-secondary": "#ffffff",
+                      "primary-container": "#0f4c81",
+                      "primary": "#00355f",
+                      "border-subtle": "#E2E8F0",
+                      "surface-container-highest": "#d3e4fe",
+                      "electric-blue": "#3B82F6",
+                      "secondary-container": "#fea619",
+                      "error-red": "#EF4444",
+                      "inverse-surface": "#213145",
+                      "on-tertiary-fixed-variant": "#005236",
+                      "on-primary-fixed-variant": "#07497d",
+                      "on-secondary-fixed": "#2a1700",
+                      "tertiary-fixed-dim": "#4edea3",
+                      "success-teal": "#10B981",
+                      "on-error": "#ffffff",
+                      "inverse-on-surface": "#eaf1ff",
+                      "surface-variant": "#d3e4fe",
+                      "on-surface-variant": "#42474f",
+                      "on-primary-fixed": "#001c37",
+                      "surface-bright": "#f8f9ff",
+                      "primary-fixed-dim": "#a0c9ff",
+                      "error-container": "#ffdad6"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "gutter": "24px",
+                      "base": "4px",
+                      "md": "16px",
+                      "2xl": "48px",
+                      "xs": "4px",
+                      "container-max": "1280px",
+                      "xl": "32px",
+                      "sm": "8px",
+                      "margin-mobile": "16px",
+                      "3xl": "64px",
+                      "lg": "24px"
+              },
+              "fontFamily": {
+                      "display-lg": [
+                              "Inter"
+                      ],
+                      "title-md": [
+                              "Inter"
+                      ],
+                      "headline-lg": [
+                              "Inter"
+                      ],
+                      "body-sm": [
+                              "Inter"
+                      ],
+                      "body-md": [
+                              "Inter"
+                      ],
+                      "technical-data": [
+                              "Inter"
+                      ],
+                      "label-caps": [
+                              "Inter"
+                      ],
+                      "headline-lg-mobile": [
+                              "Inter"
+                      ]
+              },
+              "fontSize": {
+                      "display-lg": [
+                              "48px",
+                              {
+                                      "lineHeight": "56px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "title-md": [
+                              "20px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-lg": [
+                              "32px",
+                              {
+                                      "lineHeight": "40px",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-sm": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "technical-data": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "label-caps": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "0.08em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "fontWeight": "600"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+      </script>
+<style>
+        .glass-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+            box-shadow: 0 4px 6px -1px rgba(15, 76, 129, 0.05), 0 2px 4px -1px rgba(15, 76, 129, 0.03);
+        }
+        .radio-custom:checked + div {
+            border-color: #0F4C81;
+            background-color: #f8f9ff;
+        }
+        .radio-custom:checked + div .radio-dot {
+            opacity: 1;
+            transform: scale(1);
+        }
+      </style>
+</head>
+<body class="bg-surface-gray min-h-screen font-sans text-on-surface">
+<!-- TopNavBar: Suppressed for linear transactional checkout flow, replaced with simple back header -->
+<header class="bg-surface border-b border-border-subtle fixed top-0 w-full z-50">
+<div class="max-w-container-max mx-auto px-lg py-md flex items-center gap-md">
+<button aria-label="Go back" class="p-2 hover:bg-surface-container rounded-full transition-colors group">
+<span class="material-symbols-outlined text-trust-navy group-hover:text-primary transition-colors" data-icon="arrow_back">arrow_back</span>
+</button>
+<h1 class="font-title-md text-title-md text-trust-navy">Secure Checkout</h1>
+<div class="ml-auto flex items-center gap-sm text-success-teal bg-success-teal/10 px-3 py-1 rounded-full">
+<span class="material-symbols-outlined text-sm" data-icon="lock" data-weight="fill" style="font-variation-settings: 'FILL' 1;">lock</span>
+<span class="font-label-caps text-label-caps">ESCROW SECURED</span>
+</div>
+</div>
+</header>
+<main class="pt-[80px] pb-3xl max-w-container-max mx-auto px-margin-mobile md:px-lg grid grid-cols-1 lg:grid-cols-12 gap-xl items-start">
+<!-- Left Column: Payment Details & Methods -->
+<div class="lg:col-span-7 flex flex-col gap-lg">
+<!-- Order Summary Card (Bento Style) -->
+<section class="glass-card rounded-xl p-lg flex flex-col gap-md">
+<h2 class="font-title-md text-title-md border-b border-border-subtle pb-sm">Order Summary</h2>
+<div class="flex flex-col sm:flex-row gap-md items-start sm:items-center">
+<img class="w-full sm:w-32 h-32 sm:h-24 object-cover rounded-lg border border-border-subtle shadow-sm" data-alt="A high-quality, brightly lit photograph of a modern commercial shop-house (ruko) exterior in Jakarta. The building features clean architectural lines, large glass windows reflecting the clear blue sky, and a professional, inviting storefront. The scene is shot during golden hour, emphasizing the 'Fintech-meets-Real-Estate' corporate aesthetic with trust-navy and white tones dominating the environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAnq00_2hq_ObjlCTGjHIAHHfj6k-AXai1gawV1Fj9kj0cyBmE6bn7iBnqyvjnStR1Ts4JEHijMtl1vfQchJ-kuGmj4HSBAkLpJGkJNSp7L3LJfrrE4OhSNnKqWMc2bmYq_QdG-w0krF-30dKioFHgQ8rpRb8x6qiAL5ZUBezrTtpOgYwQX0zUV4cMyIe3a-JaD7sIexYzPrlgbQ9nkuGbRDAIxqSulJkjn1OTjQijMZJnbVahqwNesGOPhAgGO-cAp8eDToV3gKCC4"/>
+<div class="flex flex-col gap-xs flex-1">
+<span class="font-label-caps text-label-caps text-trust-navy bg-primary-fixed/30 inline-block px-2 py-1 rounded w-max mb-1">RUKO LEASE</span>
+<h3 class="font-body-md text-body-md font-semibold text-on-surface">Premium Corner Unit - SCBD</h3>
+<p class="font-body-sm text-body-sm text-outline">Jl. Jend. Sudirman Kav 52-53, Jakarta Selatan</p>
+<div class="flex gap-sm mt-2">
+<span class="bg-surface-gray border border-border-subtle px-2 py-1 rounded text-technical-data font-technical-data text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]" data-icon="electric_bolt">electric_bolt</span> 16,500 VA
+                            </span>
+<span class="bg-surface-gray border border-border-subtle px-2 py-1 rounded text-technical-data font-technical-data text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]" data-icon="aspect_ratio">aspect_ratio</span> 240 sqm
+                            </span>
+</div>
+</div>
+</div>
+<div class="bg-surface-gray rounded-lg p-md border border-border-subtle mt-sm flex flex-col gap-sm">
+<div class="flex justify-between items-center">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Annual Lease Base (1 Year)</span>
+<span class="font-body-md text-body-md font-medium text-on-surface">Rp 350.000.000</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-1">
+                            Security Deposit <span class="material-symbols-outlined text-[14px] text-outline cursor-help" data-icon="info">info</span>
+</span>
+<span class="font-body-md text-body-md font-medium text-on-surface">Rp 35.000.000</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Platform Fee (0.5%)</span>
+<span class="font-body-md text-body-md font-medium text-on-surface">Rp 1.750.000</span>
+</div>
+<hr class="border-border-subtle my-2"/>
+<div class="flex justify-between items-center">
+<span class="font-title-md text-title-md text-trust-navy">Total Due</span>
+<span class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-trust-navy">Rp 386.750.000</span>
+</div>
+</div>
+</section>
+<!-- Payment Method Section -->
+<section class="glass-card rounded-xl p-lg flex flex-col gap-md">
+<div class="flex justify-between items-center border-b border-border-subtle pb-sm">
+<h2 class="font-title-md text-title-md">Select Payment Method</h2>
+</div>
+<div class="flex flex-col gap-sm">
+<!-- Virtual Account Option -->
+<label class="relative cursor-pointer group">
+<input checked="" class="sr-only radio-custom" name="payment_method" type="radio"/>
+<div class="border border-border-subtle rounded-lg p-md flex items-center gap-md transition-all hover:border-trust-navy/50 bg-white">
+<div class="w-5 h-5 rounded-full border-2 border-outline-variant flex items-center justify-center flex-shrink-0 group-hover:border-trust-navy transition-colors">
+<div class="w-2.5 h-2.5 rounded-full bg-trust-navy radio-dot opacity-0 scale-50 transition-all duration-200"></div>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-center">
+<span class="font-body-md text-body-md font-medium text-on-surface">Virtual Account (VA)</span>
+<div class="flex gap-1">
+<!-- Bank Logos Placeholder -->
+<div class="w-8 h-5 bg-surface-gray border border-border-subtle rounded text-[8px] flex items-center justify-center font-bold text-trust-navy">BCA</div>
+<div class="w-8 h-5 bg-surface-gray border border-border-subtle rounded text-[8px] flex items-center justify-center font-bold text-action-amber">MDR</div>
+<div class="w-8 h-5 bg-surface-gray border border-border-subtle rounded text-[8px] flex items-center justify-center font-bold text-electric-blue">BNI</div>
+</div>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Instant confirmation. Highest success rate for corporate limits.</p>
+</div>
+</div>
+</label>
+<!-- Credit Card Option -->
+<label class="relative cursor-pointer group">
+<input class="sr-only radio-custom" name="payment_method" type="radio"/>
+<div class="border border-border-subtle rounded-lg p-md flex items-center gap-md transition-all hover:border-trust-navy/50 bg-white">
+<div class="w-5 h-5 rounded-full border-2 border-outline-variant flex items-center justify-center flex-shrink-0 group-hover:border-trust-navy transition-colors">
+<div class="w-2.5 h-2.5 rounded-full bg-trust-navy radio-dot opacity-0 scale-50 transition-all duration-200"></div>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-center">
+<span class="font-body-md text-body-md font-medium text-on-surface">Credit / Debit Card</span>
+<div class="flex gap-1">
+<span class="material-symbols-outlined text-outline" data-icon="credit_card">credit_card</span>
+</div>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Visa, Mastercard, JCB. Additional 2% processing fee applies.</p>
+</div>
+</div>
+</label>
+<!-- e-Wallet Option -->
+<label class="relative cursor-pointer group opacity-60">
+<input class="sr-only radio-custom" disabled="" name="payment_method" type="radio"/>
+<div class="border border-border-subtle rounded-lg p-md flex items-center gap-md bg-surface-gray cursor-not-allowed">
+<div class="w-5 h-5 rounded-full border-2 border-outline-variant flex items-center justify-center flex-shrink-0">
+<div class="w-2.5 h-2.5 rounded-full bg-outline-variant radio-dot opacity-0"></div>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-center">
+<span class="font-body-md text-body-md font-medium text-on-surface-variant">e-Wallet</span>
+<span class="text-[10px] bg-outline-variant text-white px-2 py-0.5 rounded font-bold uppercase">Exceeds Limit</span>
+</div>
+<p class="font-body-sm text-body-sm text-outline mt-1">Transaction amount exceeds maximum e-Wallet limits.</p>
+</div>
+</div>
+</label>
+</div>
+</section>
+</div>
+<!-- Right Column: Sticky Action & Trust Factors -->
+<div class="lg:col-span-5 flex flex-col gap-lg sticky top-[100px]">
+<!-- Checkout Action Card -->
+<section class="glass-card rounded-xl p-lg flex flex-col gap-md shadow-[0_10px_25px_-5px_rgba(15,76,129,0.1)] border-t-4 border-t-trust-navy">
+<div class="bg-surface-container-low border border-primary-fixed rounded-lg p-md flex items-start gap-md">
+<span class="material-symbols-outlined text-trust-navy mt-1" data-icon="shield" data-weight="fill" style="font-variation-settings: 'FILL' 1;">shield</span>
+<div>
+<h4 class="font-body-md text-body-md font-semibold text-trust-navy">RukoSpace Secure Escrow</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Your funds are held securely and only released to the landlord once you sign the handover protocol and receive the keys.</p>
+</div>
+</div>
+<div class="flex items-start gap-sm mt-2">
+<div class="flex items-center h-5">
+<input class="w-4 h-4 text-trust-navy border-outline-variant rounded focus:ring-trust-navy cursor-pointer" id="terms" type="checkbox"/>
+</div>
+<label class="font-body-sm text-body-sm text-on-surface-variant cursor-pointer select-none" for="terms">
+                        I agree to the <a class="text-trust-navy font-medium hover:underline" href="#">Lease Agreement</a>, <a class="text-trust-navy font-medium hover:underline" href="#">Terms of Service</a>, and acknowledge the <a class="text-trust-navy font-medium hover:underline" href="#">Cancellation Policy</a>.
+                    </label>
+</div>
+<button class="w-full bg-action-amber hover:bg-secondary-container text-trust-navy font-title-md text-title-md py-md rounded-lg transition-all transform hover:-translate-y-0.5 shadow-md flex items-center justify-center gap-sm mt-sm">
+<span class="material-symbols-outlined" data-icon="lock">lock</span>
+                    Pay Rp 386.750.000
+                </button>
+<div class="flex justify-center items-center gap-xs text-outline mt-xs">
+<span class="material-symbols-outlined text-[16px]" data-icon="encrypted">encrypted</span>
+<span class="font-body-sm text-body-sm text-xs">256-bit SSL Encrypted Transaction</span>
+</div>
+</section>
+</div>
+</main>
+<!-- Footer: Suppressed on Checkout flow to minimize distractions, as per UX rules -->
+</body></html>

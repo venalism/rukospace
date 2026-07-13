@@ -1,0 +1,424 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>RukoSpace Admin - Customer Support</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-container": "#005539",
+                        "error-container": "#ffdad6",
+                        "background": "#f8f9ff",
+                        "on-tertiary": "#ffffff",
+                        "outline-variant": "#c2c7d1",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-bright": "#f8f9ff",
+                        "surface": "#f8f9ff",
+                        "on-surface": "#0b1c30",
+                        "on-tertiary-fixed-variant": "#005236",
+                        "on-secondary": "#ffffff",
+                        "surface-dim": "#cbdbf5",
+                        "trust-navy": "#0F4C81",
+                        "on-tertiary-fixed": "#002113",
+                        "on-secondary-fixed-variant": "#653e00",
+                        "secondary-container": "#fea619",
+                        "surface-container-low": "#eff4ff",
+                        "inverse-primary": "#a0c9ff",
+                        "primary-fixed-dim": "#a0c9ff",
+                        "on-secondary-container": "#684000",
+                        "on-error-container": "#93000a",
+                        "primary-container": "#0f4c81",
+                        "inverse-surface": "#213145",
+                        "surface-gray": "#F8FAFC",
+                        "surface-container-highest": "#d3e4fe",
+                        "primary": "#00355f",
+                        "surface-container": "#e5eeff",
+                        "primary-fixed": "#d2e4ff",
+                        "on-secondary-fixed": "#2a1700",
+                        "on-primary-container": "#8ebdf9",
+                        "border-subtle": "#E2E8F0",
+                        "error": "#ba1a1a",
+                        "action-amber": "#F59E0B",
+                        "secondary-fixed": "#ffddb8",
+                        "secondary": "#855300",
+                        "tertiary-fixed-dim": "#4edea3",
+                        "on-tertiary-container": "#3dd197",
+                        "on-surface-variant": "#42474f",
+                        "surface-variant": "#d3e4fe",
+                        "inverse-on-surface": "#eaf1ff",
+                        "success-teal": "#10B981",
+                        "on-primary-fixed": "#001c37",
+                        "surface-container-high": "#dce9ff",
+                        "on-primary": "#ffffff",
+                        "tertiary-fixed": "#6ffbbe",
+                        "on-primary-fixed-variant": "#07497d",
+                        "on-error": "#ffffff",
+                        "secondary-fixed-dim": "#ffb95f",
+                        "outline": "#727780",
+                        "electric-blue": "#3B82F6",
+                        "on-background": "#0b1c30",
+                        "surface-tint": "#2d6197",
+                        "tertiary": "#003c27",
+                        "error-red": "#EF4444"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "gutter": "24px",
+                        "base": "4px",
+                        "lg": "24px",
+                        "md": "16px",
+                        "container-max": "1280px",
+                        "3xl": "64px",
+                        "2xl": "48px",
+                        "xl": "32px",
+                        "margin-mobile": "16px",
+                        "xs": "4px",
+                        "sm": "8px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "title-md": ["Inter"],
+                        "technical-data": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "label-caps": ["Inter"],
+                        "body-sm": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "title-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "technical-data": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.08em", "fontWeight": "700"}],
+                        "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+        .chat-gradient {
+            background: linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(248,250,252,1) 100%);
+        }
+    </style>
+</head>
+<body class="bg-background font-body-md text-on-background antialiased">
+<!-- SideNavBar Anchor -->
+<aside class="bg-primary dark:bg-primary-container h-screen w-64 fixed left-0 top-0 shadow-md flex flex-col py-lg z-50">
+<div class="px-6 mb-10">
+<h1 class="font-headline-lg text-headline-lg font-bold text-on-primary dark:text-on-primary-container">RukoSpace</h1>
+<p class="font-label-caps text-label-caps text-on-primary/60 mt-1 uppercase tracking-widest">Super Admin</p>
+</div>
+<nav class="flex-grow space-y-1"><a class="flex items-center space-x-3 text-on-primary/70 dark:text-on-primary-container/70 hover:text-on-primary px-6 py-4 hover:bg-on-primary/10 dark:hover:bg-on-primary-container/10 transition-colors" href="#"><span class="material-symbols-outlined">dashboard</span><span class="font-label-caps text-label-caps uppercase tracking-wider">Dashboard</span></a><a class="flex items-center space-x-3 text-on-primary/70 dark:text-on-primary-container/70 hover:text-on-primary px-6 py-4 hover:bg-on-primary/10 dark:hover:bg-on-primary-container/10 transition-colors" href="#"><span class="material-symbols-outlined">group</span><span class="font-label-caps text-label-caps uppercase tracking-wider">User Management</span></a><a class="flex items-center space-x-3 text-on-primary/70 dark:text-on-primary-container/70 hover:text-on-primary px-6 py-4 hover:bg-on-primary/10 dark:hover:bg-on-primary-container/10 transition-colors" href="#"><span class="material-symbols-outlined">storefront</span><span class="font-label-caps text-label-caps uppercase tracking-wider">Property Listings</span></a><a class="flex items-center space-x-3 text-secondary-container dark:text-secondary-fixed border-l-4 border-secondary-container font-bold px-6 py-4 bg-on-primary/5" href="#"><span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">chat</span><span class="font-label-caps text-label-caps uppercase tracking-wider">Customer Support</span></a><a class="flex items-center space-x-3 text-on-primary/70 dark:text-on-primary-container/70 hover:text-on-primary px-6 py-4 hover:bg-on-primary/10 dark:hover:bg-on-primary-container/10 transition-colors" href="#"><span class="material-symbols-outlined">settings</span><span class="font-label-caps text-label-caps uppercase tracking-wider">System Settings</span></a></nav>
+<div class="px-6 mt-auto"><button class="w-full bg-secondary-container text-on-secondary-container font-bold py-3 rounded-lg hover:opacity-90 transition-opacity mb-4 font-label-caps text-label-caps uppercase tracking-wider">Verify Listings</button><a class="flex items-center space-x-3 text-on-primary/70 dark:text-on-primary-container/70 hover:text-on-primary px-6 py-4 hover:bg-on-primary/10 dark:hover:bg-on-primary-container/10 transition-colors" href="#"><span class="material-symbols-outlined">logout</span><span class="font-label-caps text-label-caps uppercase tracking-wider">Logout</span></a></div>
+</aside>
+<!-- TopAppBar Anchor -->
+<header class="bg-surface dark:bg-surface-container-low text-primary dark:text-primary-fixed border-b border-border-subtle dark:border-outline-variant docked full-width top-0 sticky z-40 flex justify-between items-center w-full px-lg h-16 ml-64 max-w-[calc(100%-16rem)]">
+<div class="flex items-center flex-1 max-w-xl">
+<div class="relative w-full">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="w-full bg-surface-container-low border-none rounded-full py-2 pl-10 pr-4 text-body-sm focus:ring-2 focus:ring-primary/20 transition-all" placeholder="Search conversations, tickets, or users..." type="text">
+</div>
+</div>
+<div class="flex items-center space-x-6">
+<button class="relative hover:text-primary transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute -top-1 -right-1 w-4 h-4 bg-error-red text-white text-[10px] flex items-center justify-center rounded-full border-2 border-surface">3</span>
+</button>
+<button class="hover:text-primary transition-colors">
+<span class="material-symbols-outlined">help_outline</span>
+</button>
+<div class="flex items-center space-x-3 border-l border-border-subtle pl-6">
+<div class="text-right">
+<p class="font-label-caps text-label-caps text-on-surface">Admin Profile</p>
+<p class="text-[10px] text-outline uppercase tracking-wider">Super Admin</p>
+</div>
+<div class="w-10 h-10 rounded-full bg-surface-container-highest overflow-hidden border border-border-subtle">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a corporate administrator, featuring a middle-aged male with a friendly but authoritative expression, clean-cut hair, and wearing a crisp white dress shirt. The background is a soft-focus modern office environment with cool blue and grey tones to match the RukoSpace professional aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAiIsC5J6lnmiTAAHBGkuT9K6KieyFg7F1xJbYvUhoh9dCbtBPKzO19W_csoELtm4Xy5dQ7p0ulHK3NwkOV5JakAVWgnYtF0Qcl9qorz4zGV6OEoZxreSLT_0jtI2keZ3rnGghh3t_TMR2HWT1zjeJHvSz9PHY5N64aHgKYtJJb-56YCEfPg2ZwFRtCD6YERJF-nS8lxjthfAHqd0DiImN_m83Wv_VA--zLPB1CMQJTToFkT0kntAOqx538inauuZvCISMNFZ6txfwq">
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content Shell -->
+<main class="ml-64 p-lg h-[calc(100vh-64px)] overflow-hidden">
+<!-- Dashboard Content Grid -->
+<div class="grid grid-cols-12 h-full gap-lg">
+<!-- Conversations List (Left Panel) -->
+<div class="col-span-4 bg-white rounded-xl border border-border-subtle shadow-sm flex flex-col overflow-hidden">
+<div class="p-lg border-b border-border-subtle bg-surface-container-low/50">
+<div class="flex items-center justify-between mb-4">
+<h2 class="font-title-md text-title-md text-trust-navy">Active Chats</h2>
+<span class="bg-primary text-on-primary text-[10px] px-2 py-0.5 rounded-full font-bold">12 Active</span>
+</div>
+<div class="flex space-x-2">
+<button class="flex-1 py-2 text-label-caps bg-primary text-on-primary rounded-lg">All</button>
+<button class="flex-1 py-2 text-label-caps bg-surface-container text-on-surface-variant hover:bg-surface-container-highest transition-colors rounded-lg">Urgent</button>
+<button class="flex-1 py-2 text-label-caps bg-surface-container text-on-surface-variant hover:bg-surface-container-highest transition-colors rounded-lg">Unread</button>
+</div>
+</div>
+<div class="flex-grow overflow-y-auto">
+<!-- Conversation Item: Active -->
+<div class="p-lg border-b border-border-subtle bg-primary-container/5 cursor-pointer border-l-4 border-l-primary transition-all">
+<div class="flex items-start space-x-4">
+<div class="w-12 h-12 rounded-full relative flex-shrink-0">
+<img class="w-full h-full object-cover rounded-full" data-alt="Close-up portrait of Budi Satria, an Indonesian entrepreneur in his 30s, looking professional and approachable. He has short dark hair and is smiling slightly against a minimalist light grey background, conveying a sense of trustworthiness and reliability for a commercial property seeker." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD50ax-fhjAEoCjxUCyVmegjN4T8QZhrw0XxDDZco7yzfhtbnY-8lK3iMNKk5RR9_OfRAVIERO66WFC-SSiX-KDkJ1w70K319Wi134kK08LPDz0Y6qigorSY10gVBCJm4kyC_0dmIQDycCPmXG7INm498wfn7fg-u-lBEveCyzcjt5yheYuEq9fN3kxGONuRI2ixqsBi-tZdCvggBENL-I2JV-P0f7QD1P8Oj7Z0L1zGUdm2upPWycu6ONUHcGFm2RIpSZrC4ybAZK3">
+<span class="absolute bottom-0 right-0 w-3 h-3 bg-success-teal border-2 border-white rounded-full"></span>
+</div>
+<div class="flex-grow min-w-0">
+<div class="flex justify-between items-center mb-1">
+<h3 class="font-title-md text-body-md font-bold truncate text-on-surface">Budi Satria</h3>
+<span class="text-[11px] text-outline">2m ago</span>
+</div>
+<p class="text-body-sm text-on-surface-variant line-clamp-1">I'm interested in the unit at Citra Plaza. Is the 16,500 VA power upgradeable?</p>
+<div class="mt-2 flex items-center space-x-2">
+<span class="text-[10px] px-2 py-0.5 bg-secondary-fixed text-on-secondary-fixed rounded font-bold uppercase">Listing Inquiry</span>
+<span class="text-[10px] px-2 py-0.5 bg-surface-container-highest text-outline rounded font-bold">ID #8821</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Conversation Item -->
+<div class="p-lg border-b border-border-subtle hover:bg-surface-container-low cursor-pointer transition-all">
+<div class="flex items-start space-x-4">
+<div class="w-12 h-12 rounded-full relative flex-shrink-0 bg-surface-container-highest">
+<img class="w-full h-full object-cover rounded-full" data-alt="Portrait of a female landlord named Citra, mid-40s, looking professional and composed. She is wearing a smart navy blazer and glasses, set against a clean, modern architectural background with soft natural light, representing a high-end property owner on the RukoSpace platform." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBxT7hlVB8RTIRhrxml2f8s0fs0WUTFk3BP9gdiErbhya5smk6WCXbIMZ4wlUyO-zcyuRiDYnlXGnLwDtwi5AldU4W9JUxCxAQrR2ECRCI5_2AAEaLaEL3IGfzhRp03-BgXNEDPAh2vY7t_xpPqsr0hMbe9-r1lfJ4N_-uHfPOYtxDkgaovqq3SAe__yjmBr59KICBJhUTfrN-Xi_vmh0pRGke2nA7rmmthVrR39DrXYojBvqlXPkesL0wnw1jQSvvXIzDTqQ5C9RRU">
+</div>
+<div class="flex-grow min-w-0">
+<div class="flex justify-between items-center mb-1">
+<h3 class="font-title-md text-body-md font-bold truncate text-on-surface">Citra Property Group</h3>
+<span class="text-[11px] text-outline">15m ago</span>
+</div>
+<p class="text-body-sm text-outline line-clamp-1">The latest surveyor photos have been uploaded. Please review the...</p>
+<div class="mt-2 flex items-center">
+<span class="text-[10px] px-2 py-0.5 bg-tertiary-fixed text-on-tertiary-fixed rounded font-bold uppercase">Verification</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Conversation Item -->
+<div class="p-lg border-b border-border-subtle hover:bg-surface-container-low cursor-pointer transition-all opacity-70">
+<div class="flex items-start space-x-4">
+<div class="w-12 h-12 rounded-full flex-shrink-0 bg-surface-container-highest flex items-center justify-center">
+<span class="material-symbols-outlined text-outline">person</span>
+</div>
+<div class="flex-grow min-w-0">
+<div class="flex justify-between items-center mb-1">
+<h3 class="font-title-md text-body-md font-bold truncate text-on-surface">Agus Pratama</h3>
+<span class="text-[11px] text-outline">1h ago</span>
+</div>
+<p class="text-body-sm text-outline line-clamp-1">Thank you for the information. I will discuss with my partner.</p>
+<div class="mt-2 flex items-center">
+<span class="text-[10px] px-2 py-0.5 bg-surface-container-highest text-outline rounded font-bold uppercase">Closed</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Chat Window (Right Panel) -->
+<div class="col-span-8 bg-white rounded-xl border border-border-subtle shadow-sm flex flex-col overflow-hidden">
+<!-- Chat Header -->
+<div class="p-md px-lg border-b border-border-subtle flex items-center justify-between">
+<div class="flex items-center space-x-4">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest">
+<img class="w-full h-full object-cover rounded-full" data-alt="Close-up portrait of Budi Satria, an Indonesian entrepreneur in his 30s, looking professional and approachable. He has short dark hair and is smiling slightly against a minimalist light grey background, conveying a sense of trustworthiness and reliability for a commercial property seeker." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDnsN2S0Tn3Gmp0rS260-slIgAJBg-fzLntGYs896m7BIKzFPFh7d4cn62wU-J9WftWRX1VmL8nbZvzwTvKMyqciPllFlA_dY0nI69CTgNG-JtWVduXmr9PrvG3Md_pOSm0nC6_3kXJedGq_bHfoIjMHmncv2zCyt7YCCTR2-0MABOmNyo55iIZRStozjFVxldD5i-FBiAdQWbdOOOunHzJLlj_PRvt0Equ5t1WsQ_2iSK99tKI9nT6NMgG616PhsaRytxkMNw9TRo0">
+</div>
+<div>
+<h2 class="font-title-md text-body-md font-bold text-trust-navy">Budi Satria</h2>
+<div class="flex items-center space-x-2">
+<span class="w-2 h-2 bg-success-teal rounded-full animate-pulse"></span>
+<span class="text-[11px] text-outline font-label-caps uppercase tracking-wider">Online • Property Seeker</span>
+</div>
+</div>
+</div>
+<div class="flex items-center space-x-3">
+<button class="p-2 hover:bg-surface-container-low rounded-lg transition-colors text-outline">
+<span class="material-symbols-outlined">call</span>
+</button>
+<button class="p-2 hover:bg-surface-container-low rounded-lg transition-colors text-outline">
+<span class="material-symbols-outlined">videocam</span>
+</button>
+<button class="p-2 hover:bg-surface-container-low rounded-lg transition-colors text-outline border-l border-border-subtle ml-2">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+</div>
+<!-- Messages Area -->
+<div class="flex-grow overflow-y-auto p-lg space-y-6 bg-surface-gray/30">
+<div class="flex justify-center">
+<span class="text-[11px] bg-surface-container text-outline px-4 py-1 rounded-full font-label-caps uppercase tracking-widest">Yesterday</span>
+</div>
+<!-- User Message -->
+<div class="flex items-start space-x-4 max-w-[80%]">
+<div class="w-8 h-8 rounded-full bg-surface-container-highest flex-shrink-0 mt-1">
+<img class="w-full h-full object-cover rounded-full" data-alt="Small thumbnail profile of Budi Satria, showing a clean professional headshot with a soft grey background. The lighting is bright and modern, consistent with a professional fintech application interface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB8xi2NSi5wsZZylFAQQj2wko4O2o6jcDNBaWZ-DBVrY-2bYDUZOXcV_HEyojzJJVfguxH238ITD4Z9sgmgQNI6Gwkdpl5eaLRL4Q2o2BsNgM0C96p06ptVNcsrIFdoUn4V0hFwfy43P_nYhrXzsdYBqOzqXcdA_XmDZ16ywc1fi_FxPAt7eqnlPVn6PChePGo8W5MgU8b27FEZjWCx2PSV8sbB--mFtO5ftU1bOM9nOsqFGdKZ847xLMnp2CedNydg8Jxk5gHRmpZZ">
+</div>
+<div>
+<div class="bg-white border border-border-subtle p-md rounded-2xl rounded-tl-none shadow-sm">
+<p class="text-body-md text-on-surface">Good afternoon. I'm looking at the listing for Citra Plaza Block C. The technical specs say 16,500 VA electricity.</p>
+</div>
+<span class="text-[10px] text-outline ml-1 mt-1 block">14:20</span>
+</div>
+</div>
+<div class="flex items-start space-x-4 max-w-[80%]">
+<div class="w-8 h-8 rounded-full bg-surface-container-highest flex-shrink-0 mt-1">
+<img class="w-full h-full object-cover rounded-full" data-alt="Small thumbnail profile of Budi Satria, showing a clean professional headshot with a soft grey background. The lighting is bright and modern, consistent with a professional fintech application interface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDtvKeQijg40nCS-Pev3m_EivYfZKZQwKAjwo-wDUKs0LSYzGYdgsgPA8uyxYCHUPWigSBQG61iXIg7wzz_E-3v8z2OOJnWNS-6mQSMbenq3W1PNRjIoCUFfAfjBOy26r92jqRlU50o9dsVrbLFWEtjXt5SaKsFgSh6YoA7Rz2kVRIFRBRvR0oAJJBJbIhvYwP1TrmVTiwaDM48bR8Kmu_dJFcahz-pouE9ktAyHr6NNTpU-K4X7jWGZ8MzBvhvyn-WMxRhD5nBb4EQ">
+</div>
+<div>
+<div class="bg-white border border-border-subtle p-md rounded-2xl rounded-tl-none shadow-sm">
+<p class="text-body-md text-on-surface">Is it possible to upgrade this to 33,000 VA? I'm planning to open a coffee roastery and we have high peak loads.</p>
+</div>
+<span class="text-[10px] text-outline ml-1 mt-1 block">14:21</span>
+</div>
+</div>
+<!-- Property Context Card (In Chat) -->
+<div class="flex justify-start ml-12">
+<div class="bg-white border border-border-subtle rounded-xl overflow-hidden shadow-sm max-w-sm">
+<div class="h-32 bg-surface-container relative">
+<img class="w-full h-full object-cover" data-alt="A modern commercial shop-house (ruko) exterior with a clean glass facade and sleek architectural lines. The building is part of 'Citra Plaza', characterized by contemporary design, paved parking areas, and minimalist landscaping. The lighting is afternoon golden hour, highlighting the textures of the stone and glass." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCH3CXmv2GYM_CVH5xHTVPIcEx9owTrlM5ogwVJhyG9ZWc1e7i_HLNFhbLIdz3Kf-bY_4joz1CnJKG0UWGAH_wk4ORCdWf4LwENUg9a-twW-iWP_uX40A5Mi2E5irR5pVBKxoXKP1nA8flm1rWwHZJkyEJMxuz1ozSWHV3vlBO6Bb_8FBj5ELTZjJ1frOIZX7N6L45ZG0yB8nUWSN2XXHKZlW2mL-Bm9zREo8rFjKP7hY7Yl-CLtYPPbYz5Wl5rYOKObcWe40b3VWIY">
+<span class="absolute top-2 right-2 bg-success-teal text-white text-[10px] font-bold px-2 py-0.5 rounded">Verified</span>
+</div>
+<div class="p-sm px-md">
+<p class="text-[10px] font-label-caps text-primary uppercase">Ref: #RP-8821</p>
+<h4 class="font-body-md font-bold text-trust-navy truncate">Citra Plaza Commercial Block C</h4>
+<div class="flex items-center space-x-3 mt-1">
+<div class="flex items-center text-[10px] text-outline">
+<span class="material-symbols-outlined text-[14px] mr-1">bolt</span> 16,500 VA
+                                    </div>
+<div class="flex items-center text-[10px] text-outline">
+<span class="material-symbols-outlined text-[14px] mr-1">square_foot</span> 240 sqm
+                                    </div>
+</div>
+</div>
+</div>
+</div>
+<div class="flex justify-center">
+<span class="text-[11px] bg-surface-container text-outline px-4 py-1 rounded-full font-label-caps uppercase tracking-widest">Today</span>
+</div>
+<!-- Admin Message (Self) -->
+<div class="flex items-start space-x-4 max-w-[80%] ml-auto flex-row-reverse">
+<div class="w-8 h-8 rounded-full bg-primary flex-shrink-0 mt-1 flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-sm">support_agent</span>
+</div>
+<div class="text-right">
+<div class="bg-primary text-on-primary p-md rounded-2xl rounded-tr-none shadow-md">
+<p class="text-body-md">Hello Pak Budi! Let me check the technical feasibility for Block C with our engineering team. Usually, the substation at Citra Plaza supports upgrades up to 41,500 VA per unit.</p>
+</div>
+<span class="text-[10px] text-outline mr-1 mt-1 block">09:12 • Read</span>
+</div>
+</div>
+<div class="flex items-start space-x-4 max-w-[80%] ml-auto flex-row-reverse">
+<div class="w-8 h-8 rounded-full bg-primary flex-shrink-0 mt-1 flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-sm">support_agent</span>
+</div>
+<div class="text-right">
+<div class="bg-primary text-on-primary p-md rounded-2xl rounded-tr-none shadow-md">
+<p class="text-body-md">I have confirmed that 33,000 VA is indeed possible. Would you like to schedule a survey to see the panel location?</p>
+</div>
+<span class="text-[10px] text-outline mr-1 mt-1 block">09:45 • Read</span>
+</div>
+</div>
+<!-- User Message (Newest) -->
+<div class="flex items-start space-x-4 max-w-[80%]">
+<div class="w-8 h-8 rounded-full bg-surface-container-highest flex-shrink-0 mt-1">
+<img class="w-full h-full object-cover rounded-full" data-alt="Small thumbnail profile of Budi Satria, showing a clean professional headshot with a soft grey background. The lighting is bright and modern, consistent with a professional fintech application interface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC-STViCJQE3TtOncZZBq88sz---Jhl9BOEEqbpdD3JZlpGlAfmkWj_SCbuEYU7WlYGIeMWwKM0KXr1KeU9ehJdAwqeDO_TXVf1ts_GWejzQn4KQY0Mt3AQaC29wsISEiXDKs166HIg-JuQE_a0G-_77tw47lX2kpuEuiFQCSPcftjj4pExzluunej8Odik8IfEkRHIxbBBQjRacF8tv7mhogT8HuBxcwr5gg0FgBGS2GbrOKG6etiK3fNZwMiHakLHv8FLcWoyNX5D">
+</div>
+<div>
+<div class="bg-white border border-border-subtle p-md rounded-2xl rounded-tl-none shadow-sm">
+<p class="text-body-md text-on-surface">That sounds great. Can we do this Thursday at 10 AM?</p>
+</div>
+<span class="text-[10px] text-outline ml-1 mt-1 block">Just now</span>
+</div>
+</div>
+</div>
+<!-- Message Input Area -->
+<div class="p-lg border-t border-border-subtle bg-white">
+<div class="flex items-end space-x-4">
+<div class="flex items-center space-x-2 pb-2">
+<button class="p-2 text-outline hover:text-primary hover:bg-surface-container-low rounded-full transition-all">
+<span class="material-symbols-outlined">add_circle</span>
+</button>
+<button class="p-2 text-outline hover:text-primary hover:bg-surface-container-low rounded-full transition-all">
+<span class="material-symbols-outlined">image</span>
+</button>
+<button class="p-2 text-outline hover:text-primary hover:bg-surface-container-low rounded-full transition-all">
+<span class="material-symbols-outlined">attach_file</span>
+</button>
+</div>
+<div class="flex-grow relative">
+<textarea class="w-full bg-surface-container-low border-none rounded-xl p-3 pr-12 text-body-md resize-none focus:ring-2 focus:ring-primary/20 transition-all min-h-[48px] max-h-32" oninput="this.style.height = ''; this.style.height = this.scrollHeight + 'px'" placeholder="Write a response to Pak Budi..." rows="1"></textarea>
+<button class="absolute right-3 bottom-3 p-1.5 bg-primary text-on-primary rounded-lg hover:opacity-90 transition-opacity flex items-center justify-center">
+<span class="material-symbols-outlined text-sm">send</span>
+</button>
+</div>
+</div>
+<div class="mt-4 flex items-center justify-between">
+<div class="flex items-center space-x-4">
+<button class="flex items-center space-x-2 text-[11px] font-label-caps text-outline hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[16px]">bolt</span>
+<span class="">Quick Responses</span>
+</button>
+<button class="flex items-center space-x-2 text-[11px] font-label-caps text-outline hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[16px]">calendar_today</span>
+<span class="">Book Survey</span>
+</button>
+</div>
+<div class="flex items-center space-x-1">
+<span class="text-[10px] text-outline italic">Auto-save active</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<script>
+        // Simple auto-resize for textarea and interaction states
+        document.addEventListener('DOMContentLoaded', function() {
+            const textarea = document.querySelector('textarea');
+            textarea.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' && !e.shiftKey) {
+                    e.preventDefault();
+                    // Simulate send action
+                    this.value = '';
+                    this.style.height = '48px';
+                }
+            });
+
+            // Active list item selector
+            const chatItems = document.querySelectorAll('.col-span-4 .cursor-pointer');
+            chatItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    chatItems.forEach(i => {
+                        i.classList.remove('bg-primary-container/5', 'border-l-4', 'border-l-primary');
+                        i.classList.add('hover:bg-surface-container-low');
+                    });
+                    item.classList.add('bg-primary-container/5', 'border-l-4', 'border-l-primary');
+                    item.classList.remove('hover:bg-surface-container-low');
+                });
+            });
+        });
+    </script>
+
+
+</body></html>

@@ -1,0 +1,414 @@
+<!DOCTYPE html><html class="light" lang="en" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Profile - Citra Holdings | RukoSpace</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary-container": "#684000",
+                        "on-tertiary-container": "#3dd197",
+                        "on-surface-variant": "#42474f",
+                        "surface-variant": "#d3e4fe",
+                        "tertiary": "#003c27",
+                        "surface-bright": "#f8f9ff",
+                        "on-secondary-fixed-variant": "#653e00",
+                        "on-background": "#0b1c30",
+                        "error-container": "#ffdad6",
+                        "background": "#f8f9ff",
+                        "secondary-fixed": "#ffddb8",
+                        "electric-blue": "#3B82F6",
+                        "secondary": "#855300",
+                        "outline": "#727780",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-high": "#dce9ff",
+                        "action-amber": "#F59E0B",
+                        "on-error": "#ffffff",
+                        "surface-tint": "#2d6197",
+                        "surface-container-highest": "#d3e4fe",
+                        "success-teal": "#10B981",
+                        "error": "#ba1a1a",
+                        "secondary-fixed-dim": "#ffb95f",
+                        "on-primary-fixed-variant": "#07497d",
+                        "error-red": "#EF4444",
+                        "on-tertiary-fixed-variant": "#005236",
+                        "primary-fixed": "#d2e4ff",
+                        "inverse-on-surface": "#eaf1ff",
+                        "tertiary-fixed": "#6ffbbe",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-gray": "#F8FAFC",
+                        "surface-dim": "#cbdbf5",
+                        "outline-variant": "#c2c7d1",
+                        "on-tertiary-fixed": "#002113",
+                        "inverse-surface": "#213145",
+                        "on-primary-container": "#8ebdf9",
+                        "on-error-container": "#93000a",
+                        "tertiary-container": "#005539",
+                        "secondary-container": "#fea619",
+                        "inverse-primary": "#a0c9ff",
+                        "on-surface": "#0b1c30",
+                        "primary": "#00355f",
+                        "on-primary": "#ffffff",
+                        "primary-container": "#0f4c81",
+                        "on-primary-fixed": "#001c37",
+                        "on-secondary": "#ffffff",
+                        "border-subtle": "#E2E8F0",
+                        "on-secondary-fixed": "#2a1700",
+                        "trust-navy": "#0F4C81",
+                        "tertiary-fixed-dim": "#4edea3",
+                        "primary-fixed-dim": "#a0c9ff",
+                        "surface-container": "#e5eeff",
+                        "surface": "#f8f9ff",
+                        "surface-container-low": "#eff4ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "lg": "24px",
+                        "container-max": "1280px",
+                        "2xl": "48px",
+                        "xl": "32px",
+                        "base": "4px",
+                        "3xl": "64px",
+                        "xs": "4px",
+                        "md": "16px",
+                        "margin-mobile": "16px",
+                        "gutter": "24px",
+                        "sm": "8px"
+                    },
+                    "fontFamily": {
+                        "technical-data": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "body-md": ["Inter"],
+                        "label-caps": ["Inter"],
+                        "title-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "technical-data": ["14px", { "lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.08em", "fontWeight": "700" }],
+                        "title-md": ["20px", { "lineHeight": "28px", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .glass-card {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(8px);
+            border: 1px solid var(--color-border-subtle, #E2E8F0);
+        }
+        .hover-elevate {
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        }
+        .hover-elevate:hover {
+            transform: translateY(-4px);
+            box-shadow: 0px 10px 15px -3px rgba(15, 76, 129, 0.1);
+        }
+        .pattern-bg {
+            background-color: #f8faFC;
+            background-image: linear-gradient(to right, #E2E8F0 1px, transparent 1px),
+                              linear-gradient(to bottom, #E2E8F0 1px, transparent 1px);
+            background-size: 24px 24px;
+        }
+    </style>
+</head>
+<body class="bg-surface-gray text-on-surface font-body-md min-h-screen flex flex-col md:flex-row antialiased">
+<!-- Desktop SideNavBar -->
+<nav class="hidden md:flex flex-col h-screen sticky top-0 p-md bg-surface-gray dark:bg-on-background border-r border-border-subtle dark:border-outline-variant w-64 z-40">
+<div class="mb-xl px-sm">
+<h1 class="font-title-md text-title-md font-black text-trust-navy">RukoSpace</h1>
+</div>
+<div class="flex items-center space-x-md mb-xl px-sm">
+<div class="w-12 h-12 rounded-full overflow-hidden border-2 border-border-subtle bg-white flex-shrink-0">
+<img alt="Company Logo" class="w-full h-full object-cover" data-alt="A modern corporate logo for a real estate holdings company named Citra. Clean, geometric, utilizing navy blue and white. Minimalist design suitable for a high-end corporate identity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBKRw11ZMGAIYvs_4SCYdF8J1Z_qCZyKhj6Dsp5BrC8pDEcfpzziR9MtFkpOPJ0Rpeaj62XJNHH1O5y5AabYrEZMJtEeGjNgZm4Jo4iapZG7ztzCVuGRGiHQM8Jo8pdNMO5XVYAQZHdpfBSgeVn2wSj5lM4RkIwfCa8abkwE42riPTD4-4oEJFKfmFN4KnPlQ9wlt7HgRUMVx7OknPJJbSQOgBNvgfAfwG-VcYDh_I-n8h3ZtxANuTLF6B-e_sHXbWWo_EWbELKR2mc">
+</div>
+<div class="flex flex-col">
+<span class="font-technical-data text-technical-data text-on-surface truncate">Citra Holdings</span>
+<span class="font-label-caps text-label-caps text-success-teal flex items-center gap-xs">
+<span class="material-symbols-outlined text-[14px]">verified</span>
+                    Verified Landlord
+                </span>
+</div>
+</div>
+<ul class="flex-1 space-y-sm">
+<li class="">
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant dark:text-outline hover:bg-surface-container-low hover:bg-surface-container-high dark:hover:bg-surface-variant transition-all font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">dashboard</span>
+                    Dashboard
+                </a>
+</li>
+<li class="">
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant dark:text-outline hover:bg-surface-container-low hover:bg-surface-container-high dark:hover:bg-surface-variant transition-all font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">domain</span>
+                    Properties
+                </a>
+</li>
+<li class="">
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant dark:text-outline hover:bg-surface-container-low hover:bg-surface-container-high dark:hover:bg-surface-variant transition-all font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">description</span>
+                    Lease Agreements
+                </a>
+</li>
+<li class="">
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant dark:text-outline hover:bg-surface-container-low hover:bg-surface-container-high dark:hover:bg-surface-variant transition-all font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">monitoring</span>
+                    Analytics
+                </a>
+</li>
+<li class="">
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-trust-navy dark:text-primary-fixed font-bold bg-surface-container dark:bg-primary-container translate-x-1 transition-transform font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">settings</span>
+                    Settings
+                </a>
+</li>
+</ul>
+<div class="mt-auto pt-xl border-t border-border-subtle space-y-md">
+<button class="w-full bg-trust-navy text-white font-technical-data text-technical-data py-sm rounded-lg hover:opacity-90 transition-opacity">
+                Add New Ruko
+            </button>
+<ul class="space-y-sm">
+<li class="">
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant dark:text-outline hover:bg-surface-container-low hover:bg-surface-container-high dark:hover:bg-surface-variant transition-all font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined">help</span>
+                        Help Center
+                    </a>
+</li>
+<li class="">
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant dark:text-outline hover:bg-surface-container-low hover:bg-surface-container-high dark:hover:bg-surface-variant transition-all font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined">logout</span>
+                        Logout
+                    </a>
+</li>
+</ul>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="flex-1 w-full max-w-container-max mx-auto pattern-bg min-h-screen pb-3xl md:pb-xl relative">
+<!-- Mobile Top AppBar (Only visible on mobile) -->
+<header class="sticky top-0 w-full z-50 flex justify-between items-center px-lg py-sm max-w-container-max mx-auto md:hidden bg-surface dark:bg-on-background border-b border-border-subtle dark:border-outline-variant">
+<div class="flex items-center gap-md">
+<span class="font-headline-lg-mobile text-headline-lg-mobile font-bold text-trust-navy dark:text-primary-fixed">RukoSpace</span>
+</div>
+<div class="flex items-center gap-md text-trust-navy dark:text-primary-fixed">
+<span class="material-symbols-outlined">notifications</span>
+</div>
+</header>
+<!-- Profile Header / Cover Section -->
+<section class="relative bg-white border-b border-border-subtle pb-xl">
+<!-- Cover Image -->
+<div class="h-48 md:h-64 w-full bg-surface-container overflow-hidden">
+<div class="bg-cover bg-center w-full h-full" data-alt="A sleek, modern commercial real estate office building exterior in Jakarta during golden hour. Wide shot, establishing a professional and established corporate presence. The lighting is warm and inviting, highlighting the glass facade and geometric architecture. Fintech-meets-Real-Estate aesthetic." style="background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.6)), url(&quot;https://lh3.googleusercontent.com/aida-public/AB6AXuAo6w_7PWSwNOAUXp-H84rnotfhgKehTd0AejF2WBuN8ya5-OXdsidRNHbGWXJMiWroXPTJdEK2o60V6Lg0HSvIcvMTQBUQO0itpCd-dWTm5gNz35FY40L36Qrn-i9HZNTrgmaQYmRtdsoVhy04sMQTbGRIYlwzypPeLKZD6_cMESl9mwflrLJy6MoCrp25_CfQ_jxMpFrvM008SuPtCyPfA6ppVwxHzqCFIHbb62CrqI00TvV6mlOLxbxFcdWGhQrtw32iwyMJQn1k&quot;);"></div>
+</div>
+<!-- Profile Info Cluster -->
+<div class="px-margin-mobile md:px-lg max-w-5xl mx-auto flex flex-col md:flex-row gap-lg md:items-end relative -mt-12 md:-mt-16">
+<!-- Avatar -->
+<div class="w-24 h-24 md:w-32 md:h-32 rounded-xl overflow-hidden border-4 border-white bg-white shadow-md flex-shrink-0 z-10">
+<img alt="Citra Holdings Logo" class="w-full h-full object-cover" data-alt="A modern corporate logo for a real estate holdings company named Citra. Clean, geometric, utilizing navy blue and white. Minimalist design suitable for a high-end corporate identity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBGxEciNjLHvE4klmnBkyH2cT_rK3UMtsLmEou7jA2VWXlkUzVShAbnrB1rEtLeHccCnbF4OtyR92AYd5O9eIupAc_Y2AI5TgLG9z4g_hrf804oBQckwdURa64KPUs6hKBtH26f0wEIdPGrsp_Da6SXM_ZbwOwMhYmOTre8EpGkXX2dGraYYOBLPaOWmCziaReXFFzgRXkJv3Kj-LQW4tD07Ky4fHnZYZxtNbpxK3EKI3LlGF61cmRdbPH2pvIQelD3nVRS8n9_9eKC">
+</div>
+<!-- Info -->
+<div class="flex-1 flex flex-col md:flex-row justify-between md:items-end gap-md z-10 pb-md md:pb-0">
+<div><div class="bg-white/90 backdrop-blur-sm border border-border-subtle rounded-lg p-md shadow-sm">
+<div class="flex items-center gap-sm mb-xs">
+<h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-trust-navy">Citra Holdings</h2>
+<div class="bg-white text-success-teal px-sm py-1 rounded-full flex items-center gap-xs font-label-caps text-label-caps border border-success-teal/20 shadow-sm">
+<span class="material-symbols-outlined text-[14px]">verified</span>
+                                Verified
+                            </div>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-2xl">
+                            Institutional commercial property management specializing in premium shophouses and strategic retail locations across major business districts. Providing reliable, transparent leasing solutions for modern businesses.
+                        </p>
+</div></div>
+<!-- Actions -->
+<div class="flex gap-md flex-shrink-0 mt-md md:mt-0">
+<button class="bg-white text-trust-navy border border-trust-navy px-md py-sm rounded-lg font-technical-data text-technical-data hover:bg-surface-container transition-colors flex items-center gap-sm">
+<span class="material-symbols-outlined text-[18px]">mail</span>
+                            Contact
+                        </button>
+<button class="bg-trust-navy text-white px-lg py-sm rounded-lg font-technical-data text-technical-data hover:opacity-90 transition-opacity flex items-center gap-sm shadow-md">
+<span class="material-symbols-outlined text-[18px]">add_business</span>
+                            Follow
+                        </button>
+</div>
+</div>
+</div>
+</section>
+<!-- Bento Grid Content Area -->
+<div class="px-margin-mobile md:px-lg max-w-5xl mx-auto mt-xl grid grid-cols-1 md:grid-cols-12 gap-lg pb-2xl">
+<!-- Left Column: Stats & Location (md:col-span-4) -->
+<div class="md:col-span-4 flex flex-col gap-lg">
+<!-- Portfolio Statistics Card -->
+<div class="glass-card rounded-xl p-lg shadow-sm">
+<h3 class="font-title-md text-title-md text-on-surface border-b border-border-subtle pb-sm mb-md flex items-center gap-sm">
+<span class="material-symbols-outlined text-trust-navy">query_stats</span>
+                        Portfolio Overview
+                    </h3>
+<div class="flex flex-col gap-md">
+<div class="flex justify-between items-center">
+<span class="font-body-md text-body-md text-on-surface-variant">Total Properties</span>
+<span class="font-technical-data text-technical-data text-trust-navy text-lg">12</span>
+</div>
+<div class="w-full h-px bg-border-subtle"></div>
+<div class="flex justify-between items-center">
+<span class="font-body-md text-body-md text-on-surface-variant">Years Active</span>
+<span class="font-technical-data text-technical-data text-trust-navy text-lg">5</span>
+</div>
+<div class="w-full h-px bg-border-subtle"></div>
+<div class="flex justify-between items-center">
+<span class="font-body-md text-body-md text-on-surface-variant">Response Rate</span>
+<div class="flex items-center gap-xs">
+<span class="material-symbols-outlined text-success-teal text-[16px]">bolt</span>
+<span class="font-technical-data text-technical-data text-success-teal text-lg">98%</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Office Location Card -->
+<div class="glass-card rounded-xl p-lg shadow-sm">
+<h3 class="font-title-md text-title-md text-on-surface border-b border-border-subtle pb-sm mb-md flex items-center gap-sm">
+<span class="material-symbols-outlined text-trust-navy">location_on</span>
+                        Headquarters
+                    </h3>
+<div class="w-full h-48 bg-surface-container rounded-lg mb-md overflow-hidden border border-border-subtle relative">
+<img alt="Map Location" class="w-full h-full object-cover grayscale opacity-80" data-location="Jakarta Central Business District Map" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC57L6EHsdAFoaRKg7plhR-NVmGJ1hbyQbSIidbYiZpC0orAOduJ7iVhP1JHZubbyEZm2q-VgRhRFUuQYanrie310DZb07cK2-Vv7iwVLqefM2sDNjx0gI5Fj0Ky1wKUBlFsskyiPZFkrvhDh0Jm2nxZX9h0IhUxpc4BeUZYWysv6kO5YSqtxxTheJtuRB8XVzl4TvnImwpd-NJMELWcXBe1Z1l-R5Wy-DpWje1m3Pbr8xzOpR7FrD0geu4wKp00z2HNS25ZbXIFl3E">
+<div class="absolute inset-0 flex items-center justify-center">
+<span class="material-symbols-outlined text-trust-navy text-4xl drop-shadow-md" style="font-variation-settings: 'FILL' 1;">location_on</span>
+</div>
+</div>
+<address class="not-italic font-body-sm text-body-sm text-on-surface-variant">
+<strong>Citra Tower, Floor 15</strong><br>
+                        Jl. Jend. Sudirman Kav. 21<br>
+                        Jakarta Pusat, 10220
+                    </address>
+</div>
+</div>
+<!-- Right Column: Featured Properties (md:col-span-8) -->
+<div class="md:col-span-8">
+<div class="flex justify-between items-center mb-lg">
+<h3 class="font-title-md text-title-md text-on-surface flex items-center gap-sm">
+<span class="material-symbols-outlined text-trust-navy">storefront</span>
+                        Featured Shophouses
+                    </h3>
+<a class="font-technical-data text-technical-data text-trust-navy hover:underline flex items-center gap-xs" href="#">
+                        View All (12) <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+</div>
+<!-- Properties Grid (2 columns on tablet/desktop) -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-lg">
+<!-- Property Card 1 -->
+<article class="bg-white rounded-xl border border-border-subtle overflow-hidden hover-elevate flex flex-col group cursor-pointer">
+<div class="h-48 bg-surface-container relative overflow-hidden">
+<img alt="Ruko Sudirman" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A modern 3-story commercial shophouse (Ruko) in a busy Jakarta business district. Sleek glass facade on the ground floor, clean architectural lines, bright daylight lighting. Establishing a professional, premium retail space aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCmhBX8xUsJBaUTU8bh2WFcSsK9_zsLAv9XBhYOLyCG6oVHDqdHAyxLc4aU0ZSlcTPJ2tixzbi-GQ7YMBMbTVHDFPXPIyayBuTWGJ3MCklPTM0zOm_IbNylylWWJ768MtzVd8GMgBLIiQpUasB80zCJviWBxVqhvCY3tD3MoQNcT03xgownsocv9uXbFQ0ttEQyZqwRiVsk6BCnNyhUy2ryjUSMdr5Hi9OrkCpvbBjtSNnL8vT_fWpOrYI8XGLMlF7M9wR9TAhCi7OE">
+<div class="absolute top-sm right-sm bg-white/90 backdrop-blur-sm px-sm py-1 rounded text-success-teal font-label-caps text-label-caps flex items-center gap-xs shadow-sm border border-success-teal/20">
+<span class="material-symbols-outlined text-[14px]">check_circle</span> Available
+                            </div>
+</div>
+<div class="p-md flex-1 flex flex-col">
+<h4 class="font-title-md text-title-md text-on-surface mb-xs truncate">Ruko Sudirman Blok B</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-md flex items-center gap-xs">
+<span class="material-symbols-outlined text-[14px]">location_on</span> Jakarta Selatan
+                            </p>
+<!-- Technical Strip -->
+<div class="flex gap-sm mb-md flex-wrap">
+<div class="bg-surface-gray border border-border-subtle px-sm py-1 rounded font-technical-data text-technical-data text-on-surface-variant text-[12px] flex items-center gap-xs">
+<span class="material-symbols-outlined text-[14px]">straighten</span> 120 sqm
+                                </div>
+<div class="bg-surface-gray border border-border-subtle px-sm py-1 rounded font-technical-data text-technical-data text-on-surface-variant text-[12px] flex items-center gap-xs">
+<span class="material-symbols-outlined text-[14px]">electric_bolt</span> 16,500 VA
+                                </div>
+<div class="bg-surface-gray border border-border-subtle px-sm py-1 rounded font-technical-data text-technical-data text-on-surface-variant text-[12px] flex items-center gap-xs">
+<span class="material-symbols-outlined text-[14px]">layers</span> 3 Floors
+                                </div>
+</div>
+<div class="mt-auto pt-md border-t border-border-subtle flex justify-between items-center">
+<div class="font-technical-data text-technical-data text-trust-navy text-lg">
+                                    Rp 250M <span class="text-on-surface-variant text-sm font-body-sm font-normal">/ yr</span>
+</div>
+<button class="text-action-amber border border-action-amber px-sm py-1 rounded hover:bg-action-amber/10 transition-colors font-technical-data text-technical-data text-sm">
+                                    Details
+                                </button>
+</div>
+</div>
+</article>
+<!-- Property Card 2 -->
+<article class="bg-white rounded-xl border border-border-subtle overflow-hidden hover-elevate flex flex-col group cursor-pointer">
+<div class="h-48 bg-surface-container relative overflow-hidden">
+<img alt="Ruko Kemang" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A premium commercial shophouse corner unit in an upscale neighborhood. Large display windows, clean white and dark gray exterior paint. Bright, sunny day lighting. Corporate, reliable, modern aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAaAbWkJEvrkFgL4rtnrHByoZLES6qCzdPHYNl3EiDbVJeQFm0ZyGCCxajtwI9jHpC7NLK9hI5922msy7NKJsw0PBSLCwemoPO4xEGIGjIud4qE392NuxvCPcXw7sJQ4pcfSqM8fsc8cngnV0sy4LDEPm5ceaijoRnhMdNb3jOb0M8qe_ckYuMvFWqcbRGmBWVzZ4ql5Ak9f_UuUUMMjEEcYW8Sc8P984zuupeaFZxdCgqxeq6IvZ0iwKWCuKvrCcodOn6BNwkf36LP">
+<div class="absolute top-sm right-sm bg-white/90 backdrop-blur-sm px-sm py-1 rounded text-action-amber font-label-caps text-label-caps flex items-center gap-xs shadow-sm border border-action-amber/20">
+<span class="material-symbols-outlined text-[14px]">pending</span> In-Review
+                            </div>
+</div>
+<div class="p-md flex-1 flex flex-col">
+<h4 class="font-title-md text-title-md text-on-surface mb-xs truncate">Ruko Kemang Corner</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-md flex items-center gap-xs">
+<span class="material-symbols-outlined text-[14px]">location_on</span> Jakarta Selatan
+                            </p>
+<!-- Technical Strip -->
+<div class="flex gap-sm mb-md flex-wrap">
+<div class="bg-surface-gray border border-border-subtle px-sm py-1 rounded font-technical-data text-technical-data text-on-surface-variant text-[12px] flex items-center gap-xs">
+<span class="material-symbols-outlined text-[14px]">straighten</span> 200 sqm
+                                </div>
+<div class="bg-surface-gray border border-border-subtle px-sm py-1 rounded font-technical-data text-technical-data text-on-surface-variant text-[12px] flex items-center gap-xs">
+<span class="material-symbols-outlined text-[14px]">electric_bolt</span> 22,000 VA
+                                </div>
+<div class="bg-surface-gray border border-border-subtle px-sm py-1 rounded font-technical-data text-technical-data text-on-surface-variant text-[12px] flex items-center gap-xs">
+<span class="material-symbols-outlined text-[14px]">local_parking</span> 4 Slots
+                                </div>
+</div>
+<div class="mt-auto pt-md border-t border-border-subtle flex justify-between items-center">
+<div class="font-technical-data text-technical-data text-trust-navy text-lg">
+                                    Rp 320M <span class="text-on-surface-variant text-sm font-body-sm font-normal">/ yr</span>
+</div>
+<button class="text-action-amber border border-action-amber px-sm py-1 rounded hover:bg-action-amber/10 transition-colors font-technical-data text-technical-data text-sm">
+                                    Details
+                                </button>
+</div>
+</div>
+</article>
+</div>
+</div>
+</div>
+</main>
+<!-- Mobile Bottom Navigation (Only visible on mobile) -->
+<nav class="fixed bottom-0 w-full z-50 flex justify-around items-center px-margin-mobile pb-safe bg-surface dark:bg-on-background shadow-lg shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)] rounded-t-xl md:hidden pt-sm">
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline p-sm hover:bg-surface-container-high dark:hover:bg-surface-variant rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined mb-xs">search</span>
+<span class="font-label-caps text-label-caps">Explore</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline p-sm hover:bg-surface-container-high dark:hover:bg-surface-variant rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined mb-xs">receipt_long</span>
+<span class="font-label-caps text-label-caps">My Rentals</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline p-sm hover:bg-surface-container-high dark:hover:bg-surface-variant rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined mb-xs">mail</span>
+<span class="font-label-caps text-label-caps">Messages</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-secondary-container dark:bg-secondary text-on-secondary-container dark:text-on-secondary rounded-full p-sm scale-95 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined mb-xs" style="font-variation-settings: 'FILL' 1;">person</span>
+<span class="font-label-caps text-label-caps">Profile</span>
+</a>
+</nav>
+
+
+
+
+</body></html>

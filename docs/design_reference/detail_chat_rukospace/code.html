@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+
+<html lang="id"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>RukoSpace - Chat Detail</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-low": "#eff4ff",
+                        "on-tertiary-fixed": "#002113",
+                        "on-error-container": "#93000a",
+                        "primary-fixed-dim": "#a0c9ff",
+                        "surface": "#f8f9ff",
+                        "secondary": "#855300",
+                        "primary-container": "#0f4c81",
+                        "surface-container": "#e5eeff",
+                        "secondary-fixed-dim": "#ffb95f",
+                        "border-subtle": "#E2E8F0",
+                        "surface-gray": "#F8FAFC",
+                        "on-secondary-container": "#684000",
+                        "surface-variant": "#d3e4fe",
+                        "secondary-container": "#fea619",
+                        "inverse-on-surface": "#eaf1ff",
+                        "error": "#ba1a1a",
+                        "on-primary": "#ffffff",
+                        "tertiary-fixed": "#6ffbbe",
+                        "on-surface": "#0b1c30",
+                        "trust-navy": "#0F4C81",
+                        "on-primary-container": "#8ebdf9",
+                        "error-red": "#EF4444",
+                        "action-amber": "#F59E0B",
+                        "on-secondary-fixed-variant": "#653e00",
+                        "on-surface-variant": "#42474f",
+                        "surface-container-highest": "#d3e4fe",
+                        "primary": "#00355f",
+                        "background": "#f8f9ff",
+                        "on-primary-fixed-variant": "#07497d",
+                        "on-error": "#ffffff",
+                        "surface-tint": "#2d6197",
+                        "tertiary-container": "#005539",
+                        "surface-dim": "#cbdbf5",
+                        "on-secondary-fixed": "#2a1700",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-high": "#dce9ff",
+                        "secondary-fixed": "#ffddb8",
+                        "on-secondary": "#ffffff",
+                        "inverse-surface": "#213145",
+                        "outline": "#727780",
+                        "inverse-primary": "#a0c9ff",
+                        "on-tertiary-container": "#3dd197",
+                        "on-tertiary": "#ffffff",
+                        "on-tertiary-fixed-variant": "#005236",
+                        "electric-blue": "#3B82F6",
+                        "surface-bright": "#f8f9ff",
+                        "on-primary-fixed": "#001c37",
+                        "outline-variant": "#c2c7d1",
+                        "tertiary": "#003c27",
+                        "tertiary-fixed-dim": "#4edea3",
+                        "success-teal": "#10B981",
+                        "error-container": "#ffdad6",
+                        "primary-fixed": "#d2e4ff",
+                        "on-background": "#0b1c30"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "base": "4px",
+                        "lg": "24px",
+                        "sm": "8px",
+                        "xs": "4px",
+                        "container-max": "1280px",
+                        "gutter": "24px",
+                        "2xl": "48px",
+                        "3xl": "64px",
+                        "xl": "32px",
+                        "md": "16px",
+                        "margin-mobile": "16px"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Inter"],
+                        "title-md": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "label-caps": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "technical-data": ["Inter"]
+                    },
+                    "fontSize": {
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "title-md": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.08em", "fontWeight": "700" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "technical-data": ["14px", { "lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.fill {
+            font-variation-settings: 'FILL' 1;
+        }
+        /* Hide scrollbar for clean chat view */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body-md min-h-screen flex overflow-hidden">
+<!-- SideNavBar (Left Column) -->
+<nav class="hidden md:flex flex-col h-screen w-64 fixed left-0 top-0 bg-surface-container border-r border-border-subtle p-md space-y-sm z-40">
+<!-- Brand -->
+<div class="mb-xl px-4 py-2">
+<span class="font-headline-lg text-headline-lg text-trust-navy">RukoHub</span>
+</div>
+<!-- User Profile -->
+<div class="flex items-center space-x-3 px-4 py-3 mb-4 rounded-lg bg-surface border border-border-subtle">
+<div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a young Indonesian male entrepreneur in a modern office setting. He is wearing a neat polo shirt. Bright, optimistic, and trustworthy lighting. Corporate Fintech aesthetic with soft grey backgrounds." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDPSnKiadMTItmd0kD0xJ-lYChrqEf1IbD3IutIM7gaAFEJlQd-vMM6P1qnJ2rWewhZ7GFMDLBsBZ_hCOWdPhHuhsPSkH23DCGhW-zfJlKPY3cqOFpUr0kWipBZizJ63V3rIoKP8CKcqnRdeOXpZ1lE3ZZtnqgsjJrM-pRtfj4EYw0hwwDnpBUToG9N_O20CLmjvy4aWxj9HoK_Yp8zdZt2RHhFmK_pvHJZaCHqQDZ8nE4_k5eyk-Iqdxo3HUb9vtFCmihy5646pnXy"/>
+</div>
+<div>
+<div class="font-title-md text-title-md text-on-surface !text-sm">Budi Satria</div>
+<div class="font-label-caps text-label-caps text-success-teal">Verified Tenant</div>
+</div>
+</div>
+<!-- Navigation Links -->
+<div class="flex-1 space-y-2">
+<a class="flex items-center space-x-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-variant transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="grid_view">grid_view</span>
+<span class="font-body-md text-body-md">Dashboard</span>
+</a>
+<a class="flex items-center space-x-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-variant transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="store">store</span>
+<span class="font-body-md text-body-md">Listings</span>
+</a>
+<a class="flex items-center space-x-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-variant transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="calendar_today">calendar_today</span>
+<span class="font-body-md text-body-md">Bookings</span>
+</a>
+<a class="flex items-center space-x-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-variant transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="payments">payments</span>
+<span class="font-body-md text-body-md">Transactions</span>
+</a>
+<!-- Active State -->
+<a class="flex items-center space-x-3 px-4 py-3 rounded-lg bg-primary-container text-on-primary-container font-semibold transition-all shadow-sm" href="#">
+<span class="material-symbols-outlined fill" data-icon="forum">forum</span>
+<span class="font-body-md text-body-md">Direct Messages</span>
+</a>
+<a class="flex items-center space-x-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-variant transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-body-md text-body-md">Settings</span>
+</a>
+</div>
+<!-- CTA & Footer -->
+<div class="mt-auto space-y-4 pt-4 border-t border-border-subtle">
+<button class="w-full bg-trust-navy text-on-primary font-body-md text-body-md font-bold py-3 rounded-lg hover:opacity-90 transition-opacity">
+                Find New Property
+            </button>
+<a class="flex items-center space-x-3 px-4 py-2 text-on-surface-variant hover:bg-surface-variant rounded-lg transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+<span class="font-body-sm text-body-sm">Help Center</span>
+</a>
+<a class="flex items-center space-x-3 px-4 py-2 text-on-surface-variant hover:bg-surface-variant rounded-lg transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+<span class="font-body-sm text-body-sm">Logout</span>
+</a>
+</div>
+</nav>
+<!-- Main Content Wrapper -->
+<main class="flex-1 md:ml-64 flex flex-col md:flex-row h-screen">
+<!-- Center Column: Chat Interface -->
+<section class="flex-1 flex flex-col bg-surface-gray border-r border-border-subtle relative h-full">
+<!-- Chat Header -->
+<header class="bg-surface border-b border-border-subtle px-lg py-md flex items-center justify-between sticky top-0 z-10 shadow-sm">
+<div class="flex items-center space-x-4">
+<!-- Mobile Back Button -->
+<button class="md:hidden text-on-surface-variant p-2 -ml-2 rounded-full hover:bg-surface-variant">
+<span class="material-symbols-outlined" data-icon="arrow_back">arrow_back</span>
+</button>
+<div class="relative w-12 h-12 rounded-full border border-border-subtle overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="A professional corporate logo or sleek modern building icon representing a premium real estate agency named 'Citra Properti'. High-trust, authoritative visual style, navy blue and white color palette, flat design aesthetic suitable for an avatar." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBlF3j-PimM0lpZGkGt6JHxOHbdD4kxDfXdmiBGfssKZsfFTnAqfl2X-GoWGpoQv6f8ghWRn5Rag2olLVrtq8zi1vYxS0MDkQDw4itH2Wt031Egf6qQKyHbv5FTA65ZNO8d7gM1JvQiPBB0AfVg6Yy9byHtrYkKxjwCx95lYM2pgbOWT4uyKEATlV_EcYXY2PPdOJmoMDlIHdpw9yFeIgJ-EPa6ZO7M0ZuVeEjm1wueGAwGXecr2pNVkXKOKGKtSj_slxUgjP3oMGB0"/>
+</div>
+<div>
+<h2 class="font-title-md text-title-md text-on-surface flex items-center gap-2">
+                            Citra Properti
+                            <span class="material-symbols-outlined fill text-success-teal text-sm" data-icon="verified">verified</span>
+</h2>
+<div class="flex items-center space-x-2 mt-1">
+<span class="w-2 h-2 rounded-full bg-success-teal"></span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Online</span>
+<span class="text-border-subtle text-xs">•</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant truncate max-w-[200px]">Mengenai: Senopati Strategic</span>
+</div>
+</div>
+</div>
+<div class="flex items-center space-x-2">
+<button class="p-2 text-on-surface-variant hover:bg-surface-variant rounded-full transition-colors" title="Search in chat">
+<span class="material-symbols-outlined" data-icon="search">search</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:bg-surface-variant rounded-full transition-colors" title="More options">
+<span class="material-symbols-outlined" data-icon="more_vert">more_vert</span>
+</button>
+</div>
+</header>
+<!-- Chat History Area -->
+<div class="flex-1 overflow-y-auto p-lg space-y-6 no-scrollbar bg-surface-gray">
+<!-- System Message / Date Divider -->
+<div class="flex justify-center my-4">
+<span class="bg-surface border border-border-subtle font-label-caps text-label-caps text-on-surface-variant px-3 py-1 rounded-full shadow-sm">
+                        Hari Ini, 09:45 AM
+                    </span>
+</div>
+<!-- Landlord Message (Received) -->
+<div class="flex items-start space-x-3">
+<div class="w-8 h-8 rounded-full border border-border-subtle overflow-hidden flex-shrink-0 bg-surface-container mt-1">
+<img class="w-full h-full object-cover" data-alt="Small avatar representation of the 'Citra Properti' corporate logo. Simple, trustworthy, navy blue branding." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC0mLz2vFhOwgNnme3ZNTommFw1cUsUIkA4erJJGIR5HE739t7-b5Hs5oworbiyVFz_MKFkvwkjCu07GDl7s4uV8X2iBEP3nQISnmSxZz2P3VRWS8-XiCAGAgvf4_71URswfjcFT1Ko9Czy3ljLBO6t1kwiZeiOP3iN81zOlvxY6PqrLFtunWUMh_txcReSFHPuYgK-ebdC0khq5HQNZcq0a0-rbJqAAzL0tVaPGG8SpJNmWSGcRPoBiRgzm9Lk_WiAmlX_H4xRcjFi"/>
+</div>
+<div class="max-w-[75%]">
+<div class="bg-surface border border-border-subtle text-on-surface p-4 rounded-xl rounded-tl-sm shadow-sm">
+<p class="font-body-md text-body-md">Selamat pagi Bapak Budi. Terima kasih telah menghubungi Citra Properti. Ada yang bisa kami bantu terkait properti Senopati Strategic?</p>
+</div>
+<span class="font-body-sm text-body-sm text-outline mt-1 block px-1 text-xs">09:46 AM</span>
+</div>
+</div>
+<!-- Tenant Message (Sent) -->
+<div class="flex items-start space-x-3 flex-row-reverse space-x-reverse">
+<div class="w-8 h-8 rounded-full bg-primary-container overflow-hidden flex-shrink-0 mt-1">
+<img class="w-full h-full object-cover" data-alt="Small headshot avatar of a young Indonesian male entrepreneur. Bright lighting, trustworthy." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCZXOXgkG-ccZlUMB4Iwef0_kSNJTrvOOToNOf2zUkgt1IwDxJHtnK6EPic40Cf6Cn2rQAip9XK_9cjDB6Y5CIEu2waSF5ivbqXo2TQNe5DZ5Ze52VKhGBJgCoP1pUzLkE4QsBYnVH6uiZv8WlM0EKD648s6Nz1cuNi7qahXkaHEgqtCa5OxBJ9E1Vi5NqE9PQ5bw5GQmw5XwRi7S0RAFyyF2WNF1ASFGY9uvR9egVSRTpRdTuzuH3f940bjr-WhlDwq_5CExwYZORT"/>
+</div>
+<div class="max-w-[75%]">
+<div class="bg-trust-navy text-on-primary p-4 rounded-xl rounded-tr-sm shadow-sm">
+<p class="font-body-md text-body-md">Halo, saya tertarik survei hari Selasa jam 10 pagi. Apakah jadwal tersebut memungkinkan?</p>
+</div>
+<div class="flex items-center justify-end space-x-1 mt-1 px-1">
+<span class="font-body-sm text-body-sm text-outline text-xs">09:50 AM</span>
+<span class="material-symbols-outlined text-success-teal text-sm" data-icon="done_all" style="font-size: 16px;">done_all</span>
+</div>
+</div>
+</div>
+<!-- Landlord Reply (Received) -->
+<div class="flex items-start space-x-3">
+<div class="w-8 h-8 rounded-full border border-border-subtle overflow-hidden flex-shrink-0 bg-surface-container mt-1">
+<img class="w-full h-full object-cover" data-alt="Small avatar representation of the 'Citra Properti' corporate logo. Simple, trustworthy, navy blue branding." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBzSSPfMVqpjDNi7BiOGOEDSYLObES4MqrMAo3KEKqQNjJNOt496bNhVwxYlKWkHKfBkpqagLHznkPDQAYuONGEC-EaA6kVmgPhv7cxCpFHAMVdHidyidLNDcz4UbI5Qg3ka6hjfZZimYs1QBUMQoE2QsNWJfLOGrTXeQVjrrkHhvEBGAvQPiDQe7bUxsXIpy9Cp3MgGWnCDDjue1Wf637xtM1MxyEPJHnxCbTZWOrrbrgQoQmsAZ_Am7i6huHvf4EYtd1vXUVVDmH8"/>
+</div>
+<div class="max-w-[75%]">
+<div class="bg-surface border border-border-subtle text-on-surface p-4 rounded-xl rounded-tl-sm shadow-sm">
+<p class="font-body-md text-body-md">Tentu, saya tunggu di lokasi ya. Pastikan Bapak membawa KTP untuk proses registrasi di lobby gedung.</p>
+</div>
+<span class="font-body-sm text-body-sm text-outline mt-1 block px-1 text-xs">09:55 AM</span>
+</div>
+</div>
+</div>
+<!-- Chat Input Area -->
+<div class="bg-surface border-t border-border-subtle p-md">
+<div class="flex items-end space-x-2 bg-surface-gray border border-border-subtle rounded-xl p-2 focus-within:border-primary focus-within:ring-1 focus-within:ring-primary transition-shadow">
+<button class="p-2 text-on-surface-variant hover:text-primary hover:bg-surface-variant rounded-lg transition-colors flex-shrink-0" title="Lampirkan Dokumen">
+<span class="material-symbols-outlined" data-icon="add">add</span>
+</button>
+<textarea class="flex-1 bg-transparent border-none focus:ring-0 resize-none max-h-32 min-h-[44px] py-3 px-2 font-body-md text-body-md text-on-surface placeholder-outline" placeholder="Ketik pesan..." rows="1"></textarea>
+<button class="bg-action-amber text-on-secondary-container p-3 rounded-lg hover:bg-secondary-container transition-colors flex-shrink-0 shadow-sm" title="Kirim">
+<span class="material-symbols-outlined fill" data-icon="send">send</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Right Column: Context Panel -->
+<aside class="hidden lg:flex flex-col w-80 bg-surface border-l border-border-subtle p-lg h-full overflow-y-auto">
+<h3 class="font-title-md text-title-md text-on-surface mb-md">Context Properti</h3>
+<!-- Property Card -->
+<div class="bg-surface rounded-xl border border-border-subtle shadow-sm hover:shadow-md transition-shadow cursor-pointer overflow-hidden mb-xl group">
+<div class="relative h-40 w-full bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="A high-quality, professional photograph of a modern commercial property ('ruko') in Jakarta. The building features large glass windows, a clean grey concrete facade, and clear signage space. Bright, sunny daylight, shot from a slight angle to show depth. High-end real estate photography style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBRYQteLKShR2vOtKvCDRSEcWDvn3T5PXV6MAgAYs8VswUfCfg4wngWVDj0tOJ-mkMzkUEV5ew-Zh077nXTfz4jtmBCTw4JfkhE7i-shWJYlIHnrjR4FTjrai0QaauIXpmCvHNYrxmV8hEvcll1Bj2BTTn0tZ53KYKaSipbBrHtvTgZpCRWEtZ3s8J3MjDvX-dRPUJdqJgm_fGDftwp7g-_7jL8cplNbHadm4Ls6ffZOXchfGCWTWF-sgzG7ktcK8R-xFY9aZSe9F1j"/>
+<div class="absolute top-2 right-2 bg-success-teal text-on-primary font-label-caps text-label-caps px-2 py-1 rounded shadow-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]" data-icon="check_circle">check_circle</span>
+                        Verified
+                    </div>
+</div>
+<div class="p-md">
+<div class="font-title-md text-title-md text-on-surface mb-1 group-hover:text-primary transition-colors">Senopati Strategic</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-1 mb-3">
+<span class="material-symbols-outlined text-sm" data-icon="location_on">location_on</span>
+                        Jakarta Selatan
+                    </div>
+<!-- Technical Strip -->
+<div class="flex items-center space-x-3 mb-4">
+<div class="flex items-center gap-1 bg-surface-container-low px-2 py-1 rounded font-technical-data text-technical-data text-on-surface-variant border border-border-subtle">
+<span class="material-symbols-outlined text-sm" data-icon="aspect_ratio">aspect_ratio</span>
+                            120 sqm
+                        </div>
+<div class="flex items-center gap-1 bg-surface-container-low px-2 py-1 rounded font-technical-data text-technical-data text-on-surface-variant border border-border-subtle">
+<span class="material-symbols-outlined text-sm" data-icon="bolt">bolt</span>
+                            5,500 VA
+                        </div>
+</div>
+<div class="font-title-md text-title-md text-trust-navy font-bold">Rp 250 Jt <span class="font-body-sm text-body-sm font-normal text-on-surface-variant">/ tahun</span></div>
+</div>
+</div>
+<!-- Quick Actions -->
+<h4 class="font-label-caps text-label-caps text-outline mb-sm uppercase tracking-wider">Aksi Cepat</h4>
+<div class="space-y-3">
+<button class="w-full flex items-center justify-center gap-2 bg-trust-navy text-on-primary font-body-md text-body-md font-bold py-3 px-4 rounded-lg hover:bg-primary transition-colors shadow-sm">
+<span class="material-symbols-outlined" data-icon="event_available">event_available</span>
+                    Jadwalkan Survei
+                </button>
+<button class="w-full flex items-center justify-center gap-2 bg-surface text-trust-navy border border-trust-navy font-body-md text-body-md font-bold py-3 px-4 rounded-lg hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined" data-icon="visibility">visibility</span>
+                    Lihat Detail Ruko
+                </button>
+</div>
+<div class="mt-auto pt-6 text-center">
+<div class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-surface-container mb-2">
+<span class="material-symbols-outlined text-primary text-xl" data-icon="security">security</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Transaksi aman. Jangan melakukan pembayaran di luar platform RukoHub.</p>
+</div>
+</aside>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-2 bg-surface shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)] md:hidden rounded-t-xl">
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:bg-surface-variant rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="search">search</span>
+<span class="font-label-caps text-label-caps mt-1">Search</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:bg-surface-variant rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="favorite">favorite</span>
+<span class="font-label-caps text-label-caps mt-1">Saved</span>
+</a>
+<!-- Active -->
+<a class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-xl px-4 py-1 scale-95 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined fill" data-icon="chat_bubble">chat_bubble</span>
+<span class="font-label-caps text-label-caps mt-1">Chat</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:bg-surface-variant rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-label-caps text-label-caps mt-1">Manage</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:bg-surface-variant rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-label-caps text-label-caps mt-1">Profile</span>
+</a>
+</nav>
+</body></html>

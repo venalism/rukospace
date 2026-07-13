@@ -1,0 +1,513 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>RukoSpace Admin - User Management</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary-container": "#005539",
+                    "error-container": "#ffdad6",
+                    "background": "#f8f9ff",
+                    "on-tertiary": "#ffffff",
+                    "outline-variant": "#c2c7d1",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-bright": "#f8f9ff",
+                    "surface": "#f8f9ff",
+                    "on-surface": "#0b1c30",
+                    "on-tertiary-fixed-variant": "#005236",
+                    "on-secondary": "#ffffff",
+                    "surface-dim": "#cbdbf5",
+                    "trust-navy": "#0F4C81",
+                    "on-tertiary-fixed": "#002113",
+                    "on-secondary-fixed-variant": "#653e00",
+                    "secondary-container": "#fea619",
+                    "surface-container-low": "#eff4ff",
+                    "inverse-primary": "#a0c9ff",
+                    "primary-fixed-dim": "#a0c9ff",
+                    "on-secondary-container": "#684000",
+                    "on-error-container": "#93000a",
+                    "primary-container": "#0f4c81",
+                    "inverse-surface": "#213145",
+                    "surface-gray": "#F8FAFC",
+                    "surface-container-highest": "#d3e4fe",
+                    "primary": "#00355f",
+                    "surface-container": "#e5eeff",
+                    "primary-fixed": "#d2e4ff",
+                    "on-secondary-fixed": "#2a1700",
+                    "on-primary-container": "#8ebdf9",
+                    "border-subtle": "#E2E8F0",
+                    "error": "#ba1a1a",
+                    "action-amber": "#F59E0B",
+                    "secondary-fixed": "#ffddb8",
+                    "secondary": "#855300",
+                    "tertiary-fixed-dim": "#4edea3",
+                    "on-tertiary-container": "#3dd197",
+                    "on-surface-variant": "#42474f",
+                    "surface-variant": "#d3e4fe",
+                    "inverse-on-surface": "#eaf1ff",
+                    "success-teal": "#10B981",
+                    "on-primary-fixed": "#001c37",
+                    "surface-container-high": "#dce9ff",
+                    "on-primary": "#ffffff",
+                    "tertiary-fixed": "#6ffbbe",
+                    "on-primary-fixed-variant": "#07497d",
+                    "on-error": "#ffffff",
+                    "secondary-fixed-dim": "#ffb95f",
+                    "outline": "#727780",
+                    "electric-blue": "#3B82F6",
+                    "on-background": "#0b1c30",
+                    "surface-tint": "#2d6197",
+                    "tertiary": "#003c27",
+                    "error-red": "#EF4444"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "gutter": "24px",
+                    "base": "4px",
+                    "lg": "24px",
+                    "md": "16px",
+                    "container-max": "1280px",
+                    "3xl": "64px",
+                    "2xl": "48px",
+                    "xl": "32px",
+                    "margin-mobile": "16px",
+                    "xs": "4px",
+                    "sm": "8px"
+            },
+            "fontFamily": {
+                    "body-md": ["Inter"],
+                    "display-lg": ["Inter"],
+                    "title-md": ["Inter"],
+                    "technical-data": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "headline-lg-mobile": ["Inter"],
+                    "label-caps": ["Inter"],
+                    "body-sm": ["Inter"]
+            },
+            "fontSize": {
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "title-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "technical-data": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.08em", "fontWeight": "700"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F8FAFC;
+        }
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+        .user-row:hover {
+            background-color: rgba(15, 76, 129, 0.04);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background">
+<!-- SideNavBar Shell -->
+<aside class="h-screen w-64 fixed left-0 top-0 bg-primary flex flex-col py-lg shadow-md z-50">
+<div class="px-6 mb-8">
+<h1 class="font-headline-lg text-headline-lg font-bold text-on-primary">RukoSpace</h1>
+<p class="text-on-primary/60 font-label-caps text-label-caps tracking-wider uppercase">Super Admin</p>
+</div>
+<nav class="flex-1 space-y-1"><!-- Dashboard Tab -->
+<a class="flex items-center text-on-primary/70 dark:text-on-primary-container/70 hover:text-on-primary px-6 py-4 hover:bg-on-primary/10 transition-colors" href="#">
+<span class="material-symbols-outlined mr-3">dashboard</span>
+<span class="font-label-caps text-label-caps">Dashboard</span>
+</a>
+<!-- User Management Tab (ACTIVE) -->
+<a class="flex items-center text-secondary-container border-l-4 border-secondary-container font-bold px-6 py-4 bg-on-primary/5" href="#">
+<span class="material-symbols-outlined mr-3">group</span>
+<span class="font-label-caps text-label-caps">User Management</span>
+</a>
+<!-- Property Listings Tab -->
+<a class="flex items-center text-on-primary/70 dark:text-on-primary-container/70 hover:text-on-primary px-6 py-4 hover:bg-on-primary/10 transition-colors" href="#">
+<span class="material-symbols-outlined mr-3">storefront</span>
+<span class="font-label-caps text-label-caps">Property Listings</span>
+</a>
+<!-- Customer Support Tab -->
+<a class="flex items-center text-on-primary/70 dark:text-on-primary-container/70 hover:text-on-primary px-6 py-4 hover:bg-on-primary/10 transition-colors" href="#">
+<span class="material-symbols-outlined mr-3">chat</span>
+<span class="font-label-caps text-label-caps">Customer Support</span>
+</a>
+<!-- System Settings Tab -->
+<a class="flex items-center text-on-primary/70 dark:text-on-primary-container/70 hover:text-on-primary px-6 py-4 hover:bg-on-primary/10 transition-colors" href="#">
+<span class="material-symbols-outlined mr-3">settings</span>
+<span class="font-label-caps text-label-caps">System Settings</span>
+</a></nav>
+<div class="px-6 mt-auto"><button class="w-full py-3 bg-secondary-container text-on-secondary-container font-bold rounded-lg mb-6 hover:opacity-90 transition-opacity font-label-caps text-label-caps">
+                Verify Listings
+            </button>
+<div class="flex items-center p-3 rounded-lg bg-on-primary/5 mb-6">
+<img class="w-10 h-10 rounded-full border-2 border-on-primary/20 object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB9BhHQL5BxAy-B8HWuoNNNtznORevaT9DnmS8ACK_SLGW74-V31yu3fj7tENdzlbBRtCoyLDlrV_fpKJkT8p3F8r6IPNZ8SA0Lr-FnAARt6E6caVyhMp4vrTPpYDmyxFuFf02PEc0N1LOvQCxDVT9niL_EBuWTLV58rKjqE5ibJlXHFCoACPmz160r6D1CccXrOM9qGtv5zO03S_Hd6JlDyci63RlTxdF-v1PPIprkPdlmqi7uDD_Hn96h7S-YWOTAFd0pxf6UcPXY">
+<div class="ml-3 overflow-hidden">
+<p class="text-on-primary font-bold text-sm truncate">Admin Profile</p>
+<p class="text-on-primary/60 text-xs truncate">Super Admin</p>
+</div>
+</div>
+<a class="flex items-center text-on-primary/70 hover:text-on-primary px-0 py-2 transition-colors" href="#">
+<span class="material-symbols-outlined mr-3">logout</span>
+<span class="font-label-caps text-label-caps">Logout</span>
+</a></div>
+</aside>
+<!-- Main Content Wrapper -->
+<main class="ml-64 min-h-screen">
+<!-- TopAppBar -->
+<header class="docked full-width top-0 sticky z-40 bg-surface flex justify-between items-center w-full px-lg h-16 border-b border-border-subtle">
+<div class="flex items-center bg-surface-container-low px-4 py-2 rounded-full border border-outline-variant w-1/3">
+<span class="material-symbols-outlined text-outline">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-body-sm w-full ml-2" placeholder="Search by name, email or ID..." type="text">
+</div>
+<div class="flex items-center space-x-6">
+<button class="relative text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute -top-1 -right-1 bg-error-red w-2 h-2 rounded-full"></span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">help_outline</span>
+</button>
+<div class="h-8 w-[1px] bg-border-subtle"></div>
+<div class="flex items-center">
+<span class="material-symbols-outlined text-trust-navy mr-2">account_circle</span>
+<span class="font-label-caps text-label-caps text-trust-navy">Administrator</span>
+</div>
+</div>
+</header>
+<!-- Page Canvas -->
+<div class="p-xl max-w-7xl mx-auto">
+<!-- Header Section -->
+<div class="flex justify-between items-end mb-xl">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-trust-navy">User Management</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Manage all tenants and landlords across the RukoSpace network.</p>
+</div>
+<div class="flex space-x-sm">
+<button class="px-md py-sm bg-white border border-border-subtle rounded-lg font-label-caps text-label-caps text-on-surface-variant flex items-center hover:bg-surface-gray transition-colors">
+<span class="material-symbols-outlined mr-2 text-sm">download</span>
+                        Export CSV
+                    </button>
+<button class="px-md py-sm bg-trust-navy text-white rounded-lg font-label-caps text-label-caps flex items-center shadow-sm hover:opacity-90 transition-opacity">
+<span class="material-symbols-outlined mr-2 text-sm">add</span>
+                        Invite User
+                    </button>
+</div>
+</div>
+<!-- Dashboard Stats -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-lg mb-xl">
+<div class="bg-white p-lg rounded-xl border border-border-subtle shadow-sm">
+<p class="font-label-caps text-label-caps text-on-surface-variant">Total Users</p>
+<p class="text-3xl font-bold text-trust-navy mt-1">12,482</p>
+<p class="text-xs text-success-teal mt-2 flex items-center">
+<span class="material-symbols-outlined text-xs mr-1">trending_up</span>
+                        +4% from last month
+                    </p>
+</div>
+<div class="bg-white p-lg rounded-xl border border-border-subtle shadow-sm">
+<p class="font-label-caps text-label-caps text-on-surface-variant">Active Landlords</p>
+<p class="text-3xl font-bold text-trust-navy mt-1">3,120</p>
+<p class="text-xs text-on-surface-variant mt-2">Verified: 2,980</p>
+</div>
+<div class="bg-white p-lg rounded-xl border border-border-subtle shadow-sm">
+<p class="font-label-caps text-label-caps text-on-surface-variant">Active Tenants</p>
+<p class="text-3xl font-bold text-trust-navy mt-1">9,362</p>
+<p class="text-xs text-on-surface-variant mt-2">Active now: 154</p>
+</div>
+<div class="bg-white p-lg rounded-xl border border-border-subtle shadow-sm">
+<p class="font-label-caps text-label-caps text-on-surface-variant">Pending Approvals</p>
+<p class="text-3xl font-bold text-action-amber mt-1">42</p>
+<p class="text-xs text-on-surface-variant mt-2">Needs manual review</p>
+</div>
+</div>
+<!-- Filters & Controls Bar -->
+<div class="bg-white p-md rounded-t-xl border-x border-t border-border-subtle flex flex-wrap items-center justify-between gap-md">
+<div class="flex items-center space-x-md">
+<div class="relative">
+<select class="appearance-none bg-surface-container-low border border-border-subtle rounded-lg px-lg py-2 pr-10 font-label-caps text-label-caps text-on-surface focus:ring-primary focus:border-primary">
+<option>All Roles</option>
+<option>Landlord</option>
+<option>Tenant</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-on-surface-variant text-sm">expand_more</span>
+</div>
+<div class="relative">
+<select class="appearance-none bg-surface-container-low border border-border-subtle rounded-lg px-lg py-2 pr-10 font-label-caps text-label-caps text-on-surface focus:ring-primary focus:border-primary">
+<option>All Statuses</option>
+<option>Verified</option>
+<option>Pending</option>
+<option>Suspended</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-on-surface-variant text-sm">expand_more</span>
+</div>
+</div>
+<div class="flex items-center text-on-surface-variant font-label-caps text-label-caps">
+                    Showing <span class="mx-1 text-trust-navy font-bold">1-10</span> of <span class="mx-1 text-trust-navy font-bold">482</span> users
+                </div>
+</div>
+<!-- Data Table Section -->
+<div class="bg-white border border-border-subtle shadow-md rounded-b-xl overflow-hidden">
+<table class="w-full text-left border-collapse">
+<thead class="bg-surface-container-low border-b border-border-subtle">
+<tr>
+<th class="px-lg py-md font-label-caps text-label-caps text-on-surface-variant">
+<div class="flex items-center cursor-pointer hover:text-trust-navy">
+                                    Name
+                                    <span class="material-symbols-outlined text-xs ml-1">unfold_more</span>
+</div>
+</th>
+<th class="px-lg py-md font-label-caps text-label-caps text-on-surface-variant">Role</th>
+<th class="px-lg py-md font-label-caps text-label-caps text-on-surface-variant">Status</th>
+<th class="px-lg py-md font-label-caps text-label-caps text-on-surface-variant">Last Login</th>
+<th class="px-lg py-md font-label-caps text-label-caps text-on-surface-variant text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-border-subtle">
+<!-- User Row 1 -->
+<tr class="user-row transition-colors duration-150">
+<td class="px-lg py-md">
+<div class="flex items-center">
+<div class="w-10 h-10 rounded-full bg-primary-fixed flex items-center justify-center text-primary font-bold">CL</div>
+<div class="ml-3">
+<p class="font-title-md text-sm text-trust-navy leading-none">Citra Lestari</p>
+<p class="text-xs text-on-surface-variant mt-1">citra.lestari@gmail.com</p>
+</div>
+</div>
+</td>
+<td class="px-lg py-md">
+<span class="px-2 py-1 bg-surface-container-high rounded text-xs font-semibold text-primary">Landlord</span>
+</td>
+<td class="px-lg py-md">
+<span class="flex items-center text-success-teal text-xs font-bold font-label-caps">
+<span class="material-symbols-outlined text-sm mr-1" data-weight="fill">check_circle</span>
+                                    Verified
+                                </span>
+</td>
+<td class="px-lg py-md font-technical-data text-technical-data text-on-surface-variant">
+                                22 Oct 2023, 14:32
+                            </td>
+<td class="px-lg py-md text-right">
+<button class="text-on-surface-variant hover:text-trust-navy transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- User Row 2 -->
+<tr class="user-row transition-colors duration-150">
+<td class="px-lg py-md">
+<div class="flex items-center">
+<div class="w-10 h-10 rounded-full bg-secondary-fixed flex items-center justify-center text-secondary font-bold">BK</div>
+<div class="ml-3">
+<p class="font-title-md text-sm text-trust-navy leading-none">Budi Kusuma</p>
+<p class="text-xs text-on-surface-variant mt-1">budi_ent@outlook.com</p>
+</div>
+</div>
+</td>
+<td class="px-lg py-md">
+<span class="px-2 py-1 bg-surface-container-high rounded text-xs font-semibold text-on-secondary-container">Tenant</span>
+</td>
+<td class="px-lg py-md">
+<span class="flex items-center text-success-teal text-xs font-bold font-label-caps">
+<span class="material-symbols-outlined text-sm mr-1" data-weight="fill">check_circle</span>
+                                    Verified
+                                </span>
+</td>
+<td class="px-lg py-md font-technical-data text-technical-data text-on-surface-variant">
+                                23 Oct 2023, 09:15
+                            </td>
+<td class="px-lg py-md text-right">
+<button class="text-on-surface-variant hover:text-trust-navy transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- User Row 3 -->
+<tr class="user-row transition-colors duration-150">
+<td class="px-lg py-md">
+<div class="flex items-center">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest flex items-center justify-center text-on-surface-variant font-bold">AS</div>
+<div class="ml-3">
+<p class="font-title-md text-sm text-trust-navy leading-none">Andi Saputra</p>
+<p class="text-xs text-on-surface-variant mt-1">andi.sap@perusahaan.id</p>
+</div>
+</div>
+</td>
+<td class="px-lg py-md">
+<span class="px-2 py-1 bg-surface-container-high rounded text-xs font-semibold text-primary">Landlord</span>
+</td>
+<td class="px-lg py-md">
+<span class="flex items-center text-action-amber text-xs font-bold font-label-caps">
+<span class="material-symbols-outlined text-sm mr-1">pending_actions</span>
+                                    Pending
+                                </span>
+</td>
+<td class="px-lg py-md font-technical-data text-technical-data text-on-surface-variant">
+                                21 Oct 2023, 11:45
+                            </td>
+<td class="px-lg py-md text-right">
+<button class="text-on-surface-variant hover:text-trust-navy transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- User Row 4 -->
+<tr class="user-row transition-colors duration-150">
+<td class="px-lg py-md">
+<div class="flex items-center">
+<div class="w-10 h-10 rounded-full bg-error-container flex items-center justify-center text-error font-bold">RW</div>
+<div class="ml-3">
+<p class="font-title-md text-sm text-trust-navy leading-none">Rina Wijaya</p>
+<p class="text-xs text-on-surface-variant mt-1">rina.w@gmail.com</p>
+</div>
+</div>
+</td>
+<td class="px-lg py-md">
+<span class="px-2 py-1 bg-surface-container-high rounded text-xs font-semibold text-on-secondary-container">Tenant</span>
+</td>
+<td class="px-lg py-md">
+<span class="flex items-center text-error-red text-xs font-bold font-label-caps">
+<span class="material-symbols-outlined text-sm mr-1">block</span>
+                                    Suspended
+                                </span>
+</td>
+<td class="px-lg py-md font-technical-data text-technical-data text-on-surface-variant">
+                                15 Oct 2023, 16:20
+                            </td>
+<td class="px-lg py-md text-right">
+<button class="text-on-surface-variant hover:text-trust-navy transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- User Row 5 -->
+<tr class="user-row transition-colors duration-150">
+<td class="px-lg py-md">
+<div class="flex items-center">
+<div class="w-10 h-10 rounded-full bg-primary-fixed flex items-center justify-center text-primary font-bold">DS</div>
+<div class="ml-3">
+<p class="font-title-md text-sm text-trust-navy leading-none">Dewi Sartika</p>
+<p class="text-xs text-on-surface-variant mt-1">dewi.s@properti.com</p>
+</div>
+</div>
+</td>
+<td class="px-lg py-md">
+<span class="px-2 py-1 bg-surface-container-high rounded text-xs font-semibold text-primary">Landlord</span>
+</td>
+<td class="px-lg py-md">
+<span class="flex items-center text-success-teal text-xs font-bold font-label-caps">
+<span class="material-symbols-outlined text-sm mr-1" data-weight="fill">check_circle</span>
+                                    Verified
+                                </span>
+</td>
+<td class="px-lg py-md font-technical-data text-technical-data text-on-surface-variant">
+                                Today, 10:05
+                            </td>
+<td class="px-lg py-md text-right">
+<button class="text-on-surface-variant hover:text-trust-navy transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+<!-- Pagination Footer -->
+<div class="px-lg py-md bg-surface-container-low flex items-center justify-between">
+<button class="px-4 py-2 border border-border-subtle rounded-lg font-label-caps text-label-caps text-on-surface-variant hover:bg-white transition-colors disabled:opacity-50">
+                        Previous
+                    </button>
+<div class="flex space-x-2">
+<button class="w-8 h-8 flex items-center justify-center rounded-lg bg-trust-navy text-white font-bold text-xs">1</button>
+<button class="w-8 h-8 flex items-center justify-center rounded-lg text-on-surface-variant hover:bg-white transition-colors text-xs">2</button>
+<button class="w-8 h-8 flex items-center justify-center rounded-lg text-on-surface-variant hover:bg-white transition-colors text-xs">3</button>
+<span class="text-on-surface-variant self-end px-1">...</span>
+<button class="w-8 h-8 flex items-center justify-center rounded-lg text-on-surface-variant hover:bg-white transition-colors text-xs">48</button>
+</div>
+<button class="px-4 py-2 border border-border-subtle rounded-lg font-label-caps text-label-caps text-on-surface-variant hover:bg-white transition-colors">
+                        Next
+                    </button>
+</div>
+</div>
+<!-- Asymmetric Helper Cards (Bento style highlight) -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-lg mt-xl">
+<div class="md:col-span-2 bg-gradient-to-br from-trust-navy to-primary p-lg rounded-xl text-white flex justify-between items-center overflow-hidden relative">
+<div class="z-10">
+<h3 class="font-title-md text-xl mb-2">New Security Protocols</h3>
+<p class="text-on-primary/80 max-w-md font-body-sm">We've updated the multi-factor authentication requirements for all Landlord accounts to ensure data integrity.</p>
+<button class="mt-4 px-md py-sm bg-white text-trust-navy font-label-caps text-label-caps rounded-lg hover:bg-opacity-90 transition-all">Review Changes</button>
+</div>
+<span class="material-symbols-outlined text-[120px] opacity-10 absolute -right-4 -bottom-4 select-none">security</span>
+</div>
+<div class="bg-surface-container p-lg rounded-xl border border-border-subtle">
+<h3 class="font-title-md text-trust-navy mb-4 flex items-center">
+<span class="material-symbols-outlined mr-2">history</span>
+                        Recent Activity
+                    </h3>
+<div class="space-y-4">
+<div class="flex items-start">
+<div class="w-2 h-2 rounded-full bg-success-teal mt-2 mr-3 shrink-0"></div>
+<div>
+<p class="text-sm font-bold text-on-surface">New Landlord Signup</p>
+<p class="text-xs text-on-surface-variant">2 minutes ago</p>
+</div>
+</div>
+<div class="flex items-start">
+<div class="w-2 h-2 rounded-full bg-action-amber mt-2 mr-3 shrink-0"></div>
+<div>
+<p class="text-sm font-bold text-on-surface">Verification Request</p>
+<p class="text-xs text-on-surface-variant">14 minutes ago</p>
+</div>
+</div>
+<div class="flex items-start">
+<div class="w-2 h-2 rounded-full bg-error-red mt-2 mr-3 shrink-0"></div>
+<div>
+<p class="text-sm font-bold text-on-surface">User Suspended</p>
+<p class="text-xs text-on-surface-variant">1 hour ago</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<script>
+        // Simple search feedback interaction
+        const searchInput = document.querySelector('input[type="text"]');
+        searchInput.addEventListener('input', (e) => {
+            console.log('Searching for:', e.target.value);
+            // In a real app, this would trigger table filtering
+        });
+
+        // Toggle row highlighting for visual testing
+        document.querySelectorAll('.user-row').forEach(row => {
+            row.addEventListener('click', () => {
+                // Potential for side-panel detail view trigger
+                console.log('Row clicked');
+            });
+        });
+    </script>
+
+
+</body></html>

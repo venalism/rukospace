@@ -1,0 +1,20 @@
+# Docker and Environments
+.env
+.env.*
+!.env.example
+docker-compose.override.yml
+
+# IDEs and Editors
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+
+# Database Data (if running local container volume mappings)
+pgdata/
+db_data/
+
+# Temporary files
+tmp/
+*.log

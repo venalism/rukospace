@@ -1,0 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+@import "tailwindcss";
+@config "../tailwind.config.js";
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #f8f9ff; /* surface-gray */
+  color: #0b1c30; /* on-surface */
+}

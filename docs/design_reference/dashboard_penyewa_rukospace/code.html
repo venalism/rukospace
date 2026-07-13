@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Tenant Dashboard - RukoSpace</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "action-amber": "#F59E0B",
+                        "tertiary-container": "#005539",
+                        "on-secondary-fixed-variant": "#653e00",
+                        "tertiary": "#003c27",
+                        "on-primary-container": "#8ebdf9",
+                        "outline": "#727780",
+                        "surface-container-low": "#eff4ff",
+                        "surface-container-high": "#dce9ff",
+                        "on-error-container": "#93000a",
+                        "surface-dim": "#cbdbf5",
+                        "surface-gray": "#F8FAFC",
+                        "primary-fixed": "#d2e4ff",
+                        "on-tertiary": "#ffffff",
+                        "on-surface": "#0b1c30",
+                        "trust-navy": "#0F4C81",
+                        "surface": "#f8f9ff",
+                        "on-tertiary-fixed": "#002113",
+                        "error": "#ba1a1a",
+                        "outline-variant": "#c2c7d1",
+                        "surface-container-lowest": "#ffffff",
+                        "inverse-primary": "#a0c9ff",
+                        "surface-container": "#e5eeff",
+                        "on-primary": "#ffffff",
+                        "secondary-fixed": "#ffddb8",
+                        "on-tertiary-container": "#3dd197",
+                        "on-secondary-container": "#684000",
+                        "background": "#f8f9ff",
+                        "secondary": "#855300",
+                        "on-background": "#0b1c30",
+                        "tertiary-fixed": "#6ffbbe",
+                        "surface-tint": "#2d6197",
+                        "secondary-fixed-dim": "#ffb95f",
+                        "on-secondary": "#ffffff",
+                        "primary-container": "#0f4c81",
+                        "primary": "#00355f",
+                        "border-subtle": "#E2E8F0",
+                        "surface-container-highest": "#d3e4fe",
+                        "electric-blue": "#3B82F6",
+                        "secondary-container": "#fea619",
+                        "error-red": "#EF4444",
+                        "inverse-surface": "#213145",
+                        "on-tertiary-fixed-variant": "#005236",
+                        "on-primary-fixed-variant": "#07497d",
+                        "on-secondary-fixed": "#2a1700",
+                        "tertiary-fixed-dim": "#4edea3",
+                        "success-teal": "#10B981",
+                        "on-error": "#ffffff",
+                        "inverse-on-surface": "#eaf1ff",
+                        "surface-variant": "#d3e4fe",
+                        "on-surface-variant": "#42474f",
+                        "on-primary-fixed": "#001c37",
+                        "surface-bright": "#f8f9ff",
+                        "primary-fixed-dim": "#a0c9ff",
+                        "error-container": "#ffdad6"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "gutter": "24px",
+                        "base": "4px",
+                        "md": "16px",
+                        "2xl": "48px",
+                        "xs": "4px",
+                        "container-max": "1280px",
+                        "xl": "32px",
+                        "sm": "8px",
+                        "margin-mobile": "16px",
+                        "3xl": "64px",
+                        "lg": "24px"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Inter"],
+                        "title-md": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "body-md": ["Inter"],
+                        "technical-data": ["Inter"],
+                        "label-caps": ["Inter"],
+                        "headline-lg-mobile": ["Inter"]
+                    },
+                    "fontSize": {
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "title-md": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "technical-data": ["14px", { "lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.08em", "fontWeight": "700" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-surface-gray text-on-surface">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 flex justify-between items-center px-lg py-md max-w-container-max mx-auto bg-surface dark:bg-on-surface border-b border-border-subtle dark:border-outline-variant">
+<div class="flex items-center gap-gutter">
+<span class="font-title-md text-title-md font-bold text-trust-navy dark:text-primary-fixed">RukoSpace</span>
+<div class="hidden md:flex gap-md font-body-md text-body-md">
+<a class="text-trust-navy dark:text-primary-fixed border-b-2 border-trust-navy dark:border-primary-fixed pb-1" href="#">For Tenants</a>
+<a class="text-on-surface-variant dark:text-outline-variant hover:text-trust-navy dark:hover:text-primary-fixed transition-colors" href="#">For Landlords</a>
+<a class="text-on-surface-variant dark:text-outline-variant hover:text-trust-navy dark:hover:text-primary-fixed transition-colors" href="#">List Property</a>
+</div>
+</div>
+<div class="flex items-center gap-md">
+<div class="hidden md:flex items-center bg-surface-gray rounded-full px-md py-sm border border-border-subtle">
+<span class="material-symbols-outlined text-outline">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-body-sm font-body-sm text-on-surface ml-sm outline-none" placeholder="Search..." type="text"/>
+</div>
+<button class="font-label-caps text-label-caps text-trust-navy border border-trust-navy px-md py-sm rounded transition-colors hover:bg-surface-container">Login</button>
+<button class="font-label-caps text-label-caps bg-trust-navy text-on-primary px-md py-sm rounded transition-colors hover:bg-primary">Register</button>
+</div>
+</nav>
+<!-- Main Content -->
+<main class="max-w-container-max mx-auto px-margin-mobile md:px-gutter pt-[104px] pb-3xl min-h-screen">
+<!-- Welcome Header -->
+<header class="mb-xl flex flex-col md:flex-row md:justify-between md:items-end gap-md">
+<div>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-on-surface mb-xs">Welcome back, Budi!</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">Here is an overview of your active rentals and upcoming activities.</p>
+</div>
+<button class="bg-action-amber text-trust-navy font-label-caps text-label-caps font-bold px-lg py-md rounded-lg flex items-center gap-sm hover:shadow-[0px_10px_15px_-3px_rgba(15,76,129,0.1)] transition-all">
+<span class="material-symbols-outlined">search</span>
+                Search more properties
+            </button>
+</header>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<!-- Left Column: Active Rentals & Upcoming Surveys -->
+<div class="lg:col-span-8 flex flex-col gap-xl">
+<!-- My Active Rentals -->
+<section>
+<h2 class="font-title-md text-title-md text-trust-navy mb-md flex items-center gap-sm">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">store</span>
+                        My Active Rentals
+                    </h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-md">
+<!-- Rental Card 1 -->
+<div class="bg-surface-container-lowest border border-border-subtle rounded-xl overflow-hidden hover:shadow-[0px_10px_15px_-3px_rgba(15,76,129,0.1)] transition-shadow">
+<div class="h-48 relative">
+<img class="w-full h-full object-cover" data-alt="A modern commercial property (ruko) facade in Jakarta, bathed in bright daylight. The building features clean architectural lines, large glass windows reflecting the blue sky, and a professional, well-maintained exterior. The setting implies a bustling but organized urban business district, captured with high-resolution, photorealistic clarity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuANhFAyNzFwNbO_FrPvcbobs5E2GpaYoXyD8u_gjdfmyXwz_ugLgxGuxS4FlgFGmBCO5XpzHr9kfYmYpDSmPPrBjGu3noWh7qlkJ8puPz07yxL_YyX_JpJlB2PQwiNb7XQfJaLPMoyP41tW1OS6rmnQZeMVPiq9tR_wGDTPykutHNb6ohp9cwfB9B5mv0StsUIaNkjXjOJd_Zj5WKz2le3--G4zNwVLWtCuPl2wK1Qy7nClpbL5QnDHwdu6TZY-g2EAJUIzsp7IUu4h"/>
+<div class="absolute top-md right-md bg-success-teal text-on-primary font-label-caps text-label-caps px-sm py-xs rounded flex items-center gap-xs">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                                    Active Lease
+                                </div>
+</div>
+<div class="p-lg">
+<h3 class="font-title-md text-title-md text-on-surface mb-sm">Ruko Mega Kuningan Blok A</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-md">Jl. Prof. DR. Satrio, Jakarta Selatan</p>
+<div class="flex flex-wrap gap-sm mb-lg">
+<span class="bg-surface-gray border border-border-subtle rounded px-sm py-xs font-technical-data text-technical-data text-on-surface-variant flex items-center gap-xs">
+<span class="material-symbols-outlined text-[16px]">straighten</span> 120 sqm
+                                    </span>
+<span class="bg-surface-gray border border-border-subtle rounded px-sm py-xs font-technical-data text-technical-data text-on-surface-variant flex items-center gap-xs">
+<span class="material-symbols-outlined text-[16px]">bolt</span> 16,500 VA
+                                    </span>
+</div>
+<div class="flex justify-between items-end pt-md border-t border-border-subtle">
+<div>
+<p class="font-label-caps text-label-caps text-on-surface-variant mb-xs">Next Payment</p>
+<p class="font-title-md text-title-md text-trust-navy">Rp 25.000.000</p>
+<p class="font-body-sm text-body-sm text-error-red mt-xs">Due in 5 days</p>
+</div>
+<button class="border border-border-subtle text-trust-navy font-label-caps text-label-caps px-md py-sm rounded hover:bg-surface-container transition-colors">Details</button>
+</div>
+</div>
+</div>
+<!-- Rental Card 2 -->
+<div class="bg-surface-container-lowest border border-border-subtle rounded-xl overflow-hidden hover:shadow-[0px_10px_15px_-3px_rgba(15,76,129,0.1)] transition-shadow">
+<div class="h-48 relative">
+<img class="w-full h-full object-cover" data-alt="A corner commercial ruko unit in a newly developed business park. The building has a contemporary design with neutral grey and white tones, accented by subtle architectural lighting. The environment is clean, structured, and highly professional, shot in soft morning light." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBlJAo5sZFU2xnzXqCeiLWTLZ5QrRL4bxj_OjZyrNND7VE9W1VS9LwJssGdv2uvujaVMTD-kpR-c0657n2GaMWBIWrOzBSFuWij3W1nJwd3RUGqVX0jFsVj87ICJ_XSuHihNSiTyoYAjiFIFJXbFTCeCN1OJGYF4_bK-pHQPjKZzZH9Zy5zGxGLNTU3tpnFpE1J0sVIJ83iJSagyvegAodubPyLxT_V3i1Z5UGw0tGCpI5gtYyKVrCpz0cKYqFjCUmxS-iCyp7o3_qV"/>
+<div class="absolute top-md right-md bg-action-amber text-trust-navy font-label-caps text-label-caps px-sm py-xs rounded flex items-center gap-xs font-bold">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">pending_actions</span>
+                                    Renewal Pending
+                                </div>
+</div>
+<div class="p-lg">
+<h3 class="font-title-md text-title-md text-on-surface mb-sm">Ruko BSD City Sektor 4</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-md">Jl. Pahlawan Seribu, Tangerang</p>
+<div class="flex flex-wrap gap-sm mb-lg">
+<span class="bg-surface-gray border border-border-subtle rounded px-sm py-xs font-technical-data text-technical-data text-on-surface-variant flex items-center gap-xs">
+<span class="material-symbols-outlined text-[16px]">straighten</span> 90 sqm
+                                    </span>
+<span class="bg-surface-gray border border-border-subtle rounded px-sm py-xs font-technical-data text-technical-data text-on-surface-variant flex items-center gap-xs">
+<span class="material-symbols-outlined text-[16px]">bolt</span> 11,000 VA
+                                    </span>
+</div>
+<div class="flex justify-between items-end pt-md border-t border-border-subtle">
+<div>
+<p class="font-label-caps text-label-caps text-on-surface-variant mb-xs">Lease Ends</p>
+<p class="font-title-md text-title-md text-trust-navy">15 Nov 2024</p>
+</div>
+<button class="bg-trust-navy text-on-primary font-label-caps text-label-caps px-md py-sm rounded hover:bg-primary transition-colors">Renew</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Upcoming Surveys -->
+<section>
+<h2 class="font-title-md text-title-md text-trust-navy mb-md flex items-center gap-sm">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">event</span>
+                        Upcoming Surveys
+                    </h2>
+<div class="bg-surface-container-lowest border border-border-subtle rounded-xl p-lg flex flex-col gap-md">
+<!-- Survey Item 1 -->
+<div class="flex flex-col sm:flex-row sm:items-center justify-between p-md bg-surface-gray rounded-lg border border-border-subtle gap-md">
+<div class="flex items-start gap-md">
+<div class="bg-surface-container text-trust-navy p-md rounded-lg flex flex-col items-center justify-center min-w-[70px]">
+<span class="font-label-caps text-label-caps">OCT</span>
+<span class="font-headline-lg-mobile text-headline-lg-mobile text-trust-navy">24</span>
+</div>
+<div>
+<h4 class="font-title-md text-title-md text-on-surface mb-xs">Ruko PIK Boulevard</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-xs mb-sm">
+<span class="material-symbols-outlined text-[16px]">schedule</span> 14:00 WIB
+                                    </p>
+<span class="bg-surface-container border border-surface-tint text-surface-tint px-sm py-xs rounded font-label-caps text-label-caps">Agent: Citra M.</span>
+</div>
+</div>
+<div class="flex gap-sm sm:flex-col">
+<button class="flex-1 bg-trust-navy text-on-primary font-label-caps text-label-caps px-md py-sm rounded hover:bg-primary transition-colors text-center">Reschedule</button>
+<button class="flex-1 border border-border-subtle text-on-surface-variant font-label-caps text-label-caps px-md py-sm rounded hover:bg-surface-container transition-colors text-center">Cancel</button>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- Right Column: Payment History & Quick Stats -->
+<div class="lg:col-span-4 flex flex-col gap-xl">
+<!-- Quick Stats -->
+<section class="grid grid-cols-2 gap-md">
+<div class="bg-surface-container-lowest border border-border-subtle rounded-xl p-md flex flex-col items-center text-center">
+<span class="material-symbols-outlined text-trust-navy text-[32px] mb-sm" style="font-variation-settings: 'FILL' 1;">domain</span>
+<span class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface">2</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant">Active Properties</span>
+</div>
+<div class="bg-surface-container-lowest border border-border-subtle rounded-xl p-md flex flex-col items-center text-center">
+<span class="material-symbols-outlined text-success-teal text-[32px] mb-sm" style="font-variation-settings: 'FILL' 1;">payments</span>
+<span class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface">0</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant">Pending Invoices</span>
+</div>
+</section>
+<!-- Payment History -->
+<section>
+<div class="flex justify-between items-center mb-md">
+<h2 class="font-title-md text-title-md text-trust-navy flex items-center gap-sm">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">receipt_long</span>
+                            Recent Payments
+                        </h2>
+<a class="font-label-caps text-label-caps text-trust-navy hover:underline" href="#">View All</a>
+</div>
+<div class="bg-surface-container-lowest border border-border-subtle rounded-xl overflow-hidden">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-gray border-b border-border-subtle">
+<th class="font-label-caps text-label-caps text-on-surface-variant p-md">Invoice</th>
+<th class="font-label-caps text-label-caps text-on-surface-variant p-md">Amount</th>
+<th class="font-label-caps text-label-caps text-on-surface-variant p-md text-right">Status</th>
+</tr>
+</thead>
+<tbody>
+<tr class="border-b border-border-subtle hover:bg-surface-gray transition-colors">
+<td class="p-md">
+<p class="font-body-sm text-body-sm text-on-surface font-semibold">INV-2024-09A</p>
+<p class="font-label-caps text-label-caps text-on-surface-variant">01 Sep 2024</p>
+</td>
+<td class="p-md font-technical-data text-technical-data text-on-surface">Rp 25.000k</td>
+<td class="p-md text-right">
+<span class="inline-flex items-center gap-xs bg-[#D1FAE5] text-[#065F46] px-sm py-xs rounded font-label-caps text-label-caps">
+<span class="material-symbols-outlined text-[14px]">check</span> Paid
+                                        </span>
+</td>
+</tr>
+<tr class="border-b border-border-subtle hover:bg-surface-gray transition-colors">
+<td class="p-md">
+<p class="font-body-sm text-body-sm text-on-surface font-semibold">INV-2024-08A</p>
+<p class="font-label-caps text-label-caps text-on-surface-variant">01 Aug 2024</p>
+</td>
+<td class="p-md font-technical-data text-technical-data text-on-surface">Rp 25.000k</td>
+<td class="p-md text-right">
+<span class="inline-flex items-center gap-xs bg-[#D1FAE5] text-[#065F46] px-sm py-xs rounded font-label-caps text-label-caps">
+<span class="material-symbols-outlined text-[14px]">check</span> Paid
+                                        </span>
+</td>
+</tr>
+<tr class="hover:bg-surface-gray transition-colors">
+<td class="p-md">
+<p class="font-body-sm text-body-sm text-on-surface font-semibold">INV-2024-07A</p>
+<p class="font-label-caps text-label-caps text-on-surface-variant">01 Jul 2024</p>
+</td>
+<td class="p-md font-technical-data text-technical-data text-on-surface">Rp 25.000k</td>
+<td class="p-md text-right">
+<span class="inline-flex items-center gap-xs bg-[#D1FAE5] text-[#065F46] px-sm py-xs rounded font-label-caps text-label-caps">
+<span class="material-symbols-outlined text-[14px]">check</span> Paid
+                                        </span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<!-- Support Card -->
+<section class="bg-surface-container border border-surface-tint rounded-xl p-lg flex items-start gap-md mt-auto">
+<span class="material-symbols-outlined text-surface-tint text-[32px]">support_agent</span>
+<div>
+<h3 class="font-title-md text-title-md text-trust-navy mb-xs">Need Assistance?</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-md">Our support team is ready to help with maintenance requests or lease inquiries.</p>
+<button class="border border-surface-tint text-surface-tint font-label-caps text-label-caps px-md py-sm rounded hover:bg-surface-tint hover:text-on-primary transition-colors">Contact Support</button>
+</div>
+</section>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full py-xl px-lg mt-3xl flex flex-col items-center gap-lg bg-inverse-surface dark:bg-on-background">
+<span class="font-title-md text-title-md font-bold text-primary-fixed">RukoSpace</span>
+<div class="flex flex-wrap justify-center gap-md font-body-sm text-body-sm">
+<a class="text-surface-variant hover:text-primary-fixed transition-colors" href="#">About Us</a>
+<a class="text-surface-variant hover:text-primary-fixed transition-colors" href="#">Contact</a>
+<a class="text-surface-variant hover:text-primary-fixed transition-colors" href="#">Privacy Policy</a>
+<a class="text-surface-variant hover:text-primary-fixed transition-colors" href="#">Terms of Service</a>
+<a class="text-surface-variant hover:text-primary-fixed transition-colors" href="#">Scan QR Code</a>
+</div>
+<p class="font-body-sm text-body-sm text-inverse-on-surface dark:text-surface-variant">© 2024 RukoSpace. All rights reserved.</p>
+</footer>
+</body></html>

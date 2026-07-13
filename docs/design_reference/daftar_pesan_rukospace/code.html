@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+
+<html lang="id"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Pesan Saya - RukoSpace</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-low": "#eff4ff",
+                        "on-tertiary-fixed": "#002113",
+                        "on-error-container": "#93000a",
+                        "primary-fixed-dim": "#a0c9ff",
+                        "surface": "#f8f9ff",
+                        "secondary": "#855300",
+                        "primary-container": "#0f4c81",
+                        "surface-container": "#e5eeff",
+                        "secondary-fixed-dim": "#ffb95f",
+                        "border-subtle": "#E2E8F0",
+                        "surface-gray": "#F8FAFC",
+                        "on-secondary-container": "#684000",
+                        "surface-variant": "#d3e4fe",
+                        "secondary-container": "#fea619",
+                        "inverse-on-surface": "#eaf1ff",
+                        "error": "#ba1a1a",
+                        "on-primary": "#ffffff",
+                        "tertiary-fixed": "#6ffbbe",
+                        "on-surface": "#0b1c30",
+                        "trust-navy": "#0F4C81",
+                        "on-primary-container": "#8ebdf9",
+                        "error-red": "#EF4444",
+                        "action-amber": "#F59E0B",
+                        "on-secondary-fixed-variant": "#653e00",
+                        "on-surface-variant": "#42474f",
+                        "surface-container-highest": "#d3e4fe",
+                        "primary": "#00355f",
+                        "background": "#f8f9ff",
+                        "on-primary-fixed-variant": "#07497d",
+                        "on-error": "#ffffff",
+                        "surface-tint": "#2d6197",
+                        "tertiary-container": "#005539",
+                        "surface-dim": "#cbdbf5",
+                        "on-secondary-fixed": "#2a1700",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-high": "#dce9ff",
+                        "secondary-fixed": "#ffddb8",
+                        "on-secondary": "#ffffff",
+                        "inverse-surface": "#213145",
+                        "outline": "#727780",
+                        "inverse-primary": "#a0c9ff",
+                        "on-tertiary-container": "#3dd197",
+                        "on-tertiary": "#ffffff",
+                        "on-tertiary-fixed-variant": "#005236",
+                        "electric-blue": "#3B82F6",
+                        "surface-bright": "#f8f9ff",
+                        "on-primary-fixed": "#001c37",
+                        "outline-variant": "#c2c7d1",
+                        "tertiary": "#003c27",
+                        "tertiary-fixed-dim": "#4edea3",
+                        "success-teal": "#10B981",
+                        "error-container": "#ffdad6",
+                        "primary-fixed": "#d2e4ff",
+                        "on-background": "#0b1c30"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "base": "4px",
+                        "lg": "24px",
+                        "sm": "8px",
+                        "xs": "4px",
+                        "container-max": "1280px",
+                        "gutter": "24px",
+                        "2xl": "48px",
+                        "3xl": "64px",
+                        "xl": "32px",
+                        "md": "16px",
+                        "margin-mobile": "16px"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Inter"],
+                        "title-md": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "label-caps": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "technical-data": ["Inter"]
+                    },
+                    "fontSize": {
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "title-md": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.08em", "fontWeight": "700" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "technical-data": ["14px", { "lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined[data-weight="fill"] {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        
+        /* Subtle scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #c2c7d1;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #727780;
+        }
+    </style>
+</head>
+<body class="bg-surface-gray text-on-surface antialiased min-h-screen flex flex-col md:flex-row">
+<!-- Mobile Top App Bar -->
+<header class="md:hidden flex justify-between items-center px-lg py-sm w-full sticky top-0 z-50 bg-surface dark:bg-on-surface">
+<div class="font-display-lg text-display-lg font-bold text-trust-navy dark:text-primary-fixed-dim text-[24px]">RukoHub</div>
+<div class="flex gap-4">
+<button class="hover:text-primary dark:hover:text-primary-container transition-colors active:opacity-80 transition-opacity">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="hover:text-primary dark:hover:text-primary-container transition-colors active:opacity-80 transition-opacity">
+<span class="material-symbols-outlined">account_circle</span>
+</button>
+</div>
+</header>
+<!-- Desktop Side Nav Bar -->
+<nav class="hidden md:flex flex-col h-full p-md space-y-sm bg-surface-container dark:bg-on-surface border-r border-border-subtle dark:border-outline h-screen w-64 fixed left-0 top-0 z-40">
+<div class="mb-xl px-sm">
+<span class="font-headline-lg text-headline-lg text-trust-navy dark:text-primary-fixed-dim">RukoHub</span>
+</div>
+<div class="flex items-center gap-3 px-sm mb-lg">
+<img alt="User Profile Avatar" class="w-12 h-12 rounded-full object-cover border-2 border-surface" data-alt="A professional headshot of an Asian male, wearing a smart casual navy blue shirt, smiling warmly against a bright, modern office background. High-quality corporate portrait photography, well-lit, conveying trust and reliability." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBQ51xPXoNxZu1pPc-ffaRUdF9b8jVRyEGN98qJdLDW6dlg0daGR5zifajvXoyb_m54-ItgLDknmHnjw2tuQCjDEAqR01pzLEeixAU0b5TELxVxpCxnVxyzYyroZhdLP_1wJT-4xsvQR_EmRidFF2Dt5l10lpnXvmI6KDsb6kNe5kzkPiTDCCu26TrO7Imjocw3TcJ4swlgYxPoU3iqxWMrI7U62acvS7VhBJooDbHJfkIH2Bk7sSVoQepiXaOM38zwIMG6LRVP0QKg"/>
+<div>
+<p class="font-title-md text-title-md text-trust-navy dark:text-primary-fixed-dim text-[16px] leading-tight">Budi Satria</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Verified Tenant</p>
+</div>
+</div>
+<button class="w-full bg-action-amber text-trust-navy font-title-md text-[14px] py-2 rounded-lg mb-lg hover:bg-secondary-fixed transition-colors shadow-sm">
+            Find New Property
+        </button>
+<div class="flex-1 flex flex-col gap-2">
+<!-- Inactive -->
+<a class="flex items-center gap-3 px-sm py-2 text-on-surface-variant dark:text-surface-variant hover:bg-surface-variant dark:hover:bg-outline-variant transition-all rounded-lg font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined">grid_view</span> Dashboard
+            </a>
+<a class="flex items-center gap-3 px-sm py-2 text-on-surface-variant dark:text-surface-variant hover:bg-surface-variant dark:hover:bg-outline-variant transition-all rounded-lg font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined">store</span> Listings
+            </a>
+<a class="flex items-center gap-3 px-sm py-2 text-on-surface-variant dark:text-surface-variant hover:bg-surface-variant dark:hover:bg-outline-variant transition-all rounded-lg font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined">calendar_today</span> Bookings
+            </a>
+<a class="flex items-center gap-3 px-sm py-2 text-on-surface-variant dark:text-surface-variant hover:bg-surface-variant dark:hover:bg-outline-variant transition-all rounded-lg font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined">payments</span> Transactions
+            </a>
+<!-- Active Tab -->
+<a class="flex items-center gap-3 px-sm py-2 bg-primary-container text-on-primary-container rounded-lg font-semibold transition-all active:translate-x-1 transition-transform font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined" data-weight="fill">forum</span> Direct Messages
+            </a>
+<a class="flex items-center gap-3 px-sm py-2 text-on-surface-variant dark:text-surface-variant hover:bg-surface-variant dark:hover:bg-outline-variant transition-all rounded-lg font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined">settings</span> Settings
+            </a>
+</div>
+<div class="mt-auto border-t border-border-subtle pt-4 flex flex-col gap-2">
+<a class="flex items-center gap-3 px-sm py-2 text-on-surface-variant dark:text-surface-variant hover:bg-surface-variant dark:hover:bg-outline-variant transition-all rounded-lg font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined">help</span> Help Center
+            </a>
+<a class="flex items-center gap-3 px-sm py-2 text-on-surface-variant dark:text-surface-variant hover:bg-surface-variant dark:hover:bg-outline-variant transition-all rounded-lg font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined">logout</span> Logout
+            </a>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="flex-1 md:ml-64 flex flex-col h-[calc(100vh-64px)] md:h-screen overflow-hidden pb-[72px] md:pb-0">
+<!-- Header & Controls -->
+<div class="px-md md:px-lg py-lg bg-surface-gray sticky top-0 z-10">
+<h1 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-trust-navy mb-md">Pesan Saya</h1>
+<div class="flex flex-col sm:flex-row gap-4 justify-between items-start sm:items-center">
+<!-- Search Bar -->
+<div class="relative w-full sm:w-96">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-surface-container-lowest border border-border-subtle rounded-lg focus:outline-none focus:border-trust-navy focus:ring-1 focus:ring-trust-navy font-body-md text-body-md text-on-surface placeholder:text-outline-variant shadow-sm" placeholder="Cari nama properti atau pengirim..." type="text"/>
+</div>
+<!-- Filters -->
+<div class="flex gap-2">
+<button class="px-4 py-1.5 rounded-full bg-trust-navy text-on-primary font-technical-data text-technical-data transition-colors">Semua</button>
+<button class="px-4 py-1.5 rounded-full border border-border-subtle bg-surface-container-lowest text-on-surface-variant hover:bg-surface-container transition-colors font-technical-data text-technical-data">Belum Dibaca</button>
+<button class="px-4 py-1.5 rounded-full border border-border-subtle bg-surface-container-lowest text-on-surface-variant hover:bg-surface-container transition-colors font-technical-data text-technical-data">Arsip</button>
+</div>
+</div>
+</div>
+<!-- Chat List -->
+<div class="flex-1 overflow-y-auto px-md md:px-lg pb-lg space-y-3">
+<!-- Chat Item 1 (Unread) -->
+<div class="group flex items-start gap-4 p-4 bg-surface-container-lowest border border-border-subtle rounded-xl hover:shadow-[0px_10px_15px_-3px_rgba(15,76,129,0.1)] transition-all cursor-pointer relative overflow-hidden">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-trust-navy rounded-l-xl"></div>
+<img class="w-16 h-16 rounded-lg object-cover flex-shrink-0 border border-border-subtle" data-alt="A modern commercial shophouse with large glass windows on the ground floor, situated on a busy urban street. The building features clean architectural lines, a mix of concrete and wooden textures, under bright midday sunlight. Professional real estate photography emphasizing the prime retail location." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBk5GQvkSyEjx35Krgw2qsL2B-TCgU6_dQEC11UJJyTUt_YrdEyDPra_PzEzTQhe7i0icJXuv8tRR4mSHK9A1WQjj_O5yLewfBOcYNohUz36B2S5O-a8SJi2Q-bOv7u5OJWYZIeEKnP1MW_mVDLyr0auK5m5C7jZIHdqfALFoO3PtK3Vt0P0M7yIV__RSK-67nsne9jcKe4fNvrmd2VGH5zeIJXEA0tugPhEywMLEL2NjReFQZtcq-B51exww7Y97NeMcyMClatibGf"/>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-start mb-1">
+<h3 class="font-title-md text-title-md text-trust-navy truncate pr-2">Senopati Strategic Hub</h3>
+<span class="font-label-caps text-label-caps text-trust-navy whitespace-nowrap mt-1">10:42 AM</span>
+</div>
+<div class="flex items-center gap-2 mb-1">
+<span class="material-symbols-outlined text-[16px] text-outline">person</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Citra Landlord</p>
+</div>
+<p class="font-body-md text-body-md text-on-surface truncate font-semibold">Selamat pagi Budi, untuk daya listrik bisa di-upgrade hingga 22,000 VA sesuai permintaan.</p>
+</div>
+<div class="flex flex-col items-end justify-between h-full pt-1 pb-1">
+<div class="w-2.5 h-2.5 bg-error-red rounded-full shadow-sm"></div>
+<div class="bg-surface-container px-2 py-0.5 rounded text-[10px] font-bold text-trust-navy mt-auto">INQUIRY</div>
+</div>
+</div>
+<!-- Chat Item 2 (Read) -->
+<div class="group flex items-start gap-4 p-4 bg-surface-container-lowest border border-border-subtle rounded-xl hover:shadow-[0px_10px_15px_-3px_rgba(15,76,129,0.1)] transition-all cursor-pointer">
+<img class="w-16 h-16 rounded-lg object-cover flex-shrink-0 border border-border-subtle opacity-90 group-hover:opacity-100 transition-opacity" data-alt="An elegant multi-story retail space in Menteng, featuring heritage architectural elements combined with modern black steel window frames. Shot during golden hour with warm lighting, showcasing a premium commercial property suitable for high-end cafes or boutiques." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCmPTLSlEAg6dBImfiak1tDJKhi2l-1nnWXu1JMX3BMZWKrOYUQwpsMYgp9Q52EoGacbqebG7o0RiyicrsixKb8SLHScdiR0RhO_p9sxvBK3z6WYea9LaH24VbYWQ9YfdVxvNIPo9SMQnJIpjz-n1JbDHe8NqQTzT5pmbSK3Uku-4HWkL3dI-0B_ogabswk-NnQSh-_ZSbnTLui3wPksvyIxdqn29Kwt8BI4meAIaVG5HSVQv1u7MJqb8-g20lKIRaCTCOU5lJp5N4d"/>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-start mb-1">
+<h3 class="font-title-md text-title-md text-on-surface truncate pr-2">Menteng Retail Hub</h3>
+<span class="font-label-caps text-label-caps text-outline-variant whitespace-nowrap mt-1">Kemarin</span>
+</div>
+<div class="flex items-center gap-2 mb-1">
+<span class="material-symbols-outlined text-[16px] text-outline">person</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">PT. Menteng Asri</p>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant truncate">Terima kasih atas jadwal surveinya. Kami tunggu kedatangannya besok jam 2 siang.</p>
+</div>
+<div class="flex flex-col items-end justify-end h-full pb-1">
+<div class="bg-surface-variant px-2 py-0.5 rounded text-[10px] font-bold text-on-surface-variant">SURVEY</div>
+</div>
+</div>
+<!-- Chat Item 3 (Read) -->
+<div class="group flex items-start gap-4 p-4 bg-surface-container-lowest border border-border-subtle rounded-xl hover:shadow-[0px_10px_15px_-3px_rgba(15,76,129,0.1)] transition-all cursor-pointer">
+<div class="w-16 h-16 rounded-lg bg-surface-container flex items-center justify-center flex-shrink-0 border border-border-subtle text-outline">
+<span class="material-symbols-outlined text-[32px]">apartment</span>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-start mb-1">
+<h3 class="font-title-md text-title-md text-on-surface truncate pr-2">Ruko Sudirman Jaya Raya</h3>
+<span class="font-label-caps text-label-caps text-outline-variant whitespace-nowrap mt-1">Senin</span>
+</div>
+<div class="flex items-center gap-2 mb-1">
+<span class="material-symbols-outlined text-[16px] text-outline">support_agent</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">RukoSpace Support</p>
+</div>
+<div class="flex items-center gap-1 text-outline">
+<span class="material-symbols-outlined text-[16px]">done_all</span>
+<p class="font-body-md text-body-md text-on-surface-variant truncate">Dokumen kontrak sewa telah berhasil diverifikasi oleh tim legal kami.</p>
+</div>
+</div>
+<div class="flex flex-col items-end justify-end h-full pb-1">
+<div class="bg-surface-variant px-2 py-0.5 rounded text-[10px] font-bold text-on-surface-variant">SYSTEM</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Mobile Bottom Nav Bar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-2 md:hidden bg-surface dark:bg-inverse-surface shadow-lg rounded-t-xl border-t-0">
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant px-4 py-1 hover:bg-surface-variant dark:hover:bg-on-surface-variant rounded-xl transition-colors" href="#">
+<span class="material-symbols-outlined">search</span>
+<span class="font-label-caps text-label-caps mt-1">Search</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant px-4 py-1 hover:bg-surface-variant dark:hover:bg-on-surface-variant rounded-xl transition-colors" href="#">
+<span class="material-symbols-outlined">favorite</span>
+<span class="font-label-caps text-label-caps mt-1">Saved</span>
+</a>
+<!-- Active -->
+<a class="flex flex-col items-center justify-center bg-secondary-container dark:bg-secondary text-on-secondary-container dark:text-on-secondary rounded-xl px-4 py-1 scale-95 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined" data-weight="fill">chat_bubble</span>
+<span class="font-label-caps text-label-caps mt-1">Chat</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant px-4 py-1 hover:bg-surface-variant dark:hover:bg-on-surface-variant rounded-xl transition-colors" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-caps text-label-caps mt-1">Manage</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant px-4 py-1 hover:bg-surface-variant dark:hover:bg-on-surface-variant rounded-xl transition-colors" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-caps text-label-caps mt-1">Profile</span>
+</a>
+</nav>
+</body></html>
