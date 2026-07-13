@@ -5,6 +5,7 @@ import { useAuthStore } from '../store/authStore'
 export default function Login() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [showPassword, setShowPassword] = useState(false)
   const [error, setError] = useState('')
   const setAuth = useAuthStore(state => state.setAuth)
   const navigate = useNavigate()
@@ -77,13 +78,23 @@ export default function Login() {
               <div className="flex items-center bg-surface-gray rounded-lg px-md py-sm border border-border-subtle focus-within:border-trust-navy transition-colors">
                 <span className="material-symbols-outlined text-outline mr-sm text-[20px]">lock</span>
                 <input
-                  type="password"
+                  type={showPassword ? 'text' : 'password'}
                   className="w-full bg-transparent border-none focus:ring-0 font-body-md text-body-md text-on-surface placeholder:text-outline p-0"
                   placeholder="••••••••"
                   value={password}
                   onChange={e => setPassword(e.target.value)}
                   required
                 />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="ml-sm text-outline hover:text-on-surface transition-colors focus:outline-none"
+                  tabIndex={-1}
+                >
+                  <span className="material-symbols-outlined text-[20px]">
+                    {showPassword ? 'visibility_off' : 'visibility'}
+                  </span>
+                </button>
               </div>
             </div>
 

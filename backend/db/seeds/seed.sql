@@ -5,7 +5,7 @@ VALUES (
     'System Administrator',
     'admin@rukospace.com',
     '081234567890',
-    '$2a$12$W93O4w/J4s6FfUa75yvW/.6o1T1uC16ZJc8d7b3jYlS42wH5V37Tq', -- This is 'password123' bcrypt hashed
+    '$2a$12$rtVIv75VaFkza0mcJstXHOeElXNaghdItbxWtdOeUTOnqVI0QibtK', -- This is 'password123' bcrypt hashed
     'admin'
 ) ON CONFLICT (email) DO NOTHING;
 
@@ -16,7 +16,7 @@ VALUES (
     'Budi Pemilik',
     'budi@example.com',
     '081298765432',
-    '$2a$12$W93O4w/J4s6FfUa75yvW/.6o1T1uC16ZJc8d7b3jYlS42wH5V37Tq',
+    '$2a$12$rtVIv75VaFkza0mcJstXHOeElXNaghdItbxWtdOeUTOnqVI0QibtK',
     'owner'
 ) ON CONFLICT (email) DO NOTHING;
 
@@ -27,7 +27,7 @@ VALUES (
     'Citra Penyewa',
     'citra@example.com',
     '081312345678',
-    '$2a$12$W93O4w/J4s6FfUa75yvW/.6o1T1uC16ZJc8d7b3jYlS42wH5V37Tq',
+    '$2a$12$rtVIv75VaFkza0mcJstXHOeElXNaghdItbxWtdOeUTOnqVI0QibtK',
     'tenant'
 ) ON CONFLICT (email) DO NOTHING;
 

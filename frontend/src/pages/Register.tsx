@@ -6,6 +6,7 @@ export default function Register() {
   const [email, setEmail] = useState('')
   const [phone, setPhone] = useState('')
   const [password, setPassword] = useState('')
+  const [showPassword, setShowPassword] = useState(false)
   const [role, setRole] = useState('tenant')
   const [error, setError] = useState('')
   const navigate = useNavigate()
@@ -112,7 +113,7 @@ export default function Register() {
               <div className="flex items-center bg-surface-gray rounded-lg px-md py-sm border border-border-subtle focus-within:border-trust-navy transition-colors">
                 <span className="material-symbols-outlined text-outline mr-sm text-[20px]">lock</span>
                 <input
-                  type="password"
+                  type={showPassword ? 'text' : 'password'}
                   className="w-full bg-transparent border-none focus:ring-0 font-body-md text-body-md text-on-surface placeholder:text-outline p-0"
                   placeholder="Minimal 6 karakter"
                   value={password}
@@ -120,6 +121,16 @@ export default function Register() {
                   required
                   minLength={6}
                 />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="ml-sm text-outline hover:text-on-surface transition-colors focus:outline-none"
+                  tabIndex={-1}
+                >
+                  <span className="material-symbols-outlined text-[20px]">
+                    {showPassword ? 'visibility_off' : 'visibility'}
+                  </span>
+                </button>
               </div>
             </div>
 

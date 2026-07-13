@@ -58,6 +58,9 @@ func main() {
 	admin := api.Group("/admin", middleware.Protected(), middleware.Roles("admin"))
 	admin.Get("/properties/pending", handlers.GetPendingProperties)
 	admin.Patch("/properties/:id/review", handlers.ReviewProperty) // handles approve and reject
+	admin.Get("/users", handlers.GetAllUsers)
+	admin.Get("/properties", handlers.GetAllPropertiesAdmin)
+	admin.Get("/stats", handlers.GetAdminStats)
 
 	port := os.Getenv("PORT")
 	if port == "" {

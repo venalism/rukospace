@@ -69,3 +69,60 @@ func ReviewProperty(c *fiber.Ctx) error {
 
 	return c.JSON(fiber.Map{"message": "Property reviewed successfully", "property": property})
 }
+
+// GetAllUsers returns all users (without password hash) for admin management
+func GetAllUsers(c *fiber.Ctx) error {
+	var users []models.User
+	if err := database.DB.Select("id", "full_name", "email", "phone", "role", "created_at", "updated_at").Find(&users).Error; err != nil {
+		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{"error": "Failed to fetch users"})
+	}
+
+	return c.JSON(users)
+}
+
+// GetAllPropertiesAdmin returns all properties regardless of status
+func GetAllPropertiesAdmin(c *fiber.Ctx) error {
+	var properties []models.Property
+	if err := database.DB.Order("created_at desc").Find(&properties).Error; err != nil {
+		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{"error": "Failed to fetch properties"})
+	}
+
+	return c.JSON(properties)
+}
+
+// GetAdminStats returns summary statistics for the admin dashboard
+func GetAdminStats(c *fiber.Ctx) error {
+	var totalUsers int64
+	var totalProperties int64
+	var pendingCount int64
+	var verifiedCount int64
+	var rejectedCount int64
+	var tenantCount int64
+	var ownerCount int64
+	var agentCount int64
+	var adminCount int64
+
+	database.DB.Model(&models.User{}).Count(&totalUsers)
+	database.DB.Model(&models.Property{}).Count(&totalProperties)
+	database.DB.Model(&models.Property{}).Where("listing_status = ?", "pending_verification").Count(&pendingCount)
+	database.DB.Model(&models.Property{}).Where("listing_status = ?", "active").Count(&verifiedCount)
+	database.DB.Model(&models.Property{}).Where("listing_status = ?", "rejected").Count(&rejectedCount)
+	database.DB.Model(&models.User{}).Where("role = ?", "tenant").Count(&tenantCount)
+	database.DB.Model(&models.User{}).Where("role = ?", "owner").Count(&ownerCount)
+	database.DB.Model(&models.User{}).Where("role = ?", "agent").Count(&agentCount)
+	database.DB.Model(&models.User{}).Where("role = ?", "admin").Count(&adminCount)
+
+	return c.JSON(fiber.Map{
+		"total_users":      totalUsers,
+		"total_properties": totalProperties,
+		"pending_count":    pendingCount,
+		"verified_count":   verifiedCount,
+		"rejected_count":   rejectedCount,
+		"users_by_role": fiber.Map{
+			"tenant": tenantCount,
+			"owner":  ownerCount,
+			"agent":  agentCount,
+			"admin":  adminCount,
+		},
+	})
+}
