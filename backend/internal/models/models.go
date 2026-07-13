@@ -71,3 +71,21 @@ type VerificationLog struct {
 	Notes      string    `gorm:"type:text"`
 	CreatedAt  time.Time
 }
+
+type Chat struct {
+	ID             uuid.UUID `gorm:"type:uuid;default:uuid_generate_v4();primaryKey" json:"id"`
+	Participant1ID uuid.UUID `gorm:"type:uuid;not null" json:"participant1_id"`
+	Participant2ID uuid.UUID `gorm:"type:uuid;not null" json:"participant2_id"`
+	PropertyID     *uuid.UUID `gorm:"type:uuid" json:"property_id"`
+	CreatedAt      time.Time `json:"created_at"`
+	UpdatedAt      time.Time `json:"updated_at"`
+}
+
+type Message struct {
+	ID        uuid.UUID `gorm:"type:uuid;default:uuid_generate_v4();primaryKey" json:"id"`
+	ChatID    uuid.UUID `gorm:"type:uuid;not null" json:"chat_id"`
+	SenderID  uuid.UUID `gorm:"type:uuid;not null" json:"sender_id"`
+	Content   string    `gorm:"type:text;not null" json:"content"`
+	ReadAt    *time.Time `json:"read_at"`
+	CreatedAt time.Time `json:"created_at"`
+}

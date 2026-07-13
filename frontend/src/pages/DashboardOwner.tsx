@@ -121,7 +121,7 @@ export default function DashboardOwner() {
     try {
       if (tab === 'dashboard' || tab === 'properties' || tab === 'analytics') {
         const [propRes, bookRes] = await Promise.all([
-          fetch(`${apiBase}/properties`, { headers }),
+          fetch(`${apiBase}/properties/mine`, { headers }),
           fetch(`${apiBase}/bookings/received`, { headers }),
         ])
         if (propRes.ok) {
@@ -651,13 +651,15 @@ export default function DashboardOwner() {
           </div>
         ))}
 
-        <button
-          onClick={handleLogout}
-          className="flex items-center gap-md px-md py-sm text-error-red hover:bg-error-container rounded-lg transition-colors font-technical-data text-technical-data mt-auto mb-xl"
-        >
-          <span className="material-symbols-outlined">logout</span>
-          Logout
-        </button>
+        <div className="mt-auto mb-xl flex flex-col gap-sm">
+          <button
+            onClick={handleLogout}
+            className="flex items-center gap-md px-md py-sm text-error-red hover:bg-error-container rounded-lg transition-colors font-technical-data text-technical-data"
+          >
+            <span className="material-symbols-outlined">logout</span>
+            Logout
+          </button>
+        </div>
       </aside>
 
       {/* Main Content */}

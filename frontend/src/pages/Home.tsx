@@ -1,6 +1,31 @@
+import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 
 export default function Home() {
+  const [properties, setProperties] = useState<any[]>([])
+
+  useEffect(() => {
+    fetch(`${import.meta.env.VITE_API_URL}/properties?status=verified`)
+      .then(res => res.json())
+      .then(data => {
+        if (Array.isArray(data)) {
+          setProperties(data.slice(0, 3))
+        } else if (data && data.data) {
+          setProperties(data.data.slice(0, 3))
+        }
+      })
+      .catch(console.error)
+  }, [])
+
+  const formatPrice = (price: number) => {
+    if (price >= 1000000) {
+      return `Rp ${(price / 1000000).toLocaleString('id-ID')} Jt`
+    } else if (price >= 1000) {
+      return `Rp ${(price / 1000).toLocaleString('id-ID')} Rb`
+    }
+    return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(price)
+  }
+
   return (
     <main className="pt-[80px]">
       {/* Hero Section */}
@@ -75,102 +100,51 @@ export default function Home() {
             </Link>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-lg">
-            {/* Property Card 1 */}
-            <div className="bg-surface-container-lowest rounded-xl border border-border-subtle overflow-hidden hover:shadow-[0px_10px_15px_-3px_rgba(15,76,129,0.1)] transition-shadow group relative">
-              <div className="relative h-48 w-full bg-surface-gray">
-                <img className="w-full h-full object-cover" data-alt="A high-quality, bright photograph of a modern commercial shopfront in a bustling urban street. The building features clean lines, large glass windows, and a professional aesthetic, reflecting a premium real estate marketplace style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCASFedTDuQQL0iMLrS6nwneikLrskAwd-Esntet17P2IlBkI20xt4qppceCs56IovrGjP59Ny6Cv02TERR4ZlsCLISvV_MyZcXYlEbnz8YlsCWO7DuzGqOHK7WhLT3ZNoueTTyWhzxhl2wE7KzpOn2QyNbpoz7WODhsxf0hpEPNMlF3uuZRqelKLU29OPr0IQU2FmeF-g6WrHePw9BjphxwqZocC--_j1B57sRgceu8iAr6onv5aakYrAYrqka0IddIOwCMVAnRORT" />
-                <div className="absolute top-sm right-sm bg-success-teal text-on-primary px-sm py-xs rounded-full flex items-center gap-xs text-[10px] font-bold uppercase tracking-wider">
-                  <span className="material-symbols-outlined text-[14px]">check_circle</span> Verified
-                </div>
+            {properties.length === 0 ? (
+              <div className="col-span-1 md:col-span-2 lg:col-span-3 py-xl text-center text-on-surface-variant font-body-md">
+                Belum ada ruko verified saat ini.
               </div>
-              <div className="p-md space-y-md">
-                <div>
-                  <h4 className="font-title-md text-title-md text-trust-navy line-clamp-1">Ruko Sudirman Boulevard Blok A1</h4>
-                  <p className="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-xs mt-xs">
-                    <span className="material-symbols-outlined text-[16px]">location_on</span> Jakarta Selatan
-                  </p>
-                </div>
-                {/* Technical Strip */}
-                <div className="flex gap-sm border-y border-border-subtle py-sm">
-                  <div className="bg-surface-gray px-sm py-xs rounded border border-border-subtle flex items-center gap-xs">
-                    <span className="material-symbols-outlined text-[14px] text-outline">straighten</span>
-                    <span className="font-technical-data text-technical-data text-trust-navy">120 sqm</span>
+            ) : (
+              properties.map((prop) => (
+                <div key={prop.ID} className="bg-surface-container-lowest rounded-xl border border-border-subtle overflow-hidden hover:shadow-[0px_10px_15px_-3px_rgba(15,76,129,0.1)] transition-shadow group relative">
+                  <div className="relative h-48 w-full bg-surface-gray">
+                    <img className="w-full h-full object-cover" data-alt={prop.Title} src={prop.Photos && prop.Photos.length > 0 ? `${import.meta.env.VITE_API_URL}/files/${prop.Photos[0].Filename}` : "https://lh3.googleusercontent.com/aida-public/AB6AXuCASFedTDuQQL0iMLrS6nwneikLrskAwd-Esntet17P2IlBkI20xt4qppceCs56IovrGjP59Ny6Cv02TERR4ZlsCLISvV_MyZcXYlEbnz8YlsCWO7DuzGqOHK7WhLT3ZNoueTTyWhzxhl2wE7KzpOn2QyNbpoz7WODhsxf0hpEPNMlF3uuZRqelKLU29OPr0IQU2FmeF-g6WrHePw9BjphxwqZocC--_j1B57sRgceu8iAr6onv5aakYrAYrqka0IddIOwCMVAnRORT"} />
+                    {prop.ListingStatus === 'verified' ? (
+                      <div className="absolute top-sm right-sm bg-success-teal text-on-primary px-sm py-xs rounded-full flex items-center gap-xs text-[10px] font-bold uppercase tracking-wider">
+                        <span className="material-symbols-outlined text-[14px]">check_circle</span> Verified
+                      </div>
+                    ) : (
+                      <div className="absolute top-sm right-sm bg-action-amber text-trust-navy px-sm py-xs rounded-full flex items-center gap-xs text-[10px] font-bold uppercase tracking-wider">
+                        <span className="material-symbols-outlined text-[14px]">pending_actions</span> {prop.ListingStatus.replace('_', ' ')}
+                      </div>
+                    )}
                   </div>
-                  <div className="bg-surface-gray px-sm py-xs rounded border border-border-subtle flex items-center gap-xs">
-                    <span className="material-symbols-outlined text-[14px] text-outline">bolt</span>
-                    <span className="font-technical-data text-technical-data text-trust-navy">16,500 VA</span>
-                  </div>
-                </div>
-                <div className="flex justify-between items-center pt-xs">
-                  <div className="font-title-md text-title-md text-trust-navy">Rp 250Jt <span className="font-body-sm text-body-sm text-on-surface-variant font-normal">/thn</span></div>
-                  <button className="border border-trust-navy text-trust-navy px-sm py-xs rounded font-body-sm font-semibold hover:bg-surface-container-low transition-colors">View Details</button>
-                </div>
-              </div>
-            </div>
-            {/* Property Card 2 */}
-            <div className="bg-surface-container-lowest rounded-xl border border-border-subtle overflow-hidden hover:shadow-[0px_10px_15px_-3px_rgba(15,76,129,0.1)] transition-shadow group relative">
-              <div className="relative h-48 w-full bg-surface-gray">
-                <img className="w-full h-full object-cover" data-alt="A clean, wide-angle shot of a multi-story commercial building exterior, situated in a modern commercial park. The lighting is sunny and optimistic, fitting a trustworthy B2B platform." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC5Wel5hcqhjmCUmLmLRTH5K8JjlsdsdbTXMLIpsbgQJzUEpN-X6_7T3Z0iXgHBbUrfp-vCJWN9o5XC1oe0w00_KZR-3l3epQMk5eNdjavSv0knjb_t3yHLFzCARfuxwPPy2qIdoGBbwJU39DCZ4ztjARQLDc1qncQe7lkGSku5Msv0nMlXe1zFfyvhbP1dfOLGDi588QiB87RGrKxsRryaJQAXWKb_LzVjxPCn0Jic-EBhR_R7JSwu7pZZWKj9jZqPO_9R-eZ9wO2r" />
-                <div className="absolute top-sm right-sm bg-success-teal text-on-primary px-sm py-xs rounded-full flex items-center gap-xs text-[10px] font-bold uppercase tracking-wider">
-                  <span className="material-symbols-outlined text-[14px]">check_circle</span> Verified
-                </div>
-              </div>
-              <div className="p-md space-y-md">
-                <div>
-                  <h4 className="font-title-md text-title-md text-trust-navy line-clamp-1">Grand Kemang Commercial Hub</h4>
-                  <p className="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-xs mt-xs">
-                    <span className="material-symbols-outlined text-[16px]">location_on</span> Jakarta Selatan
-                  </p>
-                </div>
-                {/* Technical Strip */}
-                <div className="flex gap-sm border-y border-border-subtle py-sm">
-                  <div className="bg-surface-gray px-sm py-xs rounded border border-border-subtle flex items-center gap-xs">
-                    <span className="material-symbols-outlined text-[14px] text-outline">straighten</span>
-                    <span className="font-technical-data text-technical-data text-trust-navy">200 sqm</span>
-                  </div>
-                  <div className="bg-surface-gray px-sm py-xs rounded border border-border-subtle flex items-center gap-xs">
-                    <span className="material-symbols-outlined text-[14px] text-outline">bolt</span>
-                    <span className="font-technical-data text-technical-data text-trust-navy">33,000 VA</span>
+                  <div className="p-md space-y-md">
+                    <div>
+                      <h4 className="font-title-md text-title-md text-trust-navy line-clamp-1">{prop.Title}</h4>
+                      <p className="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-xs mt-xs line-clamp-1">
+                        <span className="material-symbols-outlined text-[16px]">location_on</span> {prop.Address}
+                      </p>
+                    </div>
+                    {/* Technical Strip */}
+                    <div className="flex gap-sm border-y border-border-subtle py-sm overflow-hidden">
+                      <div className="bg-surface-gray px-sm py-xs rounded border border-border-subtle flex items-center gap-xs whitespace-nowrap">
+                        <span className="material-symbols-outlined text-[14px] text-outline">straighten</span>
+                        <span className="font-technical-data text-technical-data text-trust-navy">{prop.AreaSqm} sqm</span>
+                      </div>
+                      <div className="bg-surface-gray px-sm py-xs rounded border border-border-subtle flex items-center gap-xs whitespace-nowrap">
+                        <span className="material-symbols-outlined text-[14px] text-outline">bolt</span>
+                        <span className="font-technical-data text-technical-data text-trust-navy">{prop.ElectricityPowerWatt || 0} VA</span>
+                      </div>
+                    </div>
+                    <div className="flex justify-between items-center pt-xs">
+                      <div className="font-title-md text-title-md text-trust-navy">{formatPrice(prop.PricePerMonth)} <span className="font-body-sm text-body-sm text-on-surface-variant font-normal">/bln</span></div>
+                      <Link to={`/properties/${prop.ID}`} className="border border-trust-navy text-trust-navy px-sm py-xs rounded font-body-sm font-semibold hover:bg-surface-container-low transition-colors">View Details</Link>
+                    </div>
                   </div>
                 </div>
-                <div className="flex justify-between items-center pt-xs">
-                  <div className="font-title-md text-title-md text-trust-navy">Rp 450Jt <span className="font-body-sm text-body-sm text-on-surface-variant font-normal">/thn</span></div>
-                  <button className="border border-trust-navy text-trust-navy px-sm py-xs rounded font-body-sm font-semibold hover:bg-surface-container-low transition-colors">View Details</button>
-                </div>
-              </div>
-            </div>
-            {/* Property Card 3 */}
-            <div className="bg-surface-container-lowest rounded-xl border border-border-subtle overflow-hidden hover:shadow-[0px_10px_15px_-3px_rgba(15,76,129,0.1)] transition-shadow group relative hidden lg:block">
-              <div className="relative h-48 w-full bg-surface-gray">
-                <img className="w-full h-full object-cover" data-alt="An inviting, well-lit storefront of a newly renovated commercial space. The facade features premium materials like stone and glass. The overall mood conveys corporate reliability and real estate investment potential." src="https://lh3.googleusercontent.com/aida-public/AB6AXuABjCUl7GP2y2E9mpZlJ3Sv-xZmYLHZ9QSRq5Anhdki3UkdJH_W_hBPE6k3V6I6xvocXciJXzKeYqSg7FDe5NNDExJRDZOozW_Y0Gk2Y1KcCAu0BU5t7L_eH5NPgbFezqM8c4LLMB8ciyY_MQ85eGrICoM87dzzlcpD-qR3xGREr5-j2-m9ZwL-DUyz1eiQ9E_GxgrB6WXrAEF3Va6cFiszg4Gft4m2FaK8TcOE5xpatBdMBvNYcpMyH2EhuV2ZdJk7ZTdMX-Zdboz8" />
-                <div className="absolute top-sm right-sm bg-action-amber text-trust-navy px-sm py-xs rounded-full flex items-center gap-xs text-[10px] font-bold uppercase tracking-wider">
-                  <span className="material-symbols-outlined text-[14px]">pending_actions</span> In-Review
-                </div>
-              </div>
-              <div className="p-md space-y-md">
-                <div>
-                  <h4 className="font-title-md text-title-md text-trust-navy line-clamp-1">Ruko Sentra Bisnis PIK</h4>
-                  <p className="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-xs mt-xs">
-                    <span className="material-symbols-outlined text-[16px]">location_on</span> Jakarta Utara
-                  </p>
-                </div>
-                {/* Technical Strip */}
-                <div className="flex gap-sm border-y border-border-subtle py-sm">
-                  <div className="bg-surface-gray px-sm py-xs rounded border border-border-subtle flex items-center gap-xs">
-                    <span className="material-symbols-outlined text-[14px] text-outline">straighten</span>
-                    <span className="font-technical-data text-technical-data text-trust-navy">150 sqm</span>
-                  </div>
-                  <div className="bg-surface-gray px-sm py-xs rounded border border-border-subtle flex items-center gap-xs">
-                    <span className="material-symbols-outlined text-[14px] text-outline">bolt</span>
-                    <span className="font-technical-data text-technical-data text-trust-navy">22,000 VA</span>
-                  </div>
-                </div>
-                <div className="flex justify-between items-center pt-xs">
-                  <div className="font-title-md text-title-md text-trust-navy">Rp 300Jt <span className="font-body-sm text-body-sm text-on-surface-variant font-normal">/thn</span></div>
-                  <button className="border border-trust-navy text-trust-navy px-sm py-xs rounded font-body-sm font-semibold hover:bg-surface-container-low transition-colors">View Details</button>
-                </div>
-              </div>
-            </div>
+              ))
+            )}
           </div>
           <Link to="/search" className="md:hidden flex justify-center items-center text-trust-navy font-body-sm font-semibold hover:underline mt-md">
             Lihat Semua Ruko

@@ -66,4 +66,49 @@ VALUES (
     'Komersial',
     'verified',
     'active'
-);
+),
+(
+    '44444444-4444-4444-4444-444444444443',
+    '22222222-2222-2222-2222-222222222222',
+    'Ruko SCBD Sudirman',
+    'Ruko mewah di SCBD, cocok untuk kantor perusahaan multinasional.',
+    'SCBD Lot 11, Jakarta Selatan',
+    -6.2255,
+    106.8096,
+    50000000.00,
+    300.00,
+    66000,
+    'PAM',
+    15,
+    'Komersial',
+    'pending',
+    'draft'
+),
+(
+    '44444444-4444-4444-4444-444444444444',
+    '22222222-2222-2222-2222-222222222222',
+    'Ruko Pasar Minggu (Sengketa)',
+    'Ruko lama butuh renovasi. Sertifikat sedang dalam proses.',
+    'Jl. Pasar Minggu Raya, Jakarta Selatan',
+    -6.2845,
+    106.8441,
+    15000000.00,
+    100.00,
+    5500,
+    'Tanah',
+    2,
+    'Komersial',
+    'rejected',
+    'draft'
+) ON CONFLICT (id) DO NOTHING;
+
+-- Seed a Survey Booking for Tenant Citra on Budi's Property
+INSERT INTO survey_bookings (id, property_id, tenant_id, requested_datetime, status, notes)
+VALUES (
+    '55555555-5555-5555-5555-555555555555',
+    '44444444-4444-4444-4444-444444444441',
+    '33333333-3333-3333-3333-333333333333',
+    '2026-07-20 10:00:00',
+    'pending',
+    'Halo Pak Budi, saya tertarik melihat ruko ini untuk cafe kopi saya. Terima kasih.'
+) ON CONFLICT (id) DO NOTHING;

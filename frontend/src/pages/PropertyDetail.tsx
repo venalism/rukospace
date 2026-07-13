@@ -1,13 +1,16 @@
 import { useState, useEffect } from 'react'
-import { useParams, Link } from 'react-router-dom'
+import { useParams, Link, useNavigate } from 'react-router-dom'
 import { useAuthStore } from '../store/authStore'
+import ChatWindow from '../components/ChatWindow'
 
 export default function PropertyDetail() {
   const { id } = useParams()
   const { user } = useAuthStore()
+  const navigate = useNavigate()
   const [propertyData, setPropertyData] = useState<any>(null)
   const [bookingDate, setBookingDate] = useState('')
   const [bookingTime, setBookingTime] = useState('13:00')
+  const [isChatOpen, setIsChatOpen] = useState(false)
 
   useEffect(() => {
     fetch(`${import.meta.env.VITE_API_URL}/properties/${id}`)
@@ -35,6 +38,28 @@ export default function PropertyDetail() {
       })
       if (!res.ok) throw new Error("Gagal membuat jadwal")
       alert("Jadwal survei berhasil diajukan!")
+    } catch (err: any) {
+      alert(err.message)
+    }
+  }
+
+  const handleChat = async () => {
+    if (!user) return alert("Silakan login terlebih dahulu.")
+    
+    try {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/chats`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${useAuthStore.getState().token}`
+        },
+        body: JSON.stringify({
+          other_user_id: propertyData.property.OwnerID,
+          property_id: id
+        })
+      })
+      if (!res.ok) throw new Error("Gagal memulai obrolan")
+      setIsChatOpen(true)
     } catch (err: any) {
       alert(err.message)
     }
@@ -176,6 +201,9 @@ export default function PropertyDetail() {
               <button className="w-full bg-trust-navy text-on-primary py-md rounded font-body-md text-body-md font-bold hover:opacity-90 transition-opacity flex justify-center items-center gap-sm">
                 Sewa Sekarang
               </button>
+              <button onClick={handleChat} className="w-full border border-trust-navy text-trust-navy py-md rounded font-body-md text-body-md font-bold hover:bg-surface-container transition-colors flex justify-center items-center gap-sm">
+                <span className="material-symbols-outlined text-[18px]">forum</span> Chat Owner
+              </button>
             </div>
 
             {/* Booking Widget */}
@@ -241,6 +269,9 @@ export default function PropertyDetail() {
           </div>
         </div>
       </div>
+      
+      {/* Chat Window Modal */}
+      <ChatWindow open={isChatOpen} onClose={() => setIsChatOpen(false)} />
     </main>
   )
 }

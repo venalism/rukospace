@@ -9,6 +9,7 @@ import DashboardOwner from './pages/DashboardOwner'
 import DashboardTenant from './pages/DashboardTenant'
 import DashboardAdmin from './pages/DashboardAdmin'
 import { useAuthStore } from './store/authStore'
+import GlobalChatWidget from './components/GlobalChatWidget'
 
 function NavBar() {
   const { user } = useAuthStore()
@@ -160,10 +161,12 @@ function App() {
           </div>
           <div className="font-body-sm text-body-sm text-surface-variant">© 2024 RukoSpace. All rights reserved.</div>
         </footer>
+        
+        {/* Global Chat Widget */}
+        <GlobalChatWidget />
       </div>
     </BrowserRouter>
   )
 }
 
 export default App
-

@@ -289,3 +289,14 @@ func DeleteProperty(c *fiber.Ctx) error {
 
 	return c.JSON(fiber.Map{"message": "Property deleted successfully"})
 }
+
+func GetMyProperties(c *fiber.Ctx) error {
+	ownerIDStr := c.Locals("user_id").(string)
+	
+	var properties []models.Property
+	if err := database.DB.Where("owner_id = ?", ownerIDStr).Order("created_at desc").Find(&properties).Error; err != nil {
+		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{"error": "Failed to fetch properties"})
+	}
+
+	return c.JSON(properties)
+}

@@ -37,6 +37,7 @@ func main() {
 	// Property routes (Block 1 & 2)
 	properties := api.Group("/properties")
 	properties.Get("/", handlers.SearchProperties)
+	properties.Get("/mine", middleware.Protected(), middleware.Roles("owner", "agent"), handlers.GetMyProperties)
 	properties.Get("/:id", handlers.GetProperty)
 	properties.Get("/:id/qrcode", handlers.GenerateQRCode)
 
@@ -54,6 +55,13 @@ func main() {
 	bookings.Get("/mine", middleware.Roles("tenant"), handlers.GetMyBookings)
 	bookings.Get("/received", middleware.Roles("owner", "agent"), handlers.GetReceivedBookings)
 	bookings.Patch("/:id/status", middleware.Roles("owner", "agent"), handlers.UpdateBookingStatus)
+
+	// Chat routes (Block 3)
+	chats := api.Group("/chats", middleware.Protected())
+	chats.Get("/", handlers.GetChats)
+	chats.Post("/", handlers.CreateOrGetChat)
+	chats.Get("/:id/messages", handlers.GetMessages)
+	chats.Post("/:id/messages", handlers.SendMessage)
 
 	// Admin routes
 	admin := api.Group("/admin", middleware.Protected(), middleware.Roles("admin"))
