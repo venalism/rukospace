@@ -2,12 +2,19 @@ import { useState, useEffect } from 'react'
 import { useAuthStore } from '../store/authStore'
 import { useNavigate, Link } from 'react-router-dom'
 
+import Swal from 'sweetalert2'
+
 export default function DashboardTenant() {
   const { user, token } = useAuthStore()
   const navigate = useNavigate()
   const [bookings, setBookings] = useState<any[]>([])
+  const [rentals, setRentals] = useState<any[]>([])
 
   useEffect(() => {
+    fetchData()
+  }, [token, user])
+
+  const fetchData = () => {
     if (token && user?.role === 'tenant') {
       fetch(`${import.meta.env.VITE_API_URL}/bookings/mine`, {
         headers: { 'Authorization': `Bearer ${token}` }
@@ -15,8 +22,48 @@ export default function DashboardTenant() {
       .then(res => res.json())
       .then(data => setBookings(Array.isArray(data) ? data : []))
       .catch(err => console.error(err))
+
+      fetch(`${import.meta.env.VITE_API_URL}/rentals/mine`, {
+        headers: { 'Authorization': `Bearer ${token}` }
+      })
+      .then(res => res.json())
+      .then(data => setRentals(Array.isArray(data) ? data : []))
+      .catch(err => console.error(err))
     }
-  }, [token, user])
+  }
+
+  const handleCancelBooking = async (id: string) => {
+    const result = await Swal.fire({
+      title: 'Batalkan Survei?',
+      text: "Anda yakin ingin membatalkan jadwal survei ini?",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#3085d6',
+      confirmButtonText: 'Ya, Batalkan!'
+    })
+    
+    if (!result.isConfirmed) return;
+
+    try {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/bookings/${id}/status`, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify({ status: 'cancelled' })
+      });
+      if (!res.ok) {
+        const data = await res.json();
+        throw new Error(data.error || 'Failed to cancel booking');
+      }
+      Swal.fire({ icon: 'success', title: 'Dibatalkan', text: 'Jadwal survei telah dibatalkan.' })
+      fetchData();
+    } catch (err: any) {
+      Swal.fire({ icon: 'error', title: 'Error', text: err.message })
+    }
+  }
 
   if (!user || user.role !== 'tenant') {
     return <div className="p-3xl text-center text-error-red font-body-md">Unauthorized access. Please login as a Tenant.</div>
@@ -64,18 +111,54 @@ export default function DashboardTenant() {
               <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 1" }}>store</span>
               My Active Rentals
             </h2>
-            <div className="bg-surface-container-lowest border border-border-subtle rounded-xl p-2xl flex flex-col items-center justify-center text-center gap-md">
-              <span className="material-symbols-outlined text-[48px] text-outline">store</span>
-              <h3 className="font-title-md text-title-md text-on-surface-variant">No Active Rentals</h3>
-              <p className="font-body-sm text-body-sm text-on-surface-variant max-w-[384px]">
-                You don't have any active rental properties yet. Browse available properties to get started.
-              </p>
-              <Link
-                to="/search"
-                className="bg-trust-navy text-on-primary font-label-caps text-label-caps px-lg py-sm rounded-lg hover:opacity-90 transition-opacity mt-md"
-              >
-                BROWSE PROPERTIES
-              </Link>
+            <div className="bg-surface-container-lowest border border-border-subtle rounded-xl p-lg flex flex-col gap-md">
+              {rentals.length === 0 ? (
+                <div className="flex flex-col items-center justify-center py-xl text-center gap-md">
+                  <span className="material-symbols-outlined text-[48px] text-outline">store</span>
+                  <h3 className="font-title-md text-title-md text-on-surface-variant">No Active Rentals</h3>
+                  <p className="font-body-sm text-body-sm text-on-surface-variant max-w-[384px]">
+                    You don't have any active rental properties yet. Browse available properties to get started.
+                  </p>
+                  <Link
+                    to="/search"
+                    className="bg-trust-navy text-on-primary font-label-caps text-label-caps px-lg py-sm rounded-lg hover:opacity-90 transition-opacity mt-md"
+                  >
+                    BROWSE PROPERTIES
+                  </Link>
+                </div>
+              ) : (
+                rentals.map(r => {
+                  const end = new Date(r.end_date)
+                  return (
+                    <div key={r.id} className="flex flex-col sm:flex-row sm:items-center justify-between p-md bg-surface-gray rounded-lg border border-border-subtle gap-md">
+                      <div className="flex items-center gap-md">
+                        {r.PropertyImage ? (
+                          <img src={r.PropertyImage} alt="Property" className="w-16 h-16 rounded object-cover" />
+                        ) : (
+                          <div className="w-16 h-16 bg-surface-container flex items-center justify-center rounded">
+                            <span className="material-symbols-outlined text-outline text-[24px]">image</span>
+                          </div>
+                        )}
+                        <div>
+                          <h4 className="font-title-md text-title-md text-on-surface mb-xs">{r.PropertyTitle}</h4>
+                          <p className="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-xs">
+                            <span className="material-symbols-outlined text-[16px]">calendar_month</span>
+                            Until {end.toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' })}
+                          </p>
+                        </div>
+                      </div>
+                      <div className="flex flex-col items-end gap-xs">
+                        <span className="font-body-md text-trust-navy font-bold">
+                          Rp {r.total_price.toLocaleString('id-ID')}
+                        </span>
+                        <span className="bg-[#D1FAE5] text-[#065F46] px-sm py-xs rounded font-label-caps text-[10px] uppercase">
+                          {r.status}
+                        </span>
+                      </div>
+                    </div>
+                  )
+                })
+              )}
             </div>
           </section>
 
@@ -103,7 +186,7 @@ export default function DashboardTenant() {
                           <span className="font-headline-lg-mobile text-headline-lg-mobile text-trust-navy">{date.getDate()}</span>
                         </div>
                         <div>
-                          <h4 className="font-title-md text-title-md text-on-surface mb-xs">Property #{b.PropertyID}</h4>
+                          <h4 className="font-title-md text-title-md text-on-surface mb-xs">{b.PropertyTitle || `Property #${b.PropertyID}`}</h4>
                           <p className="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-xs mb-sm">
                             <span className="material-symbols-outlined text-[16px]">schedule</span>
                             {date.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' })} WIB
@@ -120,9 +203,14 @@ export default function DashboardTenant() {
                         </div>
                       </div>
                       <div className="flex gap-sm sm:flex-col">
-                        <button className="flex-1 border border-border-subtle text-on-surface-variant font-label-caps text-label-caps px-md py-sm rounded hover:bg-surface-container transition-colors text-center">
-                          Cancel
-                        </button>
+                        {b.Status === 'pending' && (
+                          <button 
+                            onClick={() => handleCancelBooking(b.ID)}
+                            className="flex-1 border border-border-subtle text-on-surface-variant font-label-caps text-label-caps px-md py-sm rounded hover:bg-surface-container transition-colors text-center"
+                          >
+                            Cancel
+                          </button>
+                        )}
                       </div>
                     </div>
                   )

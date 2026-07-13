@@ -89,3 +89,15 @@ type Message struct {
 	ReadAt    *time.Time `json:"read_at"`
 	CreatedAt time.Time `json:"created_at"`
 }
+
+type Rental struct {
+	ID         uuid.UUID `gorm:"type:uuid;default:uuid_generate_v4();primaryKey" json:"id"`
+	PropertyID uuid.UUID `gorm:"type:uuid;not null" json:"property_id"`
+	TenantID   uuid.UUID `gorm:"type:uuid;not null" json:"tenant_id"`
+	StartDate  time.Time `gorm:"type:date;not null" json:"start_date"`
+	EndDate    time.Time `gorm:"type:date;not null" json:"end_date"`
+	TotalPrice float64   `gorm:"type:numeric(14,2);not null" json:"total_price"`
+	Status     string    `gorm:"size:30;not null;default:'active'" json:"status"`
+	CreatedAt  time.Time `json:"created_at"`
+	UpdatedAt  time.Time `json:"updated_at"`
+}

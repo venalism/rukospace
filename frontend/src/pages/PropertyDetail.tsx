@@ -3,6 +3,8 @@ import { useParams, Link, useNavigate } from 'react-router-dom'
 import { useAuthStore } from '../store/authStore'
 import ChatWindow from '../components/ChatWindow'
 
+import Swal from 'sweetalert2'
+
 export default function PropertyDetail() {
   const { id } = useParams()
   const { user } = useAuthStore()
@@ -20,8 +22,8 @@ export default function PropertyDetail() {
   }, [id])
 
   const handleBook = async () => {
-    if (!user) return alert("Silakan login terlebih dahulu.")
-    if (user.role !== 'tenant') return alert("Hanya penyewa yang dapat memesan survei.")
+    if (!user) return Swal.fire({ icon: 'warning', title: 'Perhatian', text: 'Silakan login terlebih dahulu.' })
+    if (user.role !== 'tenant') return Swal.fire({ icon: 'error', title: 'Oops...', text: 'Hanya penyewa yang dapat memesan survei.' })
     
     try {
       const datetime = `${bookingDate}T${bookingTime}:00`
@@ -37,14 +39,14 @@ export default function PropertyDetail() {
         })
       })
       if (!res.ok) throw new Error("Gagal membuat jadwal")
-      alert("Jadwal survei berhasil diajukan!")
+      Swal.fire({ icon: 'success', title: 'Berhasil', text: 'Jadwal survei berhasil diajukan!' })
     } catch (err: any) {
-      alert(err.message)
+      Swal.fire({ icon: 'error', title: 'Error', text: err.message })
     }
   }
 
   const handleChat = async () => {
-    if (!user) return alert("Silakan login terlebih dahulu.")
+    if (!user) return Swal.fire({ icon: 'warning', title: 'Perhatian', text: 'Silakan login terlebih dahulu.' })
     
     try {
       const res = await fetch(`${import.meta.env.VITE_API_URL}/chats`, {
@@ -61,7 +63,30 @@ export default function PropertyDetail() {
       if (!res.ok) throw new Error("Gagal memulai obrolan")
       setIsChatOpen(true)
     } catch (err: any) {
-      alert(err.message)
+      Swal.fire({ icon: 'error', title: 'Error', text: err.message })
+    }
+  }
+
+  const handleRent = async () => {
+    if (!user) return Swal.fire({ icon: 'warning', title: 'Perhatian', text: 'Silakan login terlebih dahulu.' })
+    if (user.role !== 'tenant') return Swal.fire({ icon: 'error', title: 'Oops...', text: 'Hanya penyewa yang dapat menyewa properti.' })
+    
+    try {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/rentals`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${useAuthStore.getState().token}`
+        },
+        body: JSON.stringify({
+          property_id: id
+        })
+      })
+      if (!res.ok) throw new Error("Gagal memproses penyewaan")
+      await Swal.fire({ icon: 'success', title: 'Sewa Berhasil', text: 'Properti berhasil disewa! Silakan cek Dashboard Anda.' })
+      navigate('/dashboard/tenant')
+    } catch (err: any) {
+      Swal.fire({ icon: 'error', title: 'Error', text: err.message })
     }
   }
 
@@ -198,7 +223,10 @@ export default function PropertyDetail() {
                 <span className="material-symbols-outlined text-success-teal">shield</span>
                 <span className="font-body-sm text-body-sm text-on-surface-variant">Secure Escrow Payment Available</span>
               </div>
-              <button className="w-full bg-trust-navy text-on-primary py-md rounded font-body-md text-body-md font-bold hover:opacity-90 transition-opacity flex justify-center items-center gap-sm">
+              <button 
+                onClick={handleRent}
+                className="w-full bg-trust-navy text-on-primary py-md rounded font-body-md text-body-md font-bold hover:opacity-90 transition-opacity flex justify-center items-center gap-sm"
+              >
                 Sewa Sekarang
               </button>
               <button onClick={handleChat} className="w-full border border-trust-navy text-trust-navy py-md rounded font-body-md text-body-md font-bold hover:bg-surface-container transition-colors flex justify-center items-center gap-sm">

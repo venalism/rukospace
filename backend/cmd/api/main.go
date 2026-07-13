@@ -54,7 +54,12 @@ func main() {
 	bookings.Post("/", middleware.Roles("tenant"), handlers.CreateBooking)
 	bookings.Get("/mine", middleware.Roles("tenant"), handlers.GetMyBookings)
 	bookings.Get("/received", middleware.Roles("owner", "agent"), handlers.GetReceivedBookings)
-	bookings.Patch("/:id/status", middleware.Roles("owner", "agent"), handlers.UpdateBookingStatus)
+	bookings.Patch("/:id/status", middleware.Roles("owner", "agent", "tenant"), handlers.UpdateBookingStatus)
+
+	// Rentals
+	rentals := api.Group("/rentals", middleware.Protected())
+	rentals.Post("/", handlers.CreateRental)
+	rentals.Get("/mine", handlers.GetMyRentals)
 
 	// Chat routes (Block 3)
 	chats := api.Group("/chats", middleware.Protected())

@@ -53,6 +53,11 @@ func CreateBooking(c *fiber.Ctx) error {
 	return c.Status(fiber.StatusCreated).JSON(booking)
 }
 
+type BookingResponse struct {
+	models.SurveyBooking
+	PropertyTitle string `json:"PropertyTitle"`
+}
+
 func GetMyBookings(c *fiber.Ctx) error {
 	tenantIDStr := c.Locals("user_id").(string)
 	
@@ -61,13 +66,22 @@ func GetMyBookings(c *fiber.Ctx) error {
 		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{"error": "Failed to fetch bookings"})
 	}
 
-	return c.JSON(bookings)
+	var res []BookingResponse
+	for _, b := range bookings {
+		var p models.Property
+		database.DB.Where("id = ?", b.PropertyID).First(&p)
+		res = append(res, BookingResponse{
+			SurveyBooking: b,
+			PropertyTitle: p.Title,
+		})
+	}
+
+	return c.JSON(res)
 }
 
 func GetReceivedBookings(c *fiber.Ctx) error {
 	ownerIDStr := c.Locals("user_id").(string)
 
-	// Join with properties to only get bookings for properties owned by this owner
 	var bookings []models.SurveyBooking
 	err := database.DB.Table("survey_bookings").
 		Select("survey_bookings.*").
@@ -80,7 +94,17 @@ func GetReceivedBookings(c *fiber.Ctx) error {
 		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{"error": "Failed to fetch received bookings"})
 	}
 
-	return c.JSON(bookings)
+	var res []BookingResponse
+	for _, b := range bookings {
+		var p models.Property
+		database.DB.Where("id = ?", b.PropertyID).First(&p)
+		res = append(res, BookingResponse{
+			SurveyBooking: b,
+			PropertyTitle: p.Title,
+		})
+	}
+
+	return c.JSON(res)
 }
 
 type UpdateBookingStatusRequest struct {
@@ -94,7 +118,7 @@ func UpdateBookingStatus(c *fiber.Ctx) error {
 		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "Invalid input"})
 	}
 
-	if req.Status != "approved" && req.Status != "rejected" && req.Status != "completed" {
+	if req.Status != "approved" && req.Status != "rejected" && req.Status != "completed" && req.Status != "cancelled" {
 		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "Invalid status"})
 	}
 
@@ -103,14 +127,20 @@ func UpdateBookingStatus(c *fiber.Ctx) error {
 		return c.Status(fiber.StatusNotFound).JSON(fiber.Map{"error": "Booking not found"})
 	}
 
-	// Verify owner
 	var property models.Property
 	if err := database.DB.Where("id = ?", booking.PropertyID).First(&property).Error; err != nil {
 		return c.Status(fiber.StatusNotFound).JSON(fiber.Map{"error": "Property not found"})
 	}
 
-	ownerIDStr := c.Locals("user_id").(string)
-	if property.OwnerID.String() != ownerIDStr {
+	userIDStr := c.Locals("user_id").(string)
+	
+	// If tenant, only allow cancellation
+	if booking.TenantID.String() == userIDStr {
+		if req.Status != "cancelled" {
+			return c.Status(fiber.StatusForbidden).JSON(fiber.Map{"error": "Tenants can only cancel bookings"})
+		}
+	} else if property.OwnerID.String() != userIDStr {
+		// If not tenant, must be owner
 		return c.Status(fiber.StatusForbidden).JSON(fiber.Map{"error": "Not allowed to edit this booking"})
 	}
 

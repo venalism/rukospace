@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useAuthStore } from '../store/authStore'
 import { useNavigate } from 'react-router-dom'
+import Swal from 'sweetalert2'
 
 type TabKey = 'dashboard' | 'properties' | 'analytics' | 'transactions' | 'settings'
 
@@ -62,11 +63,28 @@ export default function DashboardOwner() {
   }
 
   const handleDelete = async (id: string) => {
-    if (!window.confirm('Are you sure you want to delete this property?')) return;
+    const result = await Swal.fire({
+      title: 'Hapus Properti?',
+      text: "Anda yakin ingin menghapus properti ini?",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#3085d6',
+      confirmButtonText: 'Ya, Hapus!'
+    })
+
+    if (!result.isConfirmed) return;
     try {
       const res = await fetch(`${apiBase}/properties/${id}`, { method: 'DELETE', headers })
-      if(res.ok) fetchData(activeTab)
-    } catch(err) { console.error(err) }
+      if(res.ok) {
+        Swal.fire({ icon: 'success', title: 'Terhapus', text: 'Properti berhasil dihapus.' })
+        fetchData(activeTab)
+      } else {
+        throw new Error('Gagal menghapus properti')
+      }
+    } catch(err: any) { 
+      Swal.fire({ icon: 'error', title: 'Error', text: err.message })
+    }
   }
 
   const handleSubmitProperty = async (e: React.FormEvent) => {
@@ -102,9 +120,10 @@ export default function DashboardOwner() {
         await fetch(`${apiBase}/properties/${propId}/submit`, { method: 'POST', headers })
       }
       setIsModalOpen(false)
+      Swal.fire({ icon: 'success', title: 'Berhasil', text: 'Properti berhasil disimpan!' })
       fetchData(activeTab)
-    } catch (err) {
-      alert('Failed to save property')
+    } catch (err: any) {
+      Swal.fire({ icon: 'error', title: 'Error', text: err.message || 'Gagal menyimpan properti' })
     }
     setSubmitting(false)
   }
@@ -305,8 +324,9 @@ export default function DashboardOwner() {
                 {pendingBookings.slice(0, 3).map((b) => (
                   <div key={b.ID} className="flex items-center justify-between py-sm border-b border-border-subtle last:border-b-0">
                     <div>
-                      <div className="font-body-sm text-on-surface">{formatDate(b.RequestedDatetime)}</div>
-                      <div className="font-body-sm text-on-surface-variant text-[12px]">{b.Notes || 'No notes'}</div>
+                      <div className="font-body-sm text-on-surface font-semibold">{b.PropertyTitle || `Property #${b.PropertyID}`}</div>
+                      <div className="font-body-sm text-on-surface-variant text-[13px]">{formatDate(b.RequestedDatetime)}</div>
+                      {b.Notes && <div className="font-body-sm text-on-surface-variant text-[12px] italic mt-xs">"{b.Notes}"</div>}
                     </div>
                     <span className={`px-sm py-xs rounded-md font-label-caps text-label-caps ${getStatusBadge(b.Status)}`}>
                       {b.Status}
