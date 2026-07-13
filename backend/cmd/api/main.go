@@ -46,6 +46,7 @@ func main() {
 	protectedProperties.Put("/:id", handlers.UpdateProperty)
 	protectedProperties.Post("/:id/photos", handlers.UploadPropertyFile) // Or documents if doc_type is set
 	protectedProperties.Post("/:id/submit", handlers.SubmitProperty)
+	protectedProperties.Delete("/:id", handlers.DeleteProperty)
 
 	// Booking routes (Block 2)
 	bookings := api.Group("/bookings", middleware.Protected())

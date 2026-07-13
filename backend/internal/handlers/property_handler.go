@@ -263,3 +263,29 @@ func SubmitProperty(c *fiber.Ctx) error {
 
 	return c.JSON(fiber.Map{"message": "Property submitted for verification"})
 }
+
+func DeleteProperty(c *fiber.Ctx) error {
+	id := c.Params("id")
+
+	var property models.Property
+	if err := database.DB.Where("id = ?", id).First(&property).Error; err != nil {
+		return c.Status(fiber.StatusNotFound).JSON(fiber.Map{"error": "Property not found"})
+	}
+
+	// Verify owner
+	ownerIDStr := c.Locals("user_id").(string)
+	if property.OwnerID.String() != ownerIDStr {
+		return c.Status(fiber.StatusForbidden).JSON(fiber.Map{"error": "Not allowed to delete this property"})
+	}
+
+	// Delete related records (photos, documents, bookings) first for simple MVP cleanup
+	database.DB.Where("property_id = ?", id).Delete(&models.PropertyPhoto{})
+	database.DB.Where("property_id = ?", id).Delete(&models.PropertyDocument{})
+	database.DB.Where("property_id = ?", id).Delete(&models.SurveyBooking{})
+
+	if err := database.DB.Delete(&property).Error; err != nil {
+		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{"error": "Failed to delete property"})
+	}
+
+	return c.JSON(fiber.Map{"message": "Property deleted successfully"})
+}

@@ -51,9 +51,9 @@ function NavBar() {
           {/* Hide nav links when on any dashboard */}
           {!isDashboard && (
             <nav className="hidden md:flex gap-lg">
-              <Link className="text-trust-navy border-b-2 border-trust-navy pb-1 font-body-md" to="/">For Tenants</Link>
-              <Link className="text-on-surface-variant hover:text-trust-navy transition-colors font-body-md" to="/">For Landlords</Link>
-              <Link className="text-on-surface-variant hover:text-trust-navy transition-colors font-body-md" to="/search">List Property</Link>
+              <Link className={`${location.pathname === '/' ? 'text-trust-navy border-b-2 border-trust-navy' : 'text-on-surface-variant hover:text-trust-navy'} pb-1 transition-colors font-body-md`} to="/">For Tenants</Link>
+              <Link className={`${location.pathname === '/search' ? 'text-trust-navy border-b-2 border-trust-navy' : 'text-on-surface-variant hover:text-trust-navy'} pb-1 transition-colors font-body-md`} to="/search">Search Property</Link>
+              <Link className={`text-on-surface-variant hover:text-trust-navy pb-1 transition-colors font-body-md`} to={user ? getDashboardPath() : '/login'}>List Property</Link>
             </nav>
           )}
         </div>

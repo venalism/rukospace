@@ -190,10 +190,10 @@ export default function Home() {
             <p className="font-body-md text-body-md text-inverse-on-surface opacity-90">Pasarkan properti komersial Anda ke ribuan calon penyewa terverifikasi. Proses listing cepat, aman, dan profesional.</p>
           </div>
           <div className="relative z-10 shrink-0">
-            <button className="bg-action-amber text-trust-navy font-bold rounded-lg px-xl py-md text-[16px] hover:opacity-90 transition-opacity shadow-lg flex items-center gap-sm">
+            <Link to="/login" className="bg-action-amber text-trust-navy font-bold rounded-lg px-xl py-md text-[16px] hover:opacity-90 transition-opacity shadow-lg inline-flex items-center gap-sm cursor-pointer">
               Mulai Listing Sekarang
               <span className="material-symbols-outlined">arrow_forward</span>
-            </button>
+            </Link>
           </div>
         </div>
       </section>

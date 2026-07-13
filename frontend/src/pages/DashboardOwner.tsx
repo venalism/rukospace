@@ -37,6 +37,78 @@ export default function DashboardOwner() {
   const [bookings, setBookings] = useState<Booking[]>([])
   const [loading, setLoading] = useState(false)
 
+  // Property Form Modal State
+  const [isModalOpen, setIsModalOpen] = useState(false)
+  const [modalMode, setModalMode] = useState<'add' | 'edit'>('add')
+  const [currentPropId, setCurrentPropId] = useState<string | null>(null)
+  const [submitting, setSubmitting] = useState(false)
+  const defaultForm = { title: '', address: '', price_per_month: '', area_sqm: '', electricity_power_watt: '', water_source: '', parking_spaces: '', zoning_type: '', description: '' }
+  const [formData, setFormData] = useState<any>(defaultForm)
+  const [files, setFiles] = useState<{ktp: File|null, selfie_ktp: File|null, certificate: File|null, pbb: File|null}>({ktp: null, selfie_ktp: null, certificate: null, pbb: null})
+
+  const openAddModal = () => {
+    setModalMode('add')
+    setFormData(defaultForm)
+    setFiles({ktp: null, selfie_ktp: null, certificate: null, pbb: null})
+    setIsModalOpen(true)
+  }
+
+  const openEditModal = (prop: Property) => {
+    setModalMode('edit')
+    setCurrentPropId(prop.ID)
+    setFormData({ title: prop.Title, address: prop.Address, price_per_month: prop.PricePerMonth, area_sqm: prop.AreaSqm, electricity_power_watt: prop.ElectricityPowerWatt, water_source: prop.WaterSource, parking_spaces: prop.ParkingSpaces, zoning_type: prop.ZoningType, description: '' })
+    setFiles({ktp: null, selfie_ktp: null, certificate: null, pbb: null})
+    setIsModalOpen(true)
+  }
+
+  const handleDelete = async (id: string) => {
+    if (!window.confirm('Are you sure you want to delete this property?')) return;
+    try {
+      const res = await fetch(`${apiBase}/properties/${id}`, { method: 'DELETE', headers })
+      if(res.ok) fetchData(activeTab)
+    } catch(err) { console.error(err) }
+  }
+
+  const handleSubmitProperty = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setSubmitting(true)
+    try {
+      let propId = currentPropId
+      const payload = { ...formData, price_per_month: Number(formData.price_per_month), area_sqm: Number(formData.area_sqm), electricity_power_watt: Number(formData.electricity_power_watt), parking_spaces: Number(formData.parking_spaces), latitude: -6.2, longitude: 106.8 }
+
+      if (modalMode === 'add') {
+        const res = await fetch(`${apiBase}/properties`, { method: 'POST', headers, body: JSON.stringify(payload) })
+        const created = await res.json()
+        if(!res.ok) throw new Error(created.error)
+        propId = created.ID
+      } else {
+        const res = await fetch(`${apiBase}/properties/${propId}`, { method: 'PUT', headers, body: JSON.stringify(payload) })
+        if(!res.ok) throw new Error('Update failed')
+      }
+
+      const uploadFile = async (file: File, type: string) => {
+        const fd = new FormData()
+        fd.append('file', file)
+        fd.append('doc_type', type)
+        await fetch(`${apiBase}/properties/${propId}/photos`, { method: 'POST', headers: { 'Authorization': `Bearer ${token}` }, body: fd })
+      }
+
+      if (files.ktp) await uploadFile(files.ktp, 'ktp')
+      if (files.selfie_ktp) await uploadFile(files.selfie_ktp, 'selfie_ktp')
+      if (files.certificate) await uploadFile(files.certificate, 'certificate')
+      if (files.pbb) await uploadFile(files.pbb, 'pbb')
+
+      if (modalMode === 'add') {
+        await fetch(`${apiBase}/properties/${propId}/submit`, { method: 'POST', headers })
+      }
+      setIsModalOpen(false)
+      fetchData(activeTab)
+    } catch (err) {
+      alert('Failed to save property')
+    }
+    setSubmitting(false)
+  }
+
   if (!user || (user.role !== 'owner' && user.role !== 'agent')) {
     return <div className="p-3xl text-center text-error-red font-body-md">Unauthorized access. Please login as an Owner.</div>
   }
@@ -256,28 +328,34 @@ export default function DashboardOwner() {
           <span className="material-symbols-outlined">domain</span>
           My Properties
         </h2>
-        <span className="font-label-caps text-label-caps text-on-surface-variant">{properties.length} TOTAL</span>
+        <div className="flex items-center gap-md">
+          <span className="font-label-caps text-label-caps text-on-surface-variant">{properties.length} TOTAL</span>
+          <button onClick={openAddModal} className="flex items-center gap-xs bg-trust-navy text-on-primary px-md py-sm rounded-lg hover:opacity-90 text-[12px] font-bold">
+            <span className="material-symbols-outlined text-[16px]">add</span> ADD
+          </button>
+        </div>
       </div>
 
       <div className="bg-surface-container-lowest border border-border-subtle rounded-xl overflow-hidden">
-        <div className="bg-surface-gray border-b border-border-subtle px-lg py-md grid grid-cols-6 gap-md">
+        <div className="bg-surface-gray border-b border-border-subtle px-lg py-md grid grid-cols-7 gap-md">
           <span className="font-label-caps text-label-caps text-on-surface-variant col-span-2">PROPERTY</span>
           <span className="font-label-caps text-label-caps text-on-surface-variant">PRICE/MO</span>
           <span className="font-label-caps text-label-caps text-on-surface-variant">AREA</span>
           <span className="font-label-caps text-label-caps text-on-surface-variant">STATUS</span>
           <span className="font-label-caps text-label-caps text-on-surface-variant">DETAILS</span>
+          <span className="font-label-caps text-label-caps text-on-surface-variant text-right">ACTIONS</span>
         </div>
         {properties.length === 0 ? (
           <div className="flex flex-col items-center justify-center py-2xl text-center gap-sm">
             <span className="material-symbols-outlined text-[48px] text-outline">domain_add</span>
             <p className="font-body-md text-body-md text-on-surface-variant">You haven't listed any properties yet.</p>
-            <button className="bg-trust-navy text-on-primary font-label-caps text-label-caps px-lg py-sm rounded-lg hover:opacity-90 transition-opacity mt-sm">
+            <button onClick={openAddModal} className="bg-trust-navy text-on-primary font-label-caps text-label-caps px-lg py-sm rounded-lg hover:opacity-90 transition-opacity mt-sm">
               ADD PROPERTY
             </button>
           </div>
         ) : (
           properties.map((prop) => (
-            <div key={prop.ID} className="px-lg py-md grid grid-cols-6 gap-md border-b border-border-subtle last:border-b-0 items-center hover:bg-surface-gray/50 transition-colors">
+            <div key={prop.ID} className="px-lg py-md grid grid-cols-7 gap-md border-b border-border-subtle last:border-b-0 items-center hover:bg-surface-gray/50 transition-colors">
               <div className="col-span-2">
                 <div className="font-body-md text-on-surface font-semibold truncate">{prop.Title}</div>
                 <div className="font-body-sm text-on-surface-variant truncate">{prop.Address}</div>
@@ -293,6 +371,10 @@ export default function DashboardOwner() {
                 <span className="material-symbols-outlined text-[16px] text-outline" title={`${prop.ElectricityPowerWatt || 0}W`}>bolt</span>
                 <span className="material-symbols-outlined text-[16px] text-outline" title={`${prop.ParkingSpaces} spots`}>local_parking</span>
                 <span className="material-symbols-outlined text-[16px] text-outline" title={prop.ZoningType || '-'}>map</span>
+              </div>
+              <div className="flex justify-end gap-xs">
+                <button onClick={() => openEditModal(prop)} className="text-trust-navy hover:bg-trust-navy/10 p-xs rounded-md"><span className="material-symbols-outlined text-[18px]">edit</span></button>
+                <button onClick={() => handleDelete(prop.ID)} className="text-error-red hover:bg-error-red/10 p-xs rounded-md"><span className="material-symbols-outlined text-[18px]">delete</span></button>
               </div>
             </div>
           ))
@@ -588,6 +670,86 @@ export default function DashboardOwner() {
           tabContent[activeTab]()
         )}
       </main>
+
+      {isModalOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-surface-gray/80 backdrop-blur-sm p-lg">
+          <div className="bg-surface-container-lowest rounded-xl shadow-lg w-full max-w-[768px] max-h-[90vh] flex flex-col">
+            <div className="flex justify-between items-center p-lg border-b border-border-subtle">
+              <h2 className="font-title-lg text-title-lg text-trust-navy">{modalMode === 'add' ? 'Add New Property' : 'Edit Property'}</h2>
+              <button onClick={() => setIsModalOpen(false)} className="text-outline hover:text-on-surface"><span className="material-symbols-outlined">close</span></button>
+            </div>
+            <div className="p-lg overflow-y-auto flex-1">
+              <form id="propForm" onSubmit={handleSubmitProperty} className="flex flex-col gap-lg">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-lg">
+                  <div className="flex flex-col gap-xs">
+                    <label className="font-label-caps text-label-caps">Title <span className="text-error-red">*</span></label>
+                    <input required type="text" value={formData.title} onChange={e => setFormData({...formData, title: e.target.value})} className="border border-border-subtle rounded-md p-sm bg-transparent" />
+                  </div>
+                  <div className="flex flex-col gap-xs">
+                    <label className="font-label-caps text-label-caps">Price / Month (Rp) <span className="text-error-red">*</span></label>
+                    <input required type="number" value={formData.price_per_month} onChange={e => setFormData({...formData, price_per_month: e.target.value})} className="border border-border-subtle rounded-md p-sm bg-transparent" />
+                  </div>
+                  <div className="flex flex-col gap-xs">
+                    <label className="font-label-caps text-label-caps">Area (m²) <span className="text-error-red">*</span></label>
+                    <input required type="number" value={formData.area_sqm} onChange={e => setFormData({...formData, area_sqm: e.target.value})} className="border border-border-subtle rounded-md p-sm bg-transparent" />
+                  </div>
+                  <div className="flex flex-col gap-xs">
+                    <label className="font-label-caps text-label-caps">Address <span className="text-error-red">*</span></label>
+                    <input required type="text" value={formData.address} onChange={e => setFormData({...formData, address: e.target.value})} className="border border-border-subtle rounded-md p-sm bg-transparent" />
+                  </div>
+                  <div className="flex flex-col gap-xs">
+                    <label className="font-label-caps text-label-caps">Listrik (Watt) <span className="text-error-red">*</span></label>
+                    <input required type="number" value={formData.electricity_power_watt} onChange={e => setFormData({...formData, electricity_power_watt: e.target.value})} className="border border-border-subtle rounded-md p-sm bg-transparent" />
+                  </div>
+                  <div className="flex flex-col gap-xs">
+                    <label className="font-label-caps text-label-caps">Slot Parkir <span className="text-error-red">*</span></label>
+                    <input required type="number" value={formData.parking_spaces} onChange={e => setFormData({...formData, parking_spaces: e.target.value})} className="border border-border-subtle rounded-md p-sm bg-transparent" />
+                  </div>
+                  <div className="flex flex-col gap-xs md:col-span-2">
+                    <label className="font-label-caps text-label-caps">Tipe Ruko <span className="text-error-red">*</span></label>
+                    <select required value={formData.zoning_type} onChange={e => setFormData({...formData, zoning_type: e.target.value})} className="border border-border-subtle rounded-md p-sm bg-transparent text-on-surface">
+                      <option value="">Pilih Tipe...</option>
+                      <option value="commercial">Komersial</option>
+                      <option value="non-commercial">Non Komersial</option>
+                    </select>
+                  </div>
+                </div>
+
+                {modalMode === 'add' && (
+                  <>
+                    <h3 className="font-title-md text-title-md mt-md border-b border-border-subtle pb-sm">Verification Documents</h3>
+                    <p className="font-body-sm text-outline mb-xs">Please attach the following documents for verification. Max 5MB each.</p>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-md">
+                      <div className="flex flex-col gap-xs border border-border-subtle p-md rounded-lg bg-surface-gray/30">
+                        <label className="font-label-caps text-label-caps flex items-center gap-xs"><span className="material-symbols-outlined text-[16px]">id_card</span> Foto KTP <span className="text-error-red">*</span></label>
+                        <input required type="file" accept="image/*" onChange={e => setFiles({...files, ktp: e.target.files?.[0] || null})} className="font-body-sm text-on-surface-variant file:mr-4 file:py-xs file:px-sm file:rounded-md file:border-0 file:text-body-sm file:font-semibold file:bg-trust-navy/10 file:text-trust-navy hover:file:bg-trust-navy/20 cursor-pointer" />
+                      </div>
+                      <div className="flex flex-col gap-xs border border-border-subtle p-md rounded-lg bg-surface-gray/30">
+                        <label className="font-label-caps text-label-caps flex items-center gap-xs"><span className="material-symbols-outlined text-[16px]">portrait</span> Selfie dgn KTP <span className="text-error-red">*</span></label>
+                        <input required type="file" accept="image/*" onChange={e => setFiles({...files, selfie_ktp: e.target.files?.[0] || null})} className="font-body-sm text-on-surface-variant file:mr-4 file:py-xs file:px-sm file:rounded-md file:border-0 file:text-body-sm file:font-semibold file:bg-trust-navy/10 file:text-trust-navy hover:file:bg-trust-navy/20 cursor-pointer" />
+                      </div>
+                      <div className="flex flex-col gap-xs border border-border-subtle p-md rounded-lg bg-surface-gray/30">
+                        <label className="font-label-caps text-label-caps flex items-center gap-xs"><span className="material-symbols-outlined text-[16px]">description</span> Sertifikat (PDF) <span className="text-error-red">*</span></label>
+                        <input required type="file" accept=".pdf" onChange={e => setFiles({...files, certificate: e.target.files?.[0] || null})} className="font-body-sm text-on-surface-variant file:mr-4 file:py-xs file:px-sm file:rounded-md file:border-0 file:text-body-sm file:font-semibold file:bg-trust-navy/10 file:text-trust-navy hover:file:bg-trust-navy/20 cursor-pointer" />
+                      </div>
+                      <div className="flex flex-col gap-xs border border-border-subtle p-md rounded-lg bg-surface-gray/30">
+                        <label className="font-label-caps text-label-caps flex items-center gap-xs"><span className="material-symbols-outlined text-[16px]">receipt</span> Bukti Lunas PBB <span className="text-error-red">*</span></label>
+                        <input required type="file" accept="image/*,.pdf" onChange={e => setFiles({...files, pbb: e.target.files?.[0] || null})} className="font-body-sm text-on-surface-variant file:mr-4 file:py-xs file:px-sm file:rounded-md file:border-0 file:text-body-sm file:font-semibold file:bg-trust-navy/10 file:text-trust-navy hover:file:bg-trust-navy/20 cursor-pointer" />
+                      </div>
+                    </div>
+                  </>
+                )}
+              </form>
+            </div>
+            <div className="p-lg border-t border-border-subtle flex justify-end gap-md">
+              <button onClick={() => setIsModalOpen(false)} className="px-lg py-sm font-label-caps text-label-caps hover:bg-surface-gray rounded-lg transition-colors">Cancel</button>
+              <button form="propForm" type="submit" disabled={submitting} className="bg-trust-navy text-on-primary px-lg py-sm rounded-lg font-label-caps text-label-caps flex items-center gap-xs hover-elevate transition-all">
+                {submitting ? <span className="material-symbols-outlined animate-spin text-[18px]">progress_activity</span> : 'Save Property'}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   )
 }
